@@ -62,31 +62,31 @@
     --info-50: #1E3A8A;
 
     /* -- Typography Sizing -- */
-    --h1-size: 32px;
-    --h2-size: 26px;
-    --h3-size: 22px;
-    --h4-size: 18px;
-    --h5-size: 16px;
+    --h1: 32px;
+    --h2: 26px;
+    --h3: 22px;
+    --h4: 18px;
+    --h5: 16px;
     --body-regular: 14px;
     --body-small: 12px;
     --body-ultra-small: 11px;
 
     /* -- Spacing  -- */
-    --1: 2px;
-    --2: 4px;
-    --3: 8px;
-    --4: 12px;
-    --5: 16px;
-    --6: 20px;
-    --7: 24px;
-    --8: 28px;
-    --9: 32px;
-    --10: 40px;
-    --11: 48px;
-    --12: 60px;
-    --13: 72px;
-    --14: 96px;
-    --15: 120px;
+    --spacing-1: 2px;
+    --spacing-2: 4px;
+    --spacing-3: 8px;
+    --spacing-4: 12px;
+    --spacing-5: 16px;
+    --spacing-6: 20px;
+    --spacing-7: 24px;
+    --spacing-8: 28px;
+    --spacing-9: 32px;
+    --spacing-10: 40px;
+    --spacing-11: 48px;
+    --spacing-12: 60px;
+    --spacing-13: 72px;
+    --spacing-14: 96px;
+    --spacing-15: 120px;
   }
 }
 
