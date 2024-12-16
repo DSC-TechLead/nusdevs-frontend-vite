@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* -- Colors -- */
+    /* Bacgkround & Misc */
+    --background: #F3F4F6;
+    --black: #000000;
+    --white: #ffffff;
+
+    /* Primary */
+    --primary-10: #faa385;
+    --primary-20: #FDE1D2;
+    --primary-30: #FBCAAF;
+    --primary-40: #F9AD85;
+    --primary-50: #F6884D;
+    --primary: #EB5E27; /* 60 */
+    --primary-70: #BC3F0E;
+    --primary-80: #892802;
+    --primary-text: #000000;
+
+    /* Secondary */
+    --secondary-text: #727272;
+
+    /* Neutrals */
+    --neutral-10: #F3F4F6;
+    --neutral-20: ##E5E7EB;
+    --neutral-30: #D4D5D6;
+    --neutral-40: #B6B8BC;
+    --neutral-50: #919396;
+    --neutral: #727272;
+    --neutral-70: #46433E;
+    --neutral-80: #111928;
+
+    /* Semantic */
+    --success-10: #DAF8E6;
+    --success-30: #ACEFC8;
+    --success-50: #57DE8F;
+    --success-60: #22AD5C;
+    --success-80: #1A8245;
+
+    /* TODO: update with design team's color system */
+    
+    --warning-10: #FEF9C3;
+    --warning-20: #FDE047;
+    --warning: #EAB308;
+    --warning-40: #A16207;
+    --warning-50: #713F12;
+
+    --danger-10: #FEE2E2;
+    --danger-20: #FCA5A5;
+    --danger: #EF4444;
+    --danger-40: #B91C1C;
+    --danger-50: #7F1D1D;
+
+    --info-10: #DBEAFE;
+    --info-20: #93C5FD;
+    --info: #3B82F6;
+    --info-40: #1D4ED8;
+    --info-50: #1E3A8A;
+
+    /* -- Typography Sizing -- */
+    --h1: 32px;
+    --h2: 26px;
+    --h3: 22px;
+    --h4: 18px;
+    --h5: 16px;
+    --body-regular: 14px;
+    --body-small: 12px;
+    --body-ultra-small: 11px;
+
+    /* -- Spacing  -- */
+    --spacing-1: 2px;
+    --spacing-2: 4px;
+    --spacing-3: 8px;
+    --spacing-4: 12px;
+    --spacing-5: 16px;
+    --spacing-6: 20px;
+    --spacing-7: 24px;
+    --spacing-8: 28px;
+    --spacing-9: 32px;
+    --spacing-10: 40px;
+    --spacing-11: 48px;
+    --spacing-12: 60px;
+    --spacing-13: 72px;
+    --spacing-14: 96px;
+    --spacing-15: 120px;
+  }
+}
+
+@layer base {
+  /* Add stylings here if needed */
+}
+
+/* TODO: remove this later */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
