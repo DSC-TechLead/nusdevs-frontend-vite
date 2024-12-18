@@ -26,21 +26,21 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <div className="w-full max-w-md mb-4">
-      <label className="block text-sm font-bold text-gray-800 mb-1">
+      <label className="block text-body-small font-bold text-gray-800 mb-1">
         {label}
       </label>
-      <p className="text-sm text-gray-500 mb-2">{description}</p>
+      <p className="text-body-small text-gray-500 mb-2">{description}</p>
       <div>
         <textarea
           placeholder={placeholder}
           value={value}
           onChange={handleInputChange}
-          className="w-full p-2.5 border border-gray-300 rounded-md shadow-sm resize-none focus:outline-none focus:border-orange-500 focus:ring-2 focus:ring-orange-300"
+          className="w-full p-2.5 border border-neutral-30 rounded-md shadow-sm resize-none focus:outline-none focus:border-primary"
           rows={height}
           style={{ overflow: "hidden" }}
         />
       </div>
-      <div className="text-right mt-1 text-xs text-gray-500">
+      <div className="text-right mt-1 text-xs text-secondary-text">
         {value.length}/{maxLength}
       </div>
     </div>

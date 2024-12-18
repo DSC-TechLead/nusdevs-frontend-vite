@@ -60,10 +60,10 @@ const DateField: React.FC<DateFieldProps> = ({
 
   return (
     <div className="flex flex-col justify-end items-start w-[367px] gap-2">
-      <h2 className="text-[#171717] font-inter text-sm font-bold leading-[18px]">
+      <h2 className="text-primary-text font-inter text-sm font-bold leading-[18px]">
         {label}
       </h2>
-      <p className="text-[#A3A3A3] font-inter text-xs font-normal leading-[18px]">
+      <p className="text-secondary-text font-inter text-xs font-normal leading-[18px]">
         {description}
       </p>
       <div className="w-full">
@@ -81,8 +81,8 @@ const DateField: React.FC<DateFieldProps> = ({
               onFocus={handleStartFocus} // Focus handler for single date input
               onBlur={handleStartBlur} // Blur handler for single date input
               className={`w-full text-left border p-2 rounded-md ${
-                isStartDateOpen ? "border-[#EB5E27]" : "border-gray-300"
-              } focus:outline-none focus:border-[#EB5E27] hover:border-[#EB5E27]`}
+                isStartDateOpen ? "border-primary" : "border-neutral-30"
+              } focus:outline-none focus:border-primary hover:border-primary`}
             />
           </div>
         ) : (
@@ -103,8 +103,8 @@ const DateField: React.FC<DateFieldProps> = ({
                 onFocus={handleStartFocus} // Focus handler for start date input
                 onBlur={handleStartBlur} // Blur handler for start date input
                 className={`w-full text-left border p-2 rounded-md ${
-                  isStartDateOpen ? "border-[#EB5E27]" : "border-gray-300"
-                } focus:outline-none focus:border-[#EB5E27] hover:border-[#EB5E27]`}
+                  isStartDateOpen ? "border-primary" : "border-neutral-30"
+                } focus:outline-none focus:border-primary hover:border-primary`}
               />
             </div>
             <p className="flex"> _ </p>
@@ -126,8 +126,8 @@ const DateField: React.FC<DateFieldProps> = ({
                 onFocus={handleEndFocus} // Focus handler for end date input
                 onBlur={handleEndBlur} // Blur handler for end date input
                 className={`w-full text-left border p-2 rounded-md ${
-                  isEndDateOpen ? "border-[#EB5E27]" : "border-gray-300"
-                } focus:outline-none focus:border-[#EB5E27] hover:border-[#EB5E27]`}
+                  isEndDateOpen ? "border-primary" : "border-neutral-30"
+                } focus:outline-none focus:border-primary hover:border-primary`}
               />
             </div>
           </div>
