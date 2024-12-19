@@ -1,11 +1,14 @@
 interface CheckSelectProps {
   selectTitle: string;
+  selectDesc: string;
   isChecked: boolean;
   onSelectionChange: (isChecked: boolean) => void;
+  isDisabled?: boolean;
 }
 
-const CheckSelect: React.FC<CheckSelectProps> = ({
+const SingleCheckSelect: React.FC<CheckSelectProps> = ({
   selectTitle,
+  selectDesc,
   isChecked,
   onSelectionChange,
 }) => {
@@ -56,7 +59,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
           </div>
           <div className="text-sm/6">
             <label htmlFor={selectTitle} className="font-medium text-gray-900">
-              {selectTitle}
+              {selectDesc}
             </label>
           </div>
         </div>
@@ -65,4 +68,4 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
   );
 };
 
-export default CheckSelect;
+export default SingleCheckSelect;

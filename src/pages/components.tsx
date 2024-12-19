@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import IconButton from "../components/iconbutton";
 import LinkButton from "../components/linkbutton";
 import TextInput from "../components/textinput";
@@ -6,6 +6,7 @@ import TextButton from "../components/textbutton";
 import FileUpload from "../components/fileupload";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import CheckSelect from "../components/checkSelect";
+import SingleCheckSelect from "../components/singleCheck";
 
 const Components: React.FC = () => {
   const handleClick = () => alert("Button clicked!");
@@ -18,6 +19,12 @@ const Components: React.FC = () => {
 
   const handleSelectionChange = (selected: string[]) => {
     console.log("Selected options:", selected);
+  };
+
+  const [isChecked, setIsChecked] = useState(true);
+
+  const handleSingleCheckChange = (status: boolean) => {
+    setIsChecked(status);
   };
 
   return (
@@ -44,6 +51,13 @@ const Components: React.FC = () => {
         selectTitle="Select Options"
         selections={exampleSelections}
         onSelectionChange={handleSelectionChange}
+      />
+      <SingleCheckSelect
+        selectTitle="test"
+        selectDesc="test"
+        isChecked={isChecked}
+        onSelectionChange={handleSingleCheckChange}
+        isDisabled={true}
       />
     </div>
   );
