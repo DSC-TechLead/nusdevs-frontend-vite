@@ -13,7 +13,7 @@ const IconButton: React.FC<IconButtonProps> = ({
 }) => (
   <button
     onClick={onClick}
-    className={`flex items-center justify-center w-12 h-12 bg-orange-600 text-white rounded-full transition-colors duration-200 ease-in-out outline-none hover:bg-orange-500 active:bg-orange-700 focus:ring-2 focus:ring-orange-600 ${className}`}
+    className={`flex items-center justify-center w-11 h-11 bg-primary text-white rounded-full transition-colors ease-in-out outline-none hover:bg-primary active:bg-primary-70 ${className} cursor-pointer`}
   >
     {icon && <span className="text-lg">{icon}</span>}
   </button>
