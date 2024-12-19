@@ -2,12 +2,14 @@ interface RadioSelectProps {
   selectTitle: string;
   selections: { id: string; title: string }[];
   onSelectionChange: (selected: string) => void;
+  isDisabled?: boolean;
 }
 
 const RadioSelect: React.FC<RadioSelectProps> = ({
   selectTitle,
   selections,
   onSelectionChange,
+  isDisabled = false,
 }) => {
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     onSelectionChange(event.target.id);
@@ -28,6 +30,7 @@ const RadioSelect: React.FC<RadioSelectProps> = ({
               name="single-select"
               type="radio"
               onChange={(event) => handleChange(event)}
+              disabled={isDisabled}
               className="relative size-4 appearance-none rounded-full border border-gray-300 
               bg-white before:absolute before:inset-1 before:rounded-full before:bg-white 
               checked:border-[#EB5E27] checked:bg-[#EB5E27] focus-visible:outline 
