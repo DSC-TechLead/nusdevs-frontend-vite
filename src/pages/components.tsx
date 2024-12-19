@@ -7,8 +7,43 @@ import FileUpload from "../components/fileupload";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import CheckSelect from "../components/checkSelect";
 
+import RadioSelect from "../components/radioSelect";
+import Dropdown from "../components/dropdown";
+import Toggle from "../components/toggle";
+import DateField from "../components/datefield";
+
+const checkSelections = [
+  {
+    id: "C1",
+    title: "Selection 1",
+  },
+  {
+    id: "C2",
+    title: "Selection 2",
+  },
+  {
+    id: "C3",
+    title: "Selection 3",
+  },
+];
+
+const radioSelections = [
+  {
+    id: "R1",
+    title: "Selection 1",
+  },
+  {
+    id: "R2",
+    title: "Selection 2",
+  },
+  {
+    id: "R3",
+    title: "Selection 3",
+  },
+];
+
 const Components: React.FC = () => {
-  const handleClick = () => alert("Button clicked!");
+  const handleClick = () => {};
 
   const exampleSelections = [
     { id: "option1", title: "Option 1" },
@@ -21,7 +56,7 @@ const Components: React.FC = () => {
   };
 
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 ">
       <LinkButton text="Go to Google" href="https://www.google.com" />
       <TextButton text="Add Members" icon={<FaPlus />} onClick={handleClick} />
       <IconButton icon={<FaShoppingCart />} onClick={handleClick} />
@@ -41,10 +76,23 @@ const Components: React.FC = () => {
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
       <CheckSelect
-        selectTitle="Select Options"
-        selections={exampleSelections}
-        onSelectionChange={handleSelectionChange}
+        selectTitle="Checkbox Selection"
+        onSelectionChange={() => {}}
+        selections={checkSelections}
       />
+      <RadioSelect
+        selectTitle="Checkbox Selection"
+        onSelectionChange={() => {}}
+        selections={radioSelections}
+      />
+      <Dropdown label="Dropdown" description="This is a dropdown example" />
+      <DateField
+        label="Datefield"
+        description="This is a datefield example"
+        type="multi"
+        onChange={() => {}}
+      />
+      <Toggle status={true} onToggleChange={() => {}} />
     </div>
   );
 };
