@@ -24,22 +24,22 @@ const Dropdown: React.FC<DropdownProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-start gap-2 w-[398px]">
+    <div className="flex flex-col items-start gap-2">
       {/* Dropdown Title */}
-      <h2 className="text-[#171717] font-inter text-sm/6 font-bold leading-[18px]">
+      <h2 className="text-primary-text font-inter text-sm/6 font-bold leading-[18px]">
         {label}
       </h2>
 
       {/* Description */}
-      <p className="text-[#A3A3A3] font-inter text-xs font-normal leading-[18px]">
+      <p className="text-secondary-text font-inter text-xs font-normal leading-[18px]">
         {description}
       </p>
 
       {/* Dropdown Trigger */}
       <button
         onClick={toggleDropdown}
-        className={`w-full text-left border border-gray-300 p-2 rounded-md flex justify-between items-center ${
-          isOpen ? "border-[#EB5E27]" : "hover:border-[#EB5E27]"
+        className={`w-full text-left border border-neutral-30 p-2 rounded-md flex justify-between items-center ${
+          isOpen ? "border-primary" : "hover:border-primary"
         } transition duration-200`}
       >
         <span>{selected || placeholder}</span>
@@ -74,13 +74,13 @@ const Dropdown: React.FC<DropdownProps> = ({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="mt-2 w-full border border-gray-300 rounded-md shadow-md p-2">
+        <div className="w-full border border-neutral-30 rounded-md shadow-md p-2 absolute mt-20 bg-white z-10">
           <div className="py-1">
             {options.map((option, index) => (
               <button
                 key={index}
                 onClick={() => selectOption(option)}
-                className="block w-full text-left px-4 py-2 hover:bg-[#EB5E27] hover:text-black rounded-md transition duration-200"
+                className="block w-full text-left px-4 py-2 hover:bg-primary hover:text-primary-text rounded-md transition duration-200"
               >
                 {option}
               </button>
