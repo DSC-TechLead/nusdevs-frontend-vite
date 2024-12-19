@@ -5,9 +5,20 @@ import TextInput from "../components/textinput";
 import TextButton from "../components/textbutton";
 import FileUpload from "../components/fileupload";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
+import CheckSelect from "../components/checkSelect";
 
 const Components: React.FC = () => {
   const handleClick = () => alert("Button clicked!");
+
+  const exampleSelections = [
+    { id: "option1", title: "Option 1" },
+    { id: "option2", title: "Option 2" },
+    { id: "option3", title: "Option 3" },
+  ];
+
+  const handleSelectionChange = (selected: string[]) => {
+    console.log("Selected options:", selected);
+  };
 
   return (
     <div className="p-4 space-y-4">
@@ -29,6 +40,11 @@ const Components: React.FC = () => {
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
+      <CheckSelect
+        selectTitle="Select Options"
+        selections={exampleSelections}
+        onSelectionChange={handleSelectionChange}
+      />
     </div>
   );
 };
