@@ -68,7 +68,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
             </div>
             <div className="text-sm/6">
               <label
-                htmlFor={checkSelection.id} // Updated htmlFor value
+                htmlFor={checkSelection.id}
                 className="font-medium text-gray-900"
               >
                 {checkSelection.title}
