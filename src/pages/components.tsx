@@ -54,6 +54,7 @@ const Components: React.FC = () => {
         label="Short Input Example"
         description="Add Description Here"
         maxLength={50}
+        textDisabled={false}
       />
       <TextInput
         placeholder="Enter text here"
@@ -61,6 +62,7 @@ const Components: React.FC = () => {
         description="Add Description Here"
         maxLength={200}
         height={5}
+        textDisabled={false}
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
