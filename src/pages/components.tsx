@@ -6,6 +6,7 @@ import TextButton from "../components/textbutton";
 import FileUpload from "../components/fileupload";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import CheckSelect from "../components/checkSelect";
+
 import RadioSelect from "../components/radioSelect";
 import Dropdown from "../components/dropdown";
 import Toggle from "../components/toggle";
@@ -43,6 +44,16 @@ const radioSelections = [
 
 const Components: React.FC = () => {
   const handleClick = () => {};
+
+  const exampleSelections = [
+    { id: "option1", title: "Option 1" },
+    { id: "option2", title: "Option 2" },
+    { id: "option3", title: "Option 3" },
+  ];
+
+  const handleSelectionChange = (selected: string[]) => {
+    console.log("Selected options:", selected);
+  };
 
   return (
     <div className="p-4 space-y-4 ">

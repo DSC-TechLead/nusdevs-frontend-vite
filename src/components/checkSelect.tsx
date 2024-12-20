@@ -34,7 +34,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
       </p>
       <div className="mt-2 space-y-1">
         {selections.map((checkSelection) => (
-          <div className="flex gap-3">
+          <div className="flex gap-3" key={checkSelection.id}>
             <div className="flex h-6 shrink-0 items-center">
               <div className="group grid size-4 grid-cols-1">
                 <input
@@ -68,8 +68,11 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 </svg>
               </div>
             </div>
-            <div className="text-body-small">
-              <label htmlFor="comments" className="text-primary-text">
+            <div className="text-sm/6">
+              <label
+                htmlFor={checkSelection.id}
+                className="font-medium text-gray-900"
+              >
                 {checkSelection.title}
               </label>
             </div>
