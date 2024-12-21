@@ -77,7 +77,7 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   return (
     <div
       ref={cardRef}
-      className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow"
+      className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow mb-4"
     >
       <div className="flex justify-center px-4 py-5 sm:px-6">
         <div ref={handleRef}>
