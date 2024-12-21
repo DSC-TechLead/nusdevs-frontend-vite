@@ -3,7 +3,7 @@ import { ReactFCC } from "@/types/react";
 import { HTMLAttributes } from "react";
 import { RiDraggable } from "react-icons/ri";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   isDraggable: boolean;
 }
 
@@ -47,7 +47,7 @@ export const CardTitle: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
 }) => (
   <div
     className={cn(
-      "text-h3 text-primary-text font-bold leading-none tracking-tight",
+      " text-h3 text-primary-text font-bold leading-none tracking-tight",
       className
     )}
     {...props}

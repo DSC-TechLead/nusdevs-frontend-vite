@@ -1,30 +1,35 @@
 import React, { useState } from "react";
 
+export type DropdownOption = { label: string; value: string };
+
 interface DropdownProps {
   label: string;
   description: string;
   placeholder?: string;
+  options: DropdownOption[];
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
   label,
   description,
+  options,
   placeholder,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<string | null>(null);
-
-  const options = ["Option 1", "Option 2", "Option 3"];
+  const [selected, setSelected] = useState<{
+    label: string;
+    value: string;
+  } | null>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const selectOption = (option: string) => {
+  const selectOption = (option: DropdownOption) => {
     setSelected(option);
     setIsOpen(false);
   };
 
   return (
-    <div className="flex flex-col items-start gap-2">
+    <div className="w-full flex flex-col items-start gap-2">
       {/* Dropdown Title */}
       <h2 className="text-primary-text font-inter text-sm/6 font-bold leading-[18px]">
         {label}
@@ -42,7 +47,7 @@ const Dropdown: React.FC<DropdownProps> = ({
           isOpen ? "border-primary" : "hover:border-primary"
         } transition duration-200`}
       >
-        <span>{selected || placeholder}</span>
+        <span>{selected?.label || placeholder}</span>
         {isOpen ? (
           <svg
             className="w-5 h-5"
@@ -82,7 +87,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                 onClick={() => selectOption(option)}
                 className="block w-full text-left px-4 py-2 hover:bg-primary hover:text-primary-text rounded-md transition duration-200"
               >
-                {option}
+                {option.label}
               </button>
             ))}
           </div>

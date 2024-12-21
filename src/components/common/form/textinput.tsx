@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 
 interface TextInputProps {
   placeholder: string;
+  value: string;
+  handleInputChange: (val: string) => void;
   label?: string;
   description?: string;
   maxLength?: number;
@@ -10,22 +12,15 @@ interface TextInputProps {
 
 const TextInput: React.FC<TextInputProps> = ({
   placeholder,
-  label = "Short Input Example",
-  description = "This input is self-handled",
-  maxLength = 50,
+  label,
+  value,
+  handleInputChange,
+  description,
+  maxLength,
   height = 1,
 }) => {
-  const [value, setValue] = useState<string>("");
-
-  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const inputValue = e.target.value;
-    if (inputValue.length <= maxLength) {
-      setValue(inputValue);
-    }
-  };
-
   return (
-    <div className="w-full max-w-md mb-4">
+    <div className="w-full mb-4">
       <label className="block mb-1 font-bold text-gray-800 text-body-small">
         {label}
       </label>
@@ -34,15 +29,17 @@ const TextInput: React.FC<TextInputProps> = ({
         <textarea
           placeholder={placeholder}
           value={value}
-          onChange={handleInputChange}
+          onChange={(e) => handleInputChange(e.target.value)}
           className="w-full p-2.5 border border-neutral-30 rounded-md shadow-sm resize-none focus:outline-none focus:border-primary"
           rows={height}
           style={{ overflow: "hidden" }}
         />
       </div>
-      <div className="mt-1 text-xs text-right text-secondary-text">
-        {value.length}/{maxLength}
-      </div>
+      {maxLength && (
+        <div className="mt-1 text-xs text-right text-secondary-text">
+          {value.length}/{maxLength}
+        </div>
+      )}
     </div>
   );
 };

@@ -19,11 +19,11 @@ import { useMemo, useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
-interface UploadDocumentProps {
+interface CreateUploadDocumentProps {
   isHostMode?: boolean;
 }
 
-const UploadDocument: ReactFCC<UploadDocumentProps> = () => {
+const CreateUploadDocument: ReactFCC<CreateUploadDocumentProps> = () => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -38,12 +38,28 @@ const UploadDocument: ReactFCC<UploadDocumentProps> = () => {
     useState<boolean>(false);
 
   return (
-    <Card isDraggable={true}>
+    <Card className="w-full" isDraggable={true}>
       <CardHeader className="pt-0 pb-0">
-        <TextInput placeholder={"Upload your resume"} />
-        {isDescriptionInputEnabled && <TextInput placeholder="Description" />}
+        <TextInput
+          placeholder={"Upload your resume"}
+          value={""}
+          // TODO: input change
+          handleInputChange={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+        {isDescriptionInputEnabled && (
+          <TextInput
+            placeholder="Description"
+            value={""}
+            // TODO: input change
+            handleInputChange={function (): void {
+              throw new Error("Function not implemented.");
+            }}
+          />
+        )}
       </CardHeader>
-      <div className="px-11 pb-6">
+      <div className="pb-6 px-11">
         <Divider />
       </div>
       <CardContent className="flex flex-col gap-5">
@@ -99,4 +115,4 @@ const UploadDocument: ReactFCC<UploadDocumentProps> = () => {
   );
 };
 
-export default UploadDocument;
+export default CreateUploadDocument;
