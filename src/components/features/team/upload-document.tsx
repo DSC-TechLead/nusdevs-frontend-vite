@@ -21,9 +21,14 @@ import { HiEllipsisVertical } from "react-icons/hi2";
 
 interface UploadDocumentProps {
   isHostMode?: boolean;
+  cardRef?: React.RefObject<HTMLDivElement | null>;
+  handleRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-const UploadDocument: ReactFCC<UploadDocumentProps> = () => {
+const UploadDocument: ReactFCC<UploadDocumentProps> = ({
+  cardRef,
+  handleRef,
+}) => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -38,7 +43,7 @@ const UploadDocument: ReactFCC<UploadDocumentProps> = () => {
     useState<boolean>(false);
 
   return (
-    <Card isDraggable={true}>
+    <Card isDraggable={true} cardRef={cardRef} handleRef={handleRef}>
       <CardHeader className="pt-0 pb-0">
         <TextInput placeholder={"Upload your resume"} />
         {isDescriptionInputEnabled && <TextInput placeholder="Description" />}

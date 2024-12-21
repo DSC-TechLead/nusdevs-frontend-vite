@@ -3,6 +3,7 @@ import { GripHorizontal } from "lucide-react";
 import type { FC } from "react";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
+import HostUploadDocument from "@/components/features/team/upload-document";
 
 export interface CardProps {
   id: any;
@@ -75,16 +76,17 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   preview(drop(cardRef)); // Attach drop and preview to card
 
   return (
-    <div
-      ref={cardRef}
-      className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow mb-4"
-    >
-      <div className="flex justify-center px-4 py-5 sm:px-6">
-        <div ref={handleRef}>
-          <GripHorizontal />
-        </div>
-      </div>
-      {text}
-    </div>
+    // <div
+    //   ref={cardRef}
+    //   className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow mb-4"
+    // >
+    //   <div className="flex justify-center px-4 py-5 sm:px-6">
+    //     <div ref={handleRef}>
+    //       <GripHorizontal />
+    //     </div>
+    //   </div>
+    //   {text}
+    // </div>
+    <HostUploadDocument cardRef={cardRef} handleRef={handleRef} />
   );
 };
