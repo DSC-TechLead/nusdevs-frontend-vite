@@ -63,7 +63,7 @@ export default {
         13: "var(--spacing-13)",
         14: "var(--spacing-14)",
         15: "var(--spacing-15)",
-      }
+      },
     },
   },
   plugins: [],
