@@ -37,7 +37,7 @@ export const CardHeader: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
   children,
   ...props
 }) => (
-  <div className={cn("p-5 flex flex-col gap-2", className)} {...props}>
+  <div className={cn("p-6 flex flex-col gap-2", className)} {...props}>
     {children}
   </div>
 );
@@ -77,7 +77,7 @@ export const CardContent: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
   ...props
 }) => (
   <div
-    className={cn("p-5 pt-0 text-body-regular text-primary-text", className)}
+    className={cn("p-6 pt-0 text-body-regular text-primary-text", className)}
     {...props}
   >
     {children}
@@ -90,7 +90,7 @@ export const CardFooter: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
   children,
   ...props
 }) => (
-  <div className={cn("p-5 pt-0", className)} {...props}>
+  <div className={cn("p-6 pt-0", className)} {...props}>
     {children}
   </div>
 );

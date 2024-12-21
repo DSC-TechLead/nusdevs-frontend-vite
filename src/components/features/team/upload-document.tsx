@@ -9,6 +9,7 @@ import FileUpload from "@/components/common/fileupload";
 import TextInput from "@/components/common/textinput";
 import Toggle from "@/components/common/toggle";
 import { ReactFCC } from "@/types/react";
+import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 
 const UploadDocument: ReactFCC = () => {
@@ -19,11 +20,15 @@ const UploadDocument: ReactFCC = () => {
     { id: "pdf", title: "JPEG" },
   ];
 
+  const [isDescriptionInputEnabled, setIsDescriptionInputEnabled] =
+    useState<boolean>(false);
+
   return (
     <Card isDraggable={true}>
-      <CardHeader>
+      <CardHeader className="pt-0">
         <TextInput placeholder={""} />
       </CardHeader>
+
       <CardContent className="flex flex-col gap-5">
         <CheckSelect
           selectTitle={"Accepted File Types*"}
@@ -33,16 +38,19 @@ const UploadDocument: ReactFCC = () => {
           }}
         />
         <FileUpload disabled />
-        <CardFooter className="flex justify-between">
-          <HiOutlineTrash className="text-danger" size={20} />
+      </CardContent>
+      <CardFooter className="flex justify-between">
+        <HiOutlineTrash className="text-danger" size={20} />
+        <div className="flex items-center gap-3">
           <Toggle
             status={false}
             onToggleChange={function (): void {
               throw new Error("Function not implemented.");
             }}
           />
-        </CardFooter>
-      </CardContent>
+          <span className="text-body-regular">Required</span>
+        </div>
+      </CardFooter>
     </Card>
   );
 };

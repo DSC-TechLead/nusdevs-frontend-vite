@@ -7,11 +7,12 @@ import UploadDocument from "@/components/features/team/upload-document";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
-import CheckSelect from "../components/checkSelect";
-import RadioSelect from "../components/radioSelect";
-import Dropdown from "../components/dropdown";
-import Toggle from "../components/toggle";
-import DateField from "../components/datefield";
+import CheckSelect from "@/components/common/checkSelect";
+import RadioSelect from "@/components/common/radioSelect";
+import Dropdown from "@/components/common/dropdown";
+import DateField from "@/components/common/datefield";
+import Toggle from "@/components/common/toggle";
+import { Button } from "@/components/common/button";
 
 const checkSelections = [
   {
@@ -47,7 +48,11 @@ const Components: React.FC = () => {
   const handleClick = () => {};
 
   return (
-    <div className="p-4 space-y-4 ">
+    <div className="flex flex-col items-center p-4 space-y-4 bg-background">
+      <Button variant="outline">
+        <FaShoppingCart />
+        Test
+      </Button>
       <LinkButton text="Go to Google" href="https://www.google.com" />
       <TextButton text="Add Members" icon={<FaPlus />} onClick={handleClick} />
       <IconButton icon={<FaShoppingCart />} onClick={handleClick} />
