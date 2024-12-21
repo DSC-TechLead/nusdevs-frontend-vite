@@ -3,7 +3,7 @@ import IconButton from "@components/common/iconbutton";
 import LinkButton from "@components/common/linkbutton";
 import TextButton from "@components/common/textbutton";
 import TextInput from "@/components/common/form/textinput";
-import HostUploadDocument from "@/components/features/team/create-upload-document";
+import HostUploadDocument from "@/components/features/team/host-question-cards/host-upload-document-question-card";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
@@ -13,7 +13,7 @@ import Dropdown from "@/components/common/form/dropdown";
 import DateField from "@/components/common/form/datefield";
 import Toggle from "@/components/common/form/toggle";
 import { Button } from "@/components/common/button";
-import CreateDropdownQuestion from "@/components/features/team/create-dropdown-question";
+import CreateDropdownQuestion from "@/components/features/team/host-question-cards/host-screening-question-card";
 
 const checkSelections = [
   {
@@ -91,11 +91,6 @@ const Components: React.FC = () => {
         selectTitle="Checkbox Selection"
         onSelectionChange={() => {}}
         selections={radioSelections}
-      />
-      <Dropdown
-        label="Dropdown"
-        description="This is a dropdown example"
-        options={[]}
       />
       <DateField
         label="Datefield"

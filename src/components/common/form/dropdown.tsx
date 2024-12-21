@@ -7,12 +7,14 @@ interface DropdownProps {
   description: string;
   placeholder?: string;
   options: DropdownOption[];
+  handleChange: (val: DropdownOption) => void;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
   label,
   description,
   options,
+  handleChange,
   placeholder,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +31,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   };
 
   return (
-    <div className="w-full flex flex-col items-start gap-2">
+    <div className="flex flex-col items-start w-full gap-2">
       {/* Dropdown Title */}
       <h2 className="text-primary-text font-inter text-sm/6 font-bold leading-[18px]">
         {label}
@@ -79,13 +81,16 @@ const Dropdown: React.FC<DropdownProps> = ({
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="w-full border border-neutral-30 rounded-md shadow-md p-2 absolute mt-20 bg-white z-10">
+        <div className="absolute z-10 w-full p-2 mt-20 bg-white border rounded-md shadow-md border-neutral-30">
           <div className="py-1">
             {options.map((option, index) => (
               <button
                 key={index}
-                onClick={() => selectOption(option)}
-                className="block w-full text-left px-4 py-2 hover:bg-primary hover:text-primary-text rounded-md transition duration-200"
+                onClick={() => {
+                  selectOption(option);
+                  handleChange(option);
+                }}
+                className="block w-full px-4 py-2 text-left transition duration-200 rounded-md hover:bg-primary hover:text-primary-text"
               >
                 {option.label}
               </button>
