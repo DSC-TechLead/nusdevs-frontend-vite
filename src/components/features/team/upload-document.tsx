@@ -4,10 +4,10 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/common/card";
-import CheckSelect from "@/components/common/checkSelect";
-import FileUpload from "@/components/common/fileupload";
-import TextInput from "@/components/common/textinput";
-import Toggle from "@/components/common/toggle";
+import CheckSelect from "@/components/common/form/checkSelect";
+import FileUpload from "@/components/common/form/fileupload";
+import TextInput from "@/components/common/form/textinput";
+import Toggle from "@/components/common/form/toggle";
 import { ReactFCC } from "@/types/react";
 import { useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";

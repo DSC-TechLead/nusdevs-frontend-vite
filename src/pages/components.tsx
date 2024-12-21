@@ -1,17 +1,17 @@
-import FileUpload from "@components/common/fileupload";
+import FileUpload from "@/components/common/form/fileupload";
 import IconButton from "@components/common/iconbutton";
 import LinkButton from "@components/common/linkbutton";
 import TextButton from "@components/common/textbutton";
-import TextInput from "@components/common/textinput";
+import TextInput from "@/components/common/form/textinput";
 import UploadDocument from "@/components/features/team/upload-document";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
-import CheckSelect from "@/components/common/checkSelect";
-import RadioSelect from "@/components/common/radioSelect";
-import Dropdown from "@/components/common/dropdown";
-import DateField from "@/components/common/datefield";
-import Toggle from "@/components/common/toggle";
+import CheckSelect from "@/components/common/form/checkSelect";
+import RadioSelect from "@/components/common/form/radioSelect";
+import Dropdown from "@/components/common/form/dropdown";
+import DateField from "@/components/common/form/datefield";
+import Toggle from "@/components/common/form/toggle";
 import { Button } from "@/components/common/button";
 
 const checkSelections = [
