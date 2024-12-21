@@ -73,7 +73,7 @@ export const Container: FC = () => {
 
     return (
       <>
-        <div className="w-3/4 px-4 py-5">
+        <div className="flex flex-col items-center p-4 space-y-4 bg-background">
           {cards.map((card, i) => renderCard(card, i))}
         </div>
       </>
