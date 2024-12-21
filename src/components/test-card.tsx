@@ -1,15 +1,8 @@
 import type { Identifier, XYCoord } from "dnd-core";
+import { GripHorizontal } from "lucide-react";
 import type { FC } from "react";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-
-const style = {
-  border: "1px dashed gray",
-  padding: "0.5rem 1rem",
-  marginBottom: ".5rem",
-  backgroundColor: "white",
-  cursor: "default",
-};
 
 const handleStyle = {
   backgroundColor: "green",
@@ -93,13 +86,13 @@ export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
   return (
     <div
       ref={cardRef}
-      style={{
-        ...style,
-        opacity: 1,
-      }}
-      data-handler-id={handlerId}
+      className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow"
     >
-      <div ref={handleRef} style={handleStyle} /> {/* Draggable handle */}
+      <div className="flex justify-center px-4 py-5 sm:px-6">
+        <div ref={handleRef}>
+          <GripHorizontal />
+        </div>
+      </div>
       {text}
     </div>
   );
