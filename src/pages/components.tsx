@@ -1,15 +1,18 @@
+import FileUpload from "@/components/common/form/fileupload";
+import IconButton from "@components/common/iconbutton";
+import LinkButton from "@components/common/linkbutton";
+import TextButton from "@components/common/textbutton";
+import TextInput from "@/components/common/form/textinput";
+import HostUploadDocument from "@/components/features/team/upload-document";
 import React from "react";
-import IconButton from "../components/iconbutton";
-import LinkButton from "../components/linkbutton";
-import TextInput from "../components/textinput";
-import TextButton from "../components/textbutton";
-import FileUpload from "../components/fileupload";
+
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
-import CheckSelect from "../components/checkSelect";
-import RadioSelect from "../components/radioSelect";
-import Dropdown from "../components/dropdown";
-import Toggle from "../components/toggle";
-import DateField from "../components/datefield";
+import CheckSelect from "@/components/common/form/checkSelect";
+import RadioSelect from "@/components/common/form/radioSelect";
+import Dropdown from "@/components/common/form/dropdown";
+import DateField from "@/components/common/form/datefield";
+import Toggle from "@/components/common/form/toggle";
+import { Button } from "@/components/common/button";
 
 const checkSelections = [
   {
@@ -45,7 +48,11 @@ const Components: React.FC = () => {
   const handleClick = () => {};
 
   return (
-    <div className="p-4 space-y-4 ">
+    <div className="flex flex-col items-center p-4 space-y-4 bg-background">
+      <Button variant="outline">
+        <FaShoppingCart />
+        Test
+      </Button>
       <LinkButton text="Go to Google" href="https://www.google.com" />
       <TextButton text="Add Members" icon={<FaPlus />} onClick={handleClick} />
       <IconButton icon={<FaShoppingCart />} onClick={handleClick} />
@@ -64,6 +71,7 @@ const Components: React.FC = () => {
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
+      <HostUploadDocument />
       <CheckSelect
         selectTitle="Checkbox Selection"
         onSelectionChange={() => {}}
