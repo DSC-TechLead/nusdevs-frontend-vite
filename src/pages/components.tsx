@@ -3,7 +3,7 @@ import IconButton from "@components/common/iconbutton";
 import LinkButton from "@components/common/linkbutton";
 import TextButton from "@components/common/textbutton";
 import TextInput from "@/components/common/form/textinput";
-import UploadDocument from "@/components/features/team/upload-document";
+import HostUploadDocument from "@/components/features/team/upload-document";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
@@ -71,7 +71,7 @@ const Components: React.FC = () => {
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
-      <UploadDocument />
+      <HostUploadDocument />
       <CheckSelect
         selectTitle="Checkbox Selection"
         onSelectionChange={() => {}}
