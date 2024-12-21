@@ -14,16 +14,16 @@ import CheckSelect from "@/components/common/form/checkSelect";
 import FileUpload from "@/components/common/form/fileupload";
 import TextInput from "@/components/common/form/textinput";
 import Toggle from "@/components/common/form/toggle";
-import { ReactFCC } from "@/types/react";
 import { useMemo, useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import { HiEllipsisVertical } from "react-icons/hi2";
 
 interface CreateUploadDocumentProps {
+  children?: React.ReactNode;
   isHostMode?: boolean;
 }
 
-const CreateUploadDocument: ReactFCC<CreateUploadDocumentProps> = () => {
+const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = () => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
