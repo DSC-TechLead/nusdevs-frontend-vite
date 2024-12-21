@@ -26,22 +26,21 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
 
   return (
     <fieldset>
-      <legend className="text-left text-sm/6 font-semibold text-gray-900">
+      <legend className="font-semibold text-left text-gray-900 text-sm/6">
         {selectTitle}
       </legend>
-      <p className="text-left text-sm/6 text-gray-600">Description</p>
       <div className="mt-2 space-y-1">
         {selections.map((checkSelection) => (
-          <div className="flex gap-3">
-            <div className="flex h-6 shrink-0 items-center">
-              <div className="group grid size-4 grid-cols-1">
+          <div className="flex gap-5">
+            <div className="flex items-center h-6 shrink-0">
+              <div className="grid grid-cols-1 group size-4">
                 <input
                   id={checkSelection.id}
                   name="check-select"
                   type="checkbox"
                   checked={selectedIds.includes(checkSelection.id)}
                   onChange={(event) => handleCheckboxChange(event)}
-                  className="col-start-1 row-start-1 appearance-none rounded border 
+                  className="w-5 h-5 col-start-1 row-start-1 appearance-none rounded border 
                   border-gray-300 bg-white checked:border-[#EB5E27] 
                   checked:bg-[#EB5E27] indeterminate:border-[#EB5E27] focus-visible:outline 
                   focus-visible:outline-2 focus-visible:outline-offset-2 
@@ -51,9 +50,9 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 />
                 <svg
                   fill="none"
-                  viewBox="0 0 14 14"
+                  viewBox="0 0 13 13"
                   className="pointer-events-none col-start-1 row-start-1 size-3.5 
-                  self-center justify-self-center stroke-white 
+                  self-center justify-self-center stroke-white items-center
                   group-has-[:disabled]:stroke-gray-950/25"
                 >
                   <path

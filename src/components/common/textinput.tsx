@@ -26,10 +26,10 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <div className="w-full max-w-md mb-4">
-      <label className="block text-sm font-bold text-gray-800 mb-1">
+      <label className="block mb-1 text-sm font-bold text-gray-800">
         {label}
       </label>
-      <p className="text-sm text-gray-500 mb-2">{description}</p>
+      <p className="mb-2 text-sm text-gray-500">{description}</p>
       <div>
         <textarea
           placeholder={placeholder}
@@ -40,7 +40,7 @@ const TextInput: React.FC<TextInputProps> = ({
           style={{ overflow: "hidden" }}
         />
       </div>
-      <div className="text-right mt-1 text-xs text-gray-500">
+      <div className="mt-1 text-xs text-right text-gray-500">
         {value.length}/{maxLength}
       </div>
     </div>
