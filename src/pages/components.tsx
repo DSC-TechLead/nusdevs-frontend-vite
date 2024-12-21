@@ -1,9 +1,11 @@
+import FileUpload from "@components/common/fileupload";
+import IconButton from "@components/common/iconbutton";
+import LinkButton from "@components/common/linkbutton";
+import TextButton from "@components/common/textbutton";
+import TextInput from "@components/common/textinput";
+import UploadDocument from "@/components/features/team/upload-document";
 import React from "react";
-import IconButton from "../components/iconbutton";
-import LinkButton from "../components/linkbutton";
-import TextInput from "../components/textinput";
-import TextButton from "../components/textbutton";
-import FileUpload from "../components/fileupload";
+
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 
 const Components: React.FC = () => {
@@ -29,6 +31,7 @@ const Components: React.FC = () => {
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
+      <UploadDocument />
     </div>
   );
 };
