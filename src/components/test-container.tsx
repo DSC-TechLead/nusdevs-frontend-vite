@@ -3,12 +3,6 @@ import type { FC } from "react";
 import { useCallback, useState } from "react";
 import { Card } from "./test-card";
 
-// import { Card } from "./Card";
-
-const style = {
-  width: 400,
-};
-
 export interface Item {
   id: number;
   text: string;
@@ -79,7 +73,9 @@ export const Container: FC = () => {
 
     return (
       <>
-        <div style={style}>{cards.map((card, i) => renderCard(card, i))}</div>
+        <div className="w-3/4 px-4 py-5">
+          {cards.map((card, i) => renderCard(card, i))}
+        </div>
       </>
     );
   }
