@@ -4,15 +4,6 @@ import type { FC } from "react";
 import { useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 
-const handleStyle = {
-  backgroundColor: "green",
-  width: "1rem",
-  height: "1rem",
-  display: "inline-block",
-  marginRight: "0.75rem",
-  cursor: "move",
-};
-
 export interface CardProps {
   id: any;
   text: string;
