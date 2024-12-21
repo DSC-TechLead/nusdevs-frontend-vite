@@ -1,18 +1,18 @@
-import FileUpload from "@/components/common/form/fileupload";
+import FileUpload from "@components/common/form/fileupload";
 import IconButton from "@components/common/iconbutton";
 import LinkButton from "@components/common/linkbutton";
 import TextButton from "@components/common/textbutton";
-import TextInput from "@/components/common/form/textinput";
-import HostUploadDocument from "@/components/features/team/host-question-cards/host-upload-document-question-card";
+import TextInput from "@components/common/form/textinput";
+import HostUploadDocument from "@components/features/team/host-question-cards/host-upload-document-question-card";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
-import CheckSelect from "@/components/common/form/checkSelect";
-import RadioSelect from "@/components/common/form/radioSelect";
-import DateField from "@/components/common/form/datefield";
-import Toggle from "@/components/common/form/toggle";
-import { Button } from "@/components/common/button";
-import CreateDropdownQuestion from "@/components/features/team/host-question-cards/host-screening-question-card";
+import CheckSelect from "@components/common/form/checkSelect";
+import RadioSelect from "@components/common/form/radioSelect";
+import DateField from "@components/common/form/datefield";
+import Toggle from "@components/common/form/toggle";
+import { Button } from "@components/common/button";
+import CreateDropdownQuestion from "@components/features/team/host-question-cards/host-screening-question-card";
 
 const checkSelections = [
   {
