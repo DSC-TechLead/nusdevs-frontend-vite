@@ -45,7 +45,7 @@ const Components: React.FC = () => {
   const handleClick = () => {};
 
   return (
-    <div className="p-4 space-y-4 ">
+    <div className="p-4 space-y-4">
       <LinkButton text="Go to Google" href="https://www.google.com" />
       <TextButton text="Add Members" icon={<FaPlus />} onClick={handleClick} />
       <IconButton icon={<FaShoppingCart />} onClick={handleClick} />
