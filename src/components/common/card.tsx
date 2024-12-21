@@ -14,10 +14,7 @@ export const Card: ReactFCC<CardProps> = ({
   ...props
 }) => {
   return (
-    <div
-      className={cn("overflow-hidden rounded-lg bg-white", className)}
-      {...props}
-    >
+    <div className={cn("rounded-lg bg-white", className)} {...props}>
       <div className="flex justify-center py-3">
         {isDraggable && (
           <RiDraggable
