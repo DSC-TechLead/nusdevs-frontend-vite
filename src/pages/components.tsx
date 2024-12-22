@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import IconButton from "../components/iconbutton";
 import LinkButton from "../components/linkbutton";
 import TextInput from "../components/textinput";
@@ -10,7 +10,7 @@ import RadioSelect from "../components/radioSelect";
 import Dropdown from "../components/dropdown";
 import Toggle from "../components/toggle";
 import DateField from "../components/datefield";
-import RoleBox from "../components/role-box"
+import RoleBox from "../components/roles/role-box"
 
 const checkSelections = [
   {
@@ -44,6 +44,10 @@ const radioSelections = [
 
 const Components: React.FC = () => {
   const handleClick = () => {};
+  const [activeRoleIndex, setActiveRoleIndex] = useState<number | null>(null);
+  const handleFocus = (index: number) => {
+    setActiveRoleIndex(index);
+  };
 
   return (
     <div className="p-4 space-y-4 ">
@@ -83,7 +87,15 @@ const Components: React.FC = () => {
         onChange={() => {}}
       />
       <Toggle status={true} onToggleChange={() => {}} />
-      <RoleBox isExpanded={false} onFocus={() => {}} />
+
+      {/* TEST: Make 3 role-boxes. To be done via user action eventually. */}
+      {[0, 1, 2].map((_, index) => (
+        <RoleBox
+          key={index}
+          isExpanded={index === activeRoleIndex}
+          onFocus={() => handleFocus(index)}
+        />
+      ))}
     </div>
   );
 };
