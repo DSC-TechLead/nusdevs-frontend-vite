@@ -10,6 +10,7 @@ import RadioSelect from "../components/radioSelect";
 import Dropdown from "../components/dropdown";
 import Toggle from "../components/toggle";
 import DateField from "../components/datefield";
+import RoleBox from "../components/role-box"
 
 const checkSelections = [
   {
@@ -82,6 +83,7 @@ const Components: React.FC = () => {
         onChange={() => {}}
       />
       <Toggle status={true} onToggleChange={() => {}} />
+      <RoleBox isExpanded={false} onFocus={() => {}} />
     </div>
   );
 };
