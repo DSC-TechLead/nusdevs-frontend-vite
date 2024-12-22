@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TextInput from "./textinput";
-import { FaTrash, FaPlus } from "react-icons/fa";
+import { FaTrash, FaPlus, FaTimes } from "react-icons/fa";
 import TextButton from "./textbutton";
 
 interface RoleBoxProps {
@@ -16,6 +16,15 @@ const RoleBox: React.FC<RoleBoxProps> = ({
     isExpanded,
     canDelete = false
   }) => {
+    const [tags, setTags] = useState<string[]>([]);
+
+    const handleAddTag = () => {
+      setTags((prev) => [...prev, "SKILL"]);
+    };
+  
+    const handleRemoveTag = (index: number) => {
+      setTags((prev) => prev.filter((_, i) => i !== index));
+    };
 
     return (
         <div
@@ -45,12 +54,20 @@ const RoleBox: React.FC<RoleBoxProps> = ({
                 />
               </div>
 
-              {/* TODO: Style to be like button shown on Figma */}
-              <div className="w-full">
+              {tags.map((tag, index) => (
+                <div key={index}>
+                  <span>{tag + index}</span>
+                  <button onClick={() => handleRemoveTag(index)}><FaTimes /></button>
+                </div>
+              ))}
+
               <TextButton
                 text="Add Tag"
                 icon={<FaPlus />}
+                onClick={handleAddTag}
               />
+
+              {/* TODO: Style to be like button shown on Figma */}
               {
                 canDelete &&
                 (
@@ -61,7 +78,7 @@ const RoleBox: React.FC<RoleBoxProps> = ({
                   />
                 )
               }
-              </div>
+
             </div>
           ) : (
             <div>
