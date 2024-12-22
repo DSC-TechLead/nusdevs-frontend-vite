@@ -44,11 +44,11 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                   checked={selectedIds.includes(checkSelection.id)}
                   onChange={(event) => handleCheckboxChange(event)}
                   className="col-start-1 row-start-1 appearance-none rounded border 
-                  border-neutral-30 bg-white checked:border-primary 
+                  border-neutral bg-white checked:border-primary 
                   checked:bg-primary indeterminate:border-primary focus-visible:outline 
-                  focus-visible:outline-2 focus-visible:outline-offset-6 
+                  focus-visible:outline-2 focus-visible:outline-offset-2 
                   focus-visible:outline-primary disabled:border-neutral
-                  disabled:bg-neutral-10 disabled:checked:bg-neutral-10
+                  disabled:bg-neutral disabled:checked:bg-neutral
                   forced-colors:appearance-auto"
                 />
                 <svg
@@ -68,10 +68,10 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 </svg>
               </div>
             </div>
-            <div className="text-sm/6">
+            <div className="text-body-regular/6">
               <label
                 htmlFor={checkSelection.id}
-                className="font-medium text-gray-900"
+                className="font-medium text-primary-text"
               >
                 {checkSelection.title}
               </label>
