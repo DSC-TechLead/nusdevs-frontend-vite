@@ -68,7 +68,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 </svg>
               </div>
             </div>
-            <div className="text-body-regular/6">
+            <div className="text-body-regular">
               <label
                 htmlFor={checkSelection.id}
                 className="font-medium text-primary-text"
