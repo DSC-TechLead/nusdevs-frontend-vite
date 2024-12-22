@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import TextInput from "../textinput";
+import TextInput from "./textinput";
 import { FaTrash, FaPlus } from "react-icons/fa";
-import TextButton from "../textbutton";
+import TextButton from "./textbutton";
 
 interface RoleBoxProps {
     onFocus: () => void;
+    onDelete?: () => void;
     isExpanded: boolean;
+    canDelete: boolean;
 }
 
 const RoleBox: React.FC<RoleBoxProps> = ({
     onFocus,
+    onDelete,
     isExpanded,
+    canDelete = false
   }) => {
+
     return (
         <div
           onClick={onFocus}
@@ -46,6 +51,16 @@ const RoleBox: React.FC<RoleBoxProps> = ({
                 text="Add Tag"
                 icon={<FaPlus />}
               />
+              {
+                canDelete &&
+                (
+                  <TextButton
+                    text="Delete Role"
+                    icon={<FaTrash />}
+                    onClick={onDelete}
+                  />
+                )
+              }
               </div>
             </div>
           ) : (

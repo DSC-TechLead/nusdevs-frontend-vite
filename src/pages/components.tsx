@@ -10,7 +10,7 @@ import RadioSelect from "../components/radioSelect";
 import Dropdown from "../components/dropdown";
 import Toggle from "../components/toggle";
 import DateField from "../components/datefield";
-import RoleBox from "../components/roles/role-box"
+import RoleBox from "../components/role-box"
 
 const checkSelections = [
   {
@@ -44,9 +44,27 @@ const radioSelections = [
 
 const Components: React.FC = () => {
   const handleClick = () => {};
+
+  // hooks
   const [activeRoleIndex, setActiveRoleIndex] = useState<number | null>(null);
+  const [roles, setRoles] = useState<number[]>([0]);
+
+  // handler functions
   const handleFocus = (index: number) => {
     setActiveRoleIndex(index);
+  };
+
+  const handleNewRole = () => {
+    setRoles((prev) => {
+      const newRoles = [...prev, prev.length];
+      setActiveRoleIndex(newRoles.length);
+      return newRoles;
+    });
+  };
+
+  const handleDeleteRole = (index: number) => {
+    setRoles((prev) => prev.filter((_, i) => i !== index));
+    setActiveRoleIndex(null); // can be modified to be the first / latest role-box, up to discretion.
   };
 
   return (
@@ -88,14 +106,18 @@ const Components: React.FC = () => {
       />
       <Toggle status={true} onToggleChange={() => {}} />
 
-      {/* TEST: Make 3 role-boxes. To be done via user action eventually. */}
-      {[0, 1, 2].map((_, index) => (
+      <h2 className="text-xl font-bold">Roles</h2>
+      {roles.map((_, index) => (
         <RoleBox
           key={index}
           isExpanded={index === activeRoleIndex}
           onFocus={() => handleFocus(index)}
+          onDelete={() => handleDeleteRole(index)}
+          canDelete={roles.length > 1} // Button appears only if more than one role exists
         />
       ))}
+
+      <TextButton text="Add Role" icon={<FaPlus />} onClick={handleNewRole} />
     </div>
   );
 };
