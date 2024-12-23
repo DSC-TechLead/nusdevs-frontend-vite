@@ -15,7 +15,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const handleFileChange = async (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: React.ChangeEvent<HTMLInputElement>
   ) => {
     const file = event.target.files?.[0];
 
@@ -59,9 +59,9 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
   return (
     <div
-      className={`flex flex-col w-full max-w-[400px] font-sans ${disabled ? "pointer-events-none cursor-not-allowed" : ""}`}
+      className={`flex flex-col w-full font-sans ${disabled ? "pointer-events-none cursor-not-allowed" : ""}`}
     >
-      <label className="cursor-pointer block w-full">
+      <label className="block w-full cursor-pointer">
         <input
           ref={fileInputRef}
           type="file"
@@ -73,19 +73,19 @@ const FileUpload: React.FC<FileUploadProps> = ({
         {!selectedFile ? (
           <div
             className={`
-              border-2 border-dashed border-gray-300 rounded-lg p-4 flex items-center gap-4 transition-colors duration-300 w-[400px] h-[80px]
-              ${disabled ? "bg-gray-100 pointer-events-none cursor-not-allowed" : "hover:border-[#eb5e27]"}
+              border-2 border-dashed border-neutral-30 rounded-lg p-4 flex items-center gap-4 transition-colors duration-300 h-[80px]
+              ${disabled ? "bg-neutral-10 pointer-events-none cursor-not-allowed" : "hover:border-primary"}
             `}
           >
             <div className="flex items-center gap-3">
-              <div className="text-[#b1b0b0] ml-[5px] mr-5">
+              <div className="text-secondary-text ml-[5px] mr-5">
                 <MdOutlineUploadFile size={28} />
               </div>
               <div className="flex flex-col">
-                <span className="text-base font-medium text-gray-800">
+                <span className="font-medium text-body-regular text-primary-text">
                   Tap to upload a file
                 </span>
-                <span className="text-xs text-gray-600 mt-0.5">
+                <span className="text-body-ultra-small text-neutral mt-0.5">
                   Accepted format(s): .pdf, Max {maxFileSizeMB}MB
                 </span>
               </div>
@@ -93,20 +93,20 @@ const FileUpload: React.FC<FileUploadProps> = ({
           </div>
         ) : (
           <div
-            className="flex items-center border border-gray-300 rounded-lg p-0 gap-4 cursor-pointer w-[400px] h-[80px]"
+            className="flex items-center border border-neutral-30 rounded-lg p-0 gap-4 cursor-pointer w-full h-[80px]"
             onClick={() => {
               setSelectedFile(null);
               setHelperText("");
             }}
           >
-            <div className="bg-[#b1b0b0] text-white font-bold text-sm p-2 rounded w-[60px] h-[80px] flex justify-center items-center ml-0">
+            <div className="bg-secondary-text text-white font-bold text-sm p-2 rounded h-[80px] flex justify-center items-center ml-0">
               PDF
             </div>
             <div className="flex flex-col flex-1">
-              <span className="text-base font-medium text-gray-800">
+              <span className="text-base font-medium text-primary-text">
                 {selectedFile.name}
               </span>
-              <span className="text-xs text-gray-600">
+              <span className="text-body-ultra-small text-secondary-text">
                 uploaded {new Date().toLocaleString()}
               </span>
             </div>
@@ -115,7 +115,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
       </label>
       {helperText && (
         <div
-          className={`${helperText.toLowerCase().includes("error") ? "text-red-500" : "text-gray-600"} text-xs mt-0.5`}
+          className={`${helperText.toLowerCase().includes("error") ? "text-danger" : "text-secondary-text"} text-body-ultra-small mt-0.5`}
         >
           {helperText}
         </div>
