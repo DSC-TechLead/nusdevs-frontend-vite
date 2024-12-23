@@ -6,6 +6,7 @@ import TextButton from "../components/textbutton";
 import FileUpload from "../components/fileupload";
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
 import CheckSelect from "../components/checkSelect";
+
 import RadioSelect from "../components/radioSelect";
 import Dropdown from "../components/dropdown";
 import Toggle from "../components/toggle";
@@ -44,6 +45,10 @@ const radioSelections = [
 const Components: React.FC = () => {
   const handleClick = () => {};
 
+  const handleSelectionChange = (selected: string[]) => {
+    console.log("Selected options:", selected);
+  };
+
   return (
     <div className="p-4 space-y-4 ">
       <LinkButton text="Go to Google" href="https://www.google.com" />
@@ -66,7 +71,7 @@ const Components: React.FC = () => {
       <FileUpload maxFileSizeMB={5} disabled />
       <CheckSelect
         selectTitle="Checkbox Selection"
-        onSelectionChange={() => {}}
+        onSelectionChange={handleSelectionChange}
         selections={checkSelections}
       />
       <RadioSelect

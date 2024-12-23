@@ -34,7 +34,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
       </p>
       <div className="mt-2 space-y-1">
         {selections.map((checkSelection) => (
-          <div className="flex gap-3">
+          <div className="flex gap-3" key={checkSelection.id}>
             <div className="flex h-6 shrink-0 items-center">
               <div className="group grid size-4 grid-cols-1">
                 <input
@@ -44,11 +44,11 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                   checked={selectedIds.includes(checkSelection.id)}
                   onChange={(event) => handleCheckboxChange(event)}
                   className="col-start-1 row-start-1 appearance-none rounded border 
-                  border-neutral-30 bg-white checked:border-primary 
+                  border-neutral bg-white checked:border-primary 
                   checked:bg-primary indeterminate:border-primary focus-visible:outline 
-                  focus-visible:outline-2 focus-visible:outline-offset-6 
+                  focus-visible:outline-2 focus-visible:outline-offset-2 
                   focus-visible:outline-primary disabled:border-neutral
-                  disabled:bg-neutral-10 disabled:checked:bg-neutral-10
+                  disabled:bg-neutral disabled:checked:bg-neutral
                   forced-colors:appearance-auto"
                 />
                 <svg
@@ -68,8 +68,11 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 </svg>
               </div>
             </div>
-            <div className="text-body-small">
-              <label htmlFor="comments" className="text-primary-text">
+            <div className="text-body-regular">
+              <label
+                htmlFor={checkSelection.id}
+                className="font-medium text-primary-text"
+              >
                 {checkSelection.title}
               </label>
             </div>
