@@ -3,6 +3,7 @@ interface RadioSelectProps {
   selections: { id: string; title: string }[];
   onSelectionChange: (selected: string) => void;
   isDisabled?: boolean;
+  isHostMode?: boolean;
 }
 
 const RadioSelect: React.FC<RadioSelectProps> = ({
@@ -32,6 +33,7 @@ const RadioSelect: React.FC<RadioSelectProps> = ({
               name="single-select"
               type="radio"
               onChange={(event) => handleChange(event)}
+              disabled={isDisabled}
               className="relative size-4 appearance-none rounded-full border border-neutral-30
               bg-white before:absolute before:inset-1 before:rounded-full before:bg-white 
               checked:border-primary checked:bg-primary focus-visible:outline 
