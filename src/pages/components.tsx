@@ -45,12 +45,6 @@ const radioSelections = [
 const Components: React.FC = () => {
   const handleClick = () => {};
 
-  const exampleSelections = [
-    { id: "option1", title: "Option 1" },
-    { id: "option2", title: "Option 2" },
-    { id: "option3", title: "Option 3" },
-  ];
-
   const handleSelectionChange = (selected: string[]) => {
     console.log("Selected options:", selected);
   };
@@ -77,7 +71,7 @@ const Components: React.FC = () => {
       <FileUpload maxFileSizeMB={5} disabled />
       <CheckSelect
         selectTitle="Checkbox Selection"
-        onSelectionChange={() => {}}
+        onSelectionChange={handleSelectionChange}
         selections={checkSelections}
       />
       <RadioSelect
