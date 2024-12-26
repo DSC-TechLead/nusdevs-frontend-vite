@@ -76,8 +76,14 @@ const Components: React.FC = () => {
       />
       <Dropdown label="Dropdown" description="This is a dropdown example" />
       <DateField
+        label="Single Datefield"
+        description="This is a single datefield example"
+        type="single"
+        onChange={() => {}}
+      />
+      <DateField
         label="Datefield"
-        description="This is a datefield example"
+        description="This is a multi datefield example"
         type="multi"
         onChange={() => {}}
       />

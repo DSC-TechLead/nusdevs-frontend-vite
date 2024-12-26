@@ -38,6 +38,7 @@ const DateField: React.FC<DateFieldProps> = ({
       setSelectedEndDate(date[1]);
     } else {
       setSelectedStartDate(date);
+      setSelectedEndDate(null); // Clear end date for single type
     }
   };
 
