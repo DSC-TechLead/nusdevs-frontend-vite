@@ -16,6 +16,8 @@ const RoleBox: React.FC<RoleBoxProps> = ({
     isExpanded,
     canDelete = false
   }) => {
+    const [roleName, setRoleName] = useState<string>("");
+    const [roleDescription, setRoleDescription] = useState<string>("");
     const [tags, setTags] = useState<string[]>([]);
 
     const handleAddTag = () => {
@@ -41,6 +43,8 @@ const RoleBox: React.FC<RoleBoxProps> = ({
                   description=""
                   maxLength={50}
                   height={1}
+                  value={roleName}
+                  onChange={setRoleName}
                 />
               </div>
     
@@ -51,6 +55,8 @@ const RoleBox: React.FC<RoleBoxProps> = ({
                   description=""
                   maxLength={250}
                   height={4}
+                  value={roleDescription}
+                  onChange={setRoleDescription}
                 />
               </div>
 
@@ -82,7 +88,7 @@ const RoleBox: React.FC<RoleBoxProps> = ({
             </div>
           ) : (
             <div>
-              <h3 className="font-bold text-primary-text">Untitled Role</h3>
+              <h3 className="font-bold text-primary-text">{roleName || "Untitled Role"}</h3>
             </div>
           )}
         </div>

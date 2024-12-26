@@ -6,6 +6,9 @@ interface TextInputProps {
   description?: string;
   maxLength?: number;
   height?: number;
+  value: string;
+  defaultValue?: string;
+  onChange: (value: string) => void; 
 }
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -14,13 +17,21 @@ const TextInput: React.FC<TextInputProps> = ({
   description = "This input is self-handled",
   maxLength = 50,
   height = 1,
+  value,
+  defaultValue="", // this is to ensure a valid initial state in the case that textinput is uncontrolled
+  onChange,
 }) => {
-  const [value, setValue] = useState<string>("");
+  const [internalValue, setInternalValue] = useState<string>(defaultValue);
 
+  const isControlled = value !== undefined && onChange !== undefined;
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const inputValue = e.target.value;
     if (inputValue.length <= maxLength) {
-      setValue(inputValue);
+      if (isControlled) {
+        onChange(inputValue); // Controlled: Update parent state
+      } else {
+        setInternalValue(inputValue); // Uncontrolled: Update local state
+      }
     }
   };
 
@@ -41,7 +52,7 @@ const TextInput: React.FC<TextInputProps> = ({
         />
       </div>
       <div className="text-right mt-1 text-xs text-secondary-text">
-        {value.length}/{maxLength}
+        {(isControlled ? value : internalValue).length}/{maxLength}
       </div>
     </div>
   );
