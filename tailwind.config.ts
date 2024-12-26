@@ -5,6 +5,15 @@ export default {
   theme: {
     extend: {
       colors: {
+        background: {
+          DEFAULT: "var(--background)",
+        },
+        black: {
+          DEFAULT: "var(--black)",
+        },
+        white: {
+          DEFAULT: "var(--white)",
+        },
         primary: {
           10: "var(--primary-10)",
           20: "var(--primary-20)",
@@ -36,6 +45,9 @@ export default {
           60: "var(--success-60)",
           80: "var(--success-80)",
         },
+        danger: {
+          DEFAULT: "var(--danger)",
+        },
       },
       fontSize: {
         h1: "var(--h1)",
@@ -63,7 +75,7 @@ export default {
         13: "var(--spacing-13)",
         14: "var(--spacing-14)",
         15: "var(--spacing-15)",
-      }
+      },
     },
   },
   plugins: [],
