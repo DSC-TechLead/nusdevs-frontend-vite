@@ -62,6 +62,7 @@ const Components: React.FC = () => {
         description="Add Description Here"
         maxLength={50}
         value={""}
+        textDisabled={false}
         handleInputChange={function (): void {
           throw new Error("Function not implemented.");
         }}
@@ -73,6 +74,7 @@ const Components: React.FC = () => {
         maxLength={200}
         height={5}
         value={""}
+        textDisabled={false}
         handleInputChange={function (): void {
           throw new Error("Function not implemented.");
         }}
