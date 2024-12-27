@@ -77,9 +77,10 @@ const Components: React.FC = () => {
       <Dropdown label="Dropdown" description="This is a dropdown example" />
       <DateField
         label="Single Datefield"
-        description="This is a single datefield example"
+        description="This is a disabled single datefield example"
         type="single"
         onChange={() => {}}
+        disabled={true}
       />
       <DateField
         label="Datefield"
