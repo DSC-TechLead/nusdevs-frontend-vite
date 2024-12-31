@@ -8,6 +8,7 @@ interface DateFieldProps {
   startDate?: Date | null; // Start date for range (optional)
   endDate?: Date | null; // End date for range (optional)
   placeholder?: string;
+  disabled?: boolean;
 }
 
 const DateField: React.FC<DateFieldProps> = ({
@@ -18,6 +19,7 @@ const DateField: React.FC<DateFieldProps> = ({
   startDate,
   endDate,
   placeholder = "Select Date",
+  disabled = false,
 }) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(
     startDate || null,
@@ -38,6 +40,7 @@ const DateField: React.FC<DateFieldProps> = ({
       setSelectedEndDate(date[1]);
     } else {
       setSelectedStartDate(date);
+      setSelectedEndDate(null); // Clear end date for single type
     }
   };
 
@@ -83,6 +86,7 @@ const DateField: React.FC<DateFieldProps> = ({
               className={`w-full text-left border p-2 rounded-md ${
                 isStartDateOpen ? "border-primary" : "border-neutral-30"
               } focus:outline-none focus:border-primary hover:border-primary`}
+              disabled={disabled}
             />
           </div>
         ) : (
@@ -128,6 +132,7 @@ const DateField: React.FC<DateFieldProps> = ({
                 className={`w-full text-left border p-2 rounded-md ${
                   isEndDateOpen ? "border-primary" : "border-neutral-30"
                 } focus:outline-none focus:border-primary hover:border-primary`}
+                disabled={disabled}
               />
             </div>
           </div>

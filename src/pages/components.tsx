@@ -92,8 +92,15 @@ const Components: React.FC = () => {
         selections={radioSelections}
       />
       <DateField
+        label="Single Datefield"
+        description="This is a disabled single datefield example"
+        type="single"
+        onChange={() => {}}
+        disabled={true}
+      />
+      <DateField
         label="Datefield"
-        description="This is a datefield example"
+        description="This is a multi datefield example"
         type="multi"
         onChange={() => {}}
       />
