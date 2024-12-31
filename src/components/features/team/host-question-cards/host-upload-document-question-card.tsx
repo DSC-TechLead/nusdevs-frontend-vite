@@ -18,7 +18,7 @@ const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = () => {
       { id: "png", title: "PNG" },
       { id: "jpeg", title: "JPEG" },
     ],
-    []
+    [],
   );
 
   const [isDescriptionInputEnabled, setIsDescriptionInputEnabled] =

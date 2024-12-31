@@ -53,7 +53,7 @@ export const DropdownMenuItem: React.FC<DropdownMenuItemProps> = ({
       as="div"
       className={cn(
         "block cursor-pointer px-4 py-2 text-sm text-primary-text data-[focus]:bg-neutral-10 data-[focus]:text-primary data-[focus]:outline-none",
-        className
+        className,
       )}
       onClick={() => handleClick()}
       {...props}

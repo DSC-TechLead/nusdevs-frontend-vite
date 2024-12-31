@@ -9,7 +9,7 @@ import Dropdown from "@components/common/form/dropdown";
 
 const HostScreeningQuestionCard: React.FC = () => {
   const [questionType, setQuestionType] = useState<string>(
-    ScreeningQuestionType.DROPDOWN
+    ScreeningQuestionType.DROPDOWN,
   );
 
   const questionContent = useMemo(() => {

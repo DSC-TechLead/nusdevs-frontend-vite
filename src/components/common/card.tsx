@@ -4,10 +4,14 @@ import { RiDraggable } from "react-icons/ri";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   isDraggable: boolean;
+  cardRef?: React.RefObject<HTMLDivElement | null>;
+  handleRef?: React.RefObject<HTMLDivElement | null>;
 }
 
 export const Card: React.FC<CardProps> = ({
   isDraggable = false,
+  cardRef,
+  handleRef,
   className,
   children,
   ...props
@@ -16,13 +20,15 @@ export const Card: React.FC<CardProps> = ({
     <div className={cn("rounded-lg bg-white", className)} {...props}>
       <div className="flex justify-center py-3">
         {isDraggable && (
-          <RiDraggable
-            className="text-center rotate-90 text-neutral cursor-grab"
-            size={27}
-          />
+          <div ref={handleRef}>
+            <RiDraggable
+              className="text-center rotate-90 text-neutral cursor-grab"
+              size={27}
+            />
+          </div>
         )}
       </div>
-      <div>{children}</div>
+      <div ref={cardRef}>{children}</div>
     </div>
   );
 };
@@ -47,7 +53,7 @@ export const CardTitle: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   <div
     className={cn(
       " text-h3 text-primary-text font-bold leading-none tracking-tight",
-      className
+      className,
     )}
     {...props}
   >
