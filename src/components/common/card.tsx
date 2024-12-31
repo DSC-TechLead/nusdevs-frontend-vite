@@ -1,15 +1,14 @@
 import { cn } from "@/lib/utils";
-import { ReactFCC } from "@/types/react";
 import { HTMLAttributes } from "react";
 import { RiDraggable } from "react-icons/ri";
 
-interface CardProps extends HTMLAttributes<HTMLDivElement> {
+export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   isDraggable: boolean;
   cardRef?: React.RefObject<HTMLDivElement | null>;
   handleRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-export const Card: ReactFCC<CardProps> = ({
+export const Card: React.FC<CardProps> = ({
   isDraggable = false,
   cardRef,
   handleRef,
@@ -35,7 +34,7 @@ export const Card: ReactFCC<CardProps> = ({
 };
 Card.displayName = "Card";
 
-export const CardHeader: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
+export const CardHeader: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
@@ -46,15 +45,15 @@ export const CardHeader: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
 );
 CardHeader.displayName = "CardHeader";
 
-export const CardTitle: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
+export const CardTitle: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
 }) => (
   <div
     className={cn(
-      "text-h3 text-primary-text font-bold leading-none tracking-tight",
-      className
+      " text-h3 text-primary-text font-bold leading-none tracking-tight",
+      className,
     )}
     {...props}
   >
@@ -63,7 +62,7 @@ export const CardTitle: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
 );
 CardTitle.displayName = "CardTitle";
 
-export const CardDescription: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
+export const CardDescription: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
@@ -74,7 +73,7 @@ export const CardDescription: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
 );
 CardDescription.displayName = "CardDescription";
 
-export const CardContent: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
+export const CardContent: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props
@@ -88,7 +87,7 @@ export const CardContent: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
 );
 CardContent.displayName = "CardContent";
 
-export const CardFooter: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
+export const CardFooter: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
   children,
   ...props

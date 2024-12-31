@@ -14,7 +14,7 @@ import CheckSelect from "@/components/common/form/checkSelect";
 import FileUpload from "@/components/common/form/fileupload";
 import TextInput from "@/components/common/form/textinput";
 import Toggle from "@/components/common/form/toggle";
-import { ReactFCC } from "@/types/react";
+
 import { useMemo, useState } from "react";
 import { HiOutlineTrash } from "react-icons/hi";
 import { HiEllipsisVertical } from "react-icons/hi2";
@@ -25,7 +25,7 @@ interface UploadDocumentProps {
   handleRef?: React.RefObject<HTMLDivElement | null>;
 }
 
-const UploadDocument: ReactFCC<UploadDocumentProps> = ({
+const UploadDocument: React.FC<UploadDocumentProps> = ({
   cardRef,
   handleRef,
 }) => {
@@ -36,7 +36,7 @@ const UploadDocument: ReactFCC<UploadDocumentProps> = ({
       { id: "png", title: "PNG" },
       { id: "jpeg", title: "JPEG" },
     ],
-    []
+    [],
   );
 
   const [isDescriptionInputEnabled, setIsDescriptionInputEnabled] =
@@ -45,8 +45,18 @@ const UploadDocument: ReactFCC<UploadDocumentProps> = ({
   return (
     <Card isDraggable={true} cardRef={cardRef} handleRef={handleRef}>
       <CardHeader className="pt-0 pb-0">
-        <TextInput placeholder={"Upload your resume"} />
-        {isDescriptionInputEnabled && <TextInput placeholder="Description" />}
+        <TextInput
+          placeholder={"Upload your resume"}
+          handleInputChange={() => {}}
+          value={""}
+        />
+        {isDescriptionInputEnabled && (
+          <TextInput
+            placeholder="Description"
+            handleInputChange={() => {}}
+            value={""}
+          />
+        )}
       </CardHeader>
       <div className="px-11 pb-6">
         <Divider />

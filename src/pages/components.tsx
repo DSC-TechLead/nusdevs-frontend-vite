@@ -1,18 +1,18 @@
-import FileUpload from "@/components/common/form/fileupload";
+import FileUpload from "@components/common/form/fileupload";
 import IconButton from "@components/common/iconbutton";
 import LinkButton from "@components/common/linkbutton";
 import TextButton from "@components/common/textbutton";
-import TextInput from "@/components/common/form/textinput";
-import HostUploadDocument from "@/components/features/team/upload-document";
+import TextInput from "@components/common/form/textinput";
+import HostUploadDocument from "@components/features/team/host-question-cards/host-upload-document-question-card";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
-import CheckSelect from "@/components/common/form/checkSelect";
-import RadioSelect from "@/components/common/form/radioSelect";
-import Dropdown from "@/components/common/form/dropdown";
-import DateField from "@/components/common/form/datefield";
-import Toggle from "@/components/common/form/toggle";
-import { Button } from "@/components/common/button";
+import CheckSelect from "@components/common/form/checkSelect";
+import RadioSelect from "@components/common/form/radioSelect";
+import DateField from "@components/common/form/datefield";
+import Toggle from "@components/common/form/toggle";
+import { Button } from "@components/common/button";
+import CreateDropdownQuestion from "@components/features/team/host-question-cards/host-screening-question-card";
 
 const checkSelections = [
   {
@@ -61,6 +61,10 @@ const Components: React.FC = () => {
         label="Short Input Example"
         description="Add Description Here"
         maxLength={50}
+        value={""}
+        handleInputChange={function (): void {
+          throw new Error("Function not implemented.");
+        }}
       />
       <TextInput
         placeholder="Enter text here"
@@ -68,10 +72,15 @@ const Components: React.FC = () => {
         description="Add Description Here"
         maxLength={200}
         height={5}
+        value={""}
+        handleInputChange={function (): void {
+          throw new Error("Function not implemented.");
+        }}
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
       <HostUploadDocument />
+      <CreateDropdownQuestion />
       <CheckSelect
         selectTitle="Checkbox Selection"
         onSelectionChange={() => {}}
@@ -82,7 +91,6 @@ const Components: React.FC = () => {
         onSelectionChange={() => {}}
         selections={radioSelections}
       />
-      <Dropdown label="Dropdown" description="This is a dropdown example" />
       <DateField
         label="Datefield"
         description="This is a datefield example"

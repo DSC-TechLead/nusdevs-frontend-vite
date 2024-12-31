@@ -1,8 +1,7 @@
 import { cn } from "@/lib/utils";
-import { ReactFCC } from "@/types/react";
 import { HTMLAttributes } from "react";
 
-const Divider: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
+const Divider: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   children,
   className,
   ...props
@@ -14,7 +13,7 @@ const Divider: ReactFCC<HTMLAttributes<HTMLDivElement>> = ({
       </div>
       {children && (
         <div className="relative flex justify-center">
-          <span className="bg-white px-2 text-sm text-neutral-30">
+          <span className="px-2 text-sm bg-white text-neutral-30">
             {children}
           </span>
         </div>

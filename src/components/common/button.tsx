@@ -1,5 +1,4 @@
 import { cn } from "@/lib/utils";
-import { ReactFCC } from "@/types/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { ButtonHTMLAttributes } from "react";
 
@@ -25,18 +24,18 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 interface ButtonProps
   extends ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {}
 
-export const Button: ReactFCC<ButtonProps> = ({
+export const Button: React.FC<ButtonProps> = ({
+  children,
   className,
   variant,
   size,
-  children,
   ...props
 }) => {
   return (
