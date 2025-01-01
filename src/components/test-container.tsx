@@ -1,7 +1,11 @@
-import update from "immutability-helper";
 import type { FC } from "react";
 import { useCallback, useState } from "react";
 import { Card } from "./test-card";
+import { closestCenter, DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 
 export interface Item {
   id: number;
@@ -45,38 +49,73 @@ export const Container: FC = () => {
       },
     ]);
 
-    const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
-      setCards((prevCards: Item[]) =>
-        update(prevCards, {
-          $splice: [
-            [dragIndex, 1],
-            [hoverIndex, 0, prevCards[dragIndex] as Item],
-          ],
-        })
-      );
+    const getIndex = (cards: Item[], id: string) => {
+      let itemIndex: number | undefined;
+      cards.forEach((card, index) => {
+        if (card.id.toString() === id.toString()) {
+          itemIndex = index;
+        }
+      });
+
+      return itemIndex;
+    };
+
+    // 'active' is the element being dragged, and 'over' is the
+    // element that is being dragged over.
+    const handleDragEnd = ({ active, over }: DragEndEvent) => {
+      if (over === null) {
+        return;
+      }
+
+      const draggedItemId = active.id as string;
+      const overItemId = over.id as string;
+      const draggedItemIndex = getIndex(cards, draggedItemId);
+      const overItemIndex = getIndex(cards, overItemId);
+
+      if (draggedItemIndex === undefined || overItemIndex === undefined) {
+        return;
+      }
+
+      const clonedCards = [...cards];
+      const draggedItem = clonedCards.splice(draggedItemIndex, 1)[0];
+      clonedCards.splice(overItemIndex, 0, draggedItem);
+      setCards(clonedCards);
+      console.log(clonedCards.map((card) => card.id));
+    };
+
+    // const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
+    //   setCards((prevCards: Item[]) =>
+    //     update(prevCards, {
+    //       $splice: [
+    //         [dragIndex, 1],
+    //         [hoverIndex, 0, prevCards[dragIndex] as Item],
+    //       ],
+    //     })
+    //   );
+    // }, []);
+
+    const renderCard = useCallback((card: { id: number; text: string }) => {
+      return <Card key={card.id} id={card.id} text={card.text} />;
     }, []);
 
-    const renderCard = useCallback(
-      (card: { id: number; text: string }, index: number) => {
-        return (
-          <Card
-            key={card.id}
-            index={index}
-            id={card.id}
-            text={card.text}
-            moveCard={moveCard}
-          />
-        );
-      },
-      []
-    );
-
     return (
-      <>
-        <div className="flex flex-col items-center p-4 space-y-4 bg-background">
-          {cards.map((card, i) => renderCard(card, i))}
-        </div>
-      </>
+      <div className="flex flex-col items-center p-4 space-y-4 bg-background ">
+        <DndContext
+          onDragStart={() => {
+            console.log();
+          }}
+          onDragEnd={handleDragEnd}
+          collisionDetection={(args) => closestCenter(args)}
+          autoScroll={{ layoutShiftCompensation: false }}
+        >
+          <SortableContext
+            items={cards.map((card) => card.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            {cards.map((card, i) => renderCard(card, i))}
+          </SortableContext>
+        </DndContext>
+      </div>
     );
   }
 };

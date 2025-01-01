@@ -4,13 +4,19 @@ import FileUpload from "@/components/common/form/fileupload";
 import TextInput from "@/components/common/form/textinput";
 import { useMemo, useState } from "react";
 import HostQuestionCardRoot from "./_common/host-question-card-root";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 interface CreateUploadDocumentProps {
   children?: React.ReactNode;
   isHostMode?: boolean;
+  cardRef?: (node: HTMLElement | null) => void;
+  listeners?: SyntheticListenerMap;
 }
 
-const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = () => {
+const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = ({
+  cardRef,
+  listeners,
+}) => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -26,6 +32,8 @@ const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = () => {
 
   return (
     <HostQuestionCardRoot
+      cardRef={cardRef}
+      listeners={listeners}
       additionalHeaders={
         isDescriptionInputEnabled ? (
           <TextInput
