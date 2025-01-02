@@ -1,92 +1,46 @@
-import type { Identifier, XYCoord } from "dnd-core";
-import { GripHorizontal } from "lucide-react";
 import type { FC } from "react";
-import { useRef } from "react";
-import { useDrag, useDrop } from "react-dnd";
-import HostUploadDocument from "@/components/features/team/upload-document";
+import CreateUploadDocument from "./features/team/host-question-cards/host-upload-document-question-card";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 export interface CardProps {
-  id: any;
+  id: number | string;
   text: string;
-  index: number;
-  moveCard: (dragIndex: number, hoverIndex: number) => void;
+  // moveCard: (dragIndex: number, hoverIndex: number) => void;
 }
 
-interface DragItem {
-  index: number;
-  id: string;
-  type: string;
-}
-
-export const Card: FC<CardProps> = ({ id, text, index, moveCard }) => {
-  const cardRef = useRef<HTMLDivElement>(null); // Card ref for drop
-  const handleRef = useRef<HTMLDivElement>(null); // Handle ref for drag
-
-  const [{ handlerId }, drop] = useDrop<
-    DragItem,
-    void,
-    { handlerId: Identifier | null }
-  >({
-    accept: "card",
-    collect(monitor) {
-      return {
-        handlerId: monitor.getHandlerId(),
-      };
-    },
-    hover(item: DragItem, monitor) {
-      if (!cardRef.current) {
-        return;
-      }
-
-      const dragIndex = item.index;
-      const hoverIndex = index;
-
-      if (dragIndex === hoverIndex) {
-        return;
-      }
-
-      const hoverBoundingRect = cardRef.current?.getBoundingClientRect();
-      const hoverMiddleY =
-        (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
-      const clientOffset = monitor.getClientOffset();
-      const hoverClientY = (clientOffset as XYCoord).y - hoverBoundingRect.top;
-
-      if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-        return;
-      }
-
-      if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-        return;
-      }
-
-      moveCard(dragIndex, hoverIndex);
-      item.index = hoverIndex;
-    },
-  });
-
-  const [{ isDragging }, drag, preview] = useDrag({
-    type: "card",
-    item: () => ({ id, index }),
-    collect: (monitor) => ({
-      isDragging: monitor.isDragging(),
-    }),
-  });
-
-  drag(handleRef); // Attach drag to handle
-  preview(drop(cardRef)); // Attach drop and preview to card
+export const Card: FC<CardProps> = ({ id }) => {
+  const { setNodeRef, listeners, transform, transition } = useSortable({ id });
 
   return (
     // <div
-    //   ref={cardRef}
-    //   className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow mb-4"
+    //   ref={setNodeRef}
+    //   className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow w-full"
+    //   style={{
+    //     transition: transition,
+    //     transform: CSS.Translate.toString(transform),
+    //   }}
     // >
-    //   <div className="flex justify-center px-4 py-5 sm:px-6">
-    //     <div ref={handleRef}>
-    //       <GripHorizontal />
+    //   <div className="flex items-center px-4 py-5 sm:px-6">
+    //     <div {...listeners} {...attributes}>
+    //       <RiDraggable />
+    //     </div>
+    //     <div>
+    //       {text}
     //     </div>
     //   </div>
-    //   {text}
     // </div>
-    <HostUploadDocument cardRef={cardRef} handleRef={handleRef} />
+
+    // <UploadDocument cardRef={cardRef} handleRef={handleRef} />
+
+    <div
+      style={{
+        transition: transition,
+        transform: CSS.Translate.toString(transform),
+      }}
+      className="touch-auto"
+    >
+      <CreateUploadDocument cardRef={setNodeRef} listeners={listeners} />
+    </div>
   );
 };
