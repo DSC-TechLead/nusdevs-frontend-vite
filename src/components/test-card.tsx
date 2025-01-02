@@ -38,6 +38,7 @@ export const Card: FC<CardProps> = ({ id }) => {
         transition: transition,
         transform: CSS.Translate.toString(transform),
       }}
+      className="touch-auto"
     >
       <CreateUploadDocument cardRef={setNodeRef} listeners={listeners} />
     </div>

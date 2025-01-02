@@ -6,6 +6,7 @@ import {
   SortableContext,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 export interface Item {
   id: number;
@@ -80,7 +81,6 @@ export const Container: FC = () => {
       const draggedItem = clonedCards.splice(draggedItemIndex, 1)[0];
       clonedCards.splice(overItemIndex, 0, draggedItem);
       setCards(clonedCards);
-      console.log(clonedCards.map((card) => card.id));
     };
 
     // const moveCard = useCallback((dragIndex: number, hoverIndex: number) => {
@@ -101,18 +101,16 @@ export const Container: FC = () => {
     return (
       <div className="flex flex-col items-center p-4 space-y-4 bg-background ">
         <DndContext
-          onDragStart={() => {
-            console.log();
-          }}
           onDragEnd={handleDragEnd}
           collisionDetection={(args) => closestCenter(args)}
           autoScroll={{ layoutShiftCompensation: false }}
+          modifiers={[restrictToVerticalAxis]}
         >
           <SortableContext
             items={cards.map((card) => card.id)}
             strategy={verticalListSortingStrategy}
           >
-            {cards.map((card, i) => renderCard(card, i))}
+            {cards.map((card) => renderCard(card))}
           </SortableContext>
         </DndContext>
       </div>

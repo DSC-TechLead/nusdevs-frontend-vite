@@ -21,7 +21,7 @@ export const Card: React.FC<CardProps> = ({
     <div className={cn("rounded-lg bg-white", className)} {...props}>
       <div className="flex justify-center py-3">
         {isDraggable && (
-          <div {...listeners}>
+          <div className="touch-none" {...listeners}>
             <RiDraggable
               className="text-center rotate-90 text-neutral cursor-grab"
               size={27}
