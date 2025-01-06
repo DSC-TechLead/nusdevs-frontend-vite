@@ -7,7 +7,7 @@ export const FormHeader: React.FC<FormHeaderProps> = ({ header, subtitle }) => {
     <div className="flex-col justify-start items-start gap-0 inline-flex">
       <div className="text-h2 font-bold">{header}</div>
       {subtitle && (
-        <div className="text-black/50 text-xs font-normal font-['Inter'] leading-[18px]">
+        <div className="text-black/50 text-xs text-secondary-text leading-[18px]">
           {subtitle}
         </div>
       )}
