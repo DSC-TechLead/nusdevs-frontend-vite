@@ -28,7 +28,7 @@ const GeneralInfo: React.FC<PrivacyPolicyProps> = ({}) => {
   };
 
   return (
-    <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
+    <div className="w-full max-h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
       <FormHeader header="General Info" subtitle="*Required Questions" />
       <TextInput
         label="Team Name*"
@@ -45,13 +45,19 @@ const GeneralInfo: React.FC<PrivacyPolicyProps> = ({}) => {
         handleChange={() => {}}
       />
       <TextInput
-        label="Team Name*"
-        placeholder="E.G. Orbital Team"
+        label="Team Description*"
+        placeholder="Add in team description and requirements"
         description=""
         maxLength={250}
         value=""
         handleInputChange={() => {}}
         height={5}
+      />
+      <Dropdown
+        label="Commitment Level"
+        description="test"
+        options={dropdownSelections}
+        handleChange={() => {}}
       />
     </div>
   );
