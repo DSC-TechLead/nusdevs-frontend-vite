@@ -30,7 +30,7 @@ const HostingPage: React.FC<ApplicationPageProps> = ({
           Apply to {requestName}
         </div>
       </div>
-      <div className="h-[500px] px-5 w-full overflow-auto flex flex-col justify-center">
+      <div className="h-[550px] px-5 w-full overflow-auto flex flex-col justify-center">
         <GeneralInfo />
       </div>
 

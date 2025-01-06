@@ -1,3 +1,4 @@
+import DateField from "../common/form/datefield";
 import Dropdown from "../common/form/dropdown";
 import { FormHeader } from "../common/form/form-section";
 import TextInput from "../common/form/textinput";
@@ -55,10 +56,17 @@ const GeneralInfo: React.FC<PrivacyPolicyProps> = ({}) => {
       />
       <Dropdown
         label="Commitment Level"
-        description="test"
+        description=""
         options={dropdownSelections}
         handleChange={() => {}}
       />
+      <DateField
+        label="Duration of Project"
+        description=""
+        type="multi"
+        onChange={() => {}}
+      />
+      {/* tags */}
     </div>
   );
 };
