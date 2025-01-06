@@ -33,7 +33,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div className="flex flex-col items-start w-full gap-2">
       {/* Dropdown Title */}
-      <h2 className="text-primary-text font-inter text-sm/6 font-bold leading-[18px]">
+      <h2 className="text-primary-text font-inter font-bold leading-[18px]">
         {label}
       </h2>
 
