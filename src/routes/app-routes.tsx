@@ -9,10 +9,7 @@ const AppRoutes = () => {
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="/components-demo" element={<Components />} />
-        <Route
-          path="/hosting-demo"
-          element={<div className="flex size-full bg-background">test</div>}
-        />
+        <Route path="/hosting-demo" element={<HostingPage />} />
       </Routes>
     </BrowserRouter>
   );
