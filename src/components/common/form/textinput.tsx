@@ -20,7 +20,7 @@ const TextInput: React.FC<TextInputProps> = ({
   height = 1,
 }) => {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full">
       <label className="block mb-1 font-bold text-gray-800 text-body-small">
         {label}
       </label>
