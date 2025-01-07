@@ -66,7 +66,15 @@ const GeneralInfo: React.FC<PrivacyPolicyProps> = ({}) => {
         type="multi"
         onChange={() => {}}
       />
-      {/* tags */}
+      <TextInput
+        label="Tags Temp"
+        placeholder="Add in team description and requirements"
+        description=""
+        maxLength={250}
+        value=""
+        handleInputChange={() => {}}
+        height={5}
+      />
     </div>
   );
 };
