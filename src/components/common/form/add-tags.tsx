@@ -13,51 +13,36 @@ import { RxCross1 } from "react-icons/rx";
 import CheckSelect from "./checkSelect";
 import TagList from "./tag-list";
 
-const AddTags = ({}) => {
-  const checkSelections = [
-    {
-      id: "C1",
-      title: "Selection 1",
-    },
-    {
-      id: "C2",
-      title: "Selection 2",
-    },
-    {
-      id: "C3",
-      title: "Selection 3",
-    },
-    {
-      id: "C4",
-      title: "Selection 4",
-    },
-    {
-      id: "C5",
-      title: "Selection 5",
-    },
-    {
-      id: "C6",
-      title: "Selection 6",
-    },
-    {
-      id: "C7",
-      title: "Selection 7",
-    },
-    {
-      id: "C8",
-      title: "Selection 8",
-    },
-    {
-      id: "C9",
-      title: "Selection 9",
-    },
-    {
-      id: "C10",
-      title: "Selection 10",
-    },
-  ];
+const checkSelections = [
+  {
+    id: "C1",
+    title: "Selection 1",
+  },
+  {
+    id: "C2",
+    title: "Selection 2",
+  },
+  {
+    id: "C3",
+    title: "Selection 3",
+  },
+  {
+    id: "C4",
+    title: "Selection 4",
+  },
+  {
+    id: "C5",
+    title: "Selection 5",
+  },
+];
 
+const AddTags = ({}) => {
   const [open, setOpen] = useState(false);
+  const [tags, setTags] = useState<string[]>(["C1"]);
+
+  const onTagsChange = (t: string[]) => {
+    setTags(t);
+  };
 
   return (
     <div>
@@ -105,8 +90,9 @@ const AddTags = ({}) => {
               </div>
               <div className="mt-5 sm:mt-6 flex gap-16 overflow-auto">
                 <CheckSelect
-                  onSelectionChange={() => {}}
+                  onSelectionChange={onTagsChange}
                   selections={checkSelections}
+                  currentSelections={tags}
                 />
               </div>
             </div>

@@ -5,6 +5,7 @@ interface CheckSelectProps {
   selectDescription?: string;
   selections: { id: string; title: string }[];
   onSelectionChange: (selected: string[]) => void;
+  currentSelections: string[];
 }
 
 const CheckSelect: React.FC<CheckSelectProps> = ({
@@ -12,8 +13,9 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
   selectDescription = "",
   selections,
   onSelectionChange,
+  currentSelections,
 }) => {
-  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [selectedIds, setSelectedIds] = useState<string[]>(currentSelections);
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checkedId = event.target.id;
