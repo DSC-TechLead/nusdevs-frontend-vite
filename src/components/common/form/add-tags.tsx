@@ -44,6 +44,10 @@ const AddTags = ({}) => {
     setTags(t);
   };
 
+  const onTagsDelete = (tagId: string) => {
+    setTags(tags.filter((id) => id !== tagId));
+  };
+
   return (
     <div>
       <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -85,8 +89,13 @@ const AddTags = ({}) => {
                   </span>
                 </button>
               </div>
-              <div>
-                <TagList />
+              <div className="flex flex-wrap">
+                <TagList
+                  tags={checkSelections.filter((item) => {
+                    return tags.includes(item.id);
+                  })}
+                  onTagsChange={onTagsDelete}
+                />
               </div>
               <div className="mt-5 sm:mt-6 flex gap-16 overflow-auto">
                 <CheckSelect
