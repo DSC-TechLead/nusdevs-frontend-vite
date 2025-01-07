@@ -12,16 +12,16 @@ const TagList: React.FC<TagListProps> = ({ tags, onTagsChange }) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-4">
       {tags.map((tag) => (
         <button
           key={tag.id}
           onClick={() => handleClick(tag.id)}
-          className="flex items-center gap-4 px-4 py-2 ease-in-out text-primary rounded-full bg-primary-20 hover:bg-white active:bg-white outline"
+          className="flex items-center gap-4 px-3 py-1 ease-in-out text-primary rounded-full bg-primary-20 hover:bg-white active:bg-white outline text-body-small"
         >
           <span>{tag.title}</span>
-          <span className="relative top-[2px]">
-            <RxCross1 className="text-lg" />
+          <span className="relative ">
+            <RxCross1 className="" />
           </span>
         </button>
       ))}
