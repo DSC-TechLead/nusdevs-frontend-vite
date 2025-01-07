@@ -1,5 +1,5 @@
 import { FaPlus } from "react-icons/fa";
-import TextButton from "./textbutton";
+import TextButton from "../textbutton";
 import { useState } from "react";
 import {
   Dialog,
@@ -10,7 +10,8 @@ import {
 
 import { IoCheckmarkSharp } from "react-icons/io5";
 import { RxCross1 } from "react-icons/rx";
-import CheckSelect from "./form/checkSelect";
+import CheckSelect from "./checkSelect";
+import TagList from "./tag-list";
 
 const AddTags = ({}) => {
   const checkSelections = [
@@ -98,6 +99,9 @@ const AddTags = ({}) => {
                     />
                   </span>
                 </button>
+              </div>
+              <div>
+                <TagList />
               </div>
               <div className="mt-5 sm:mt-6 flex gap-16 overflow-auto">
                 <CheckSelect

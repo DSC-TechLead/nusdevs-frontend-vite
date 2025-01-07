@@ -3,7 +3,7 @@ import Dropdown from "../common/form/dropdown";
 import { FormHeader } from "../common/form/form-section";
 import TextInput from "../common/form/textinput";
 
-import AddTags from "../common/add-tags";
+import AddTags from "../common/form/add-tags";
 
 interface PrivacyPolicyProps {
   text?: string;
