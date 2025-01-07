@@ -109,15 +109,25 @@ const AddTags = ({}) => {
         </div>
       </Dialog>
 
-      <div className="flex justify-start">
-        <TextButton
-          text="Add Tags"
-          icon={<FaPlus />}
-          onClick={() => {
-            setOpen(!open);
-          }}
-          className=""
-        />
+      <div className="flex flex-col justify-start gap-4">
+        <div>
+          <TagList
+            tags={checkSelections.filter((item) => {
+              return tags.includes(item.id);
+            })}
+            onTagsChange={onTagsDelete}
+          />
+        </div>
+        <div>
+          <TextButton
+            text="Add Tags"
+            icon={<FaPlus />}
+            onClick={() => {
+              setOpen(!open);
+            }}
+            className=""
+          />
+        </div>
       </div>
     </div>
   );
