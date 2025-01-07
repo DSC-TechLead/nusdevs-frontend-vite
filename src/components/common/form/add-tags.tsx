@@ -40,8 +40,8 @@ const AddTags = ({}) => {
   const [open, setOpen] = useState(false);
   const [tags, setTags] = useState<string[]>(["C1"]);
 
-  const onTagsChange = (t: string[]) => {
-    setTags(t);
+  const onTagsChange = (selectedTags: string[]) => {
+    setTags(selectedTags);
   };
 
   const onTagsDelete = (tagId: string) => {

@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 interface CheckSelectProps {
   selectTitle?: string;
   selectDescription?: string;
@@ -15,16 +13,12 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
   onSelectionChange,
   currentSelections,
 }) => {
-  const [selectedIds, setSelectedIds] = useState<string[]>(currentSelections);
-
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const checkedId = event.target.id;
     if (event.target.checked) {
-      setSelectedIds([...selectedIds, checkedId]);
-      onSelectionChange([...selectedIds, checkedId]);
+      onSelectionChange([...currentSelections, checkedId]);
     } else {
-      setSelectedIds(selectedIds.filter((id) => id !== checkedId));
-      onSelectionChange(selectedIds.filter((id) => id !== checkedId));
+      onSelectionChange(currentSelections.filter((id) => id !== checkedId));
     }
   };
 
@@ -45,7 +39,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                   id={checkSelection.id}
                   name="check-select"
                   type="checkbox"
-                  checked={selectedIds.includes(checkSelection.id)}
+                  checked={currentSelections.includes(checkSelection.id)}
                   onChange={(event) => handleCheckboxChange(event)}
                   className="col-start-1 row-start-1 bg-white border rounded appearance-none border-neutral-30 checked:border-primary checked:bg-primary indeterminate:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-primary disabled:border-neutral disabled:bg-neutral-10 disabled:checked:bg-neutral-10 forced-colors:appearance-auto"
                 />
