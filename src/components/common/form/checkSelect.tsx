@@ -1,13 +1,15 @@
 import { useState } from "react";
 
 interface CheckSelectProps {
-  selectTitle: string;
+  selectTitle?: string;
+  selectDescription?: string;
   selections: { id: string; title: string }[];
   onSelectionChange: (selected: string[]) => void;
 }
 
 const CheckSelect: React.FC<CheckSelectProps> = ({
-  selectTitle,
+  selectTitle = "",
+  selectDescription = "",
   selections,
   onSelectionChange,
 }) => {
@@ -30,7 +32,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
         {selectTitle}
       </legend>
       <p className="text-left text-body-small text-secondary-text">
-        Description
+        {selectDescription}
       </p>
       <div className="mt-2 space-y-1">
         {selections.map((checkSelection) => (
