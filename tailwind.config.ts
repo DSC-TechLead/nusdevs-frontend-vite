@@ -8,6 +8,12 @@ export default {
         background: {
           DEFAULT: "var(--background)",
         },
+        black: {
+          DEFAULT: "var(--black)",
+        },
+        white: {
+          DEFAULT: "var(--white)",
+        },
         primary: {
           10: "var(--primary-10)",
           20: "var(--primary-20)",
@@ -38,6 +44,9 @@ export default {
           50: "var(--success-50)",
           60: "var(--success-60)",
           80: "var(--success-80)",
+        },
+        danger: {
+          DEFAULT: "var(--danger)",
         },
       },
       fontSize: {

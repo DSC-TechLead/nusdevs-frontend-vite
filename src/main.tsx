@@ -1,13 +1,10 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./global.css";
-import ApplicationPage from "./pages/applicationPage.tsx";
+import AppRoutes from "./routes/app-routes";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <ApplicationPage
-      requestName="Dummy Team"
-      privacyPolicyText="This is the privacy policy"
-    />
+    <AppRoutes />
   </StrictMode>,
 );
