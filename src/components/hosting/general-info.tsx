@@ -1,9 +1,8 @@
-import { FaPlus } from "react-icons/fa";
 import DateField from "../common/form/datefield";
 import Dropdown from "../common/form/dropdown";
 import { FormHeader } from "../common/form/form-section";
 import TextInput from "../common/form/textinput";
-import TextButton from "../common/textbutton";
+
 import AddTags from "../common/add-tags";
 
 interface PrivacyPolicyProps {
@@ -27,10 +26,6 @@ const dropdownSelections = [
 ];
 
 const GeneralInfo: React.FC<PrivacyPolicyProps> = ({}) => {
-  const handleChange = () => {
-    // onSelectedChange(!isRead);
-  };
-
   return (
     <div className="w-full max-h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
       <FormHeader header="General Info" subtitle="*Required Questions" />

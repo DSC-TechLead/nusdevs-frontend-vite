@@ -3,32 +3,16 @@ import UnderlineButton from "@/components/common/underline-button";
 import GeneralInfo from "@/components/hosting/general-info";
 import { useState } from "react";
 
-interface ApplicationPageProps {
-  requestName?: string;
-  privacyPolicyText?: string;
-}
-const HostingPage: React.FC<ApplicationPageProps> = ({
-  requestName,
-  privacyPolicyText,
-}) => {
+interface HostingPageProps {}
+
+const HostingPage: React.FC<HostingPageProps> = ({}) => {
   const [currentPageNum, setCurrentPageNum] = useState<number>(1);
-  const [readPolicy, setReadPolicy] = useState<boolean>(false);
   const numOfPages: number = 4;
-
-  //temp text
-  privacyPolicyText =
-    "Our registered users (“Members”) share their professional identities, engage with their network, exchange knowledge and professional insights, post and view relevant content, learn and develop skills, and find business and career opportunities. Content and data on some of our Services is viewable to non-Members (“Visitors”). We use the term “Designated Countries” to refer to countries in the European Union (EU), European Economic Area (EEA), and Switzerland. Members and Visitors located in the Designated Countries or the UK can review additional information in our European Regional Privacy Notice. If you are in the “Designated Countries”, LinkedIn Ireland Unlimited Company (“LinkedIn Ireland”) will be the controller of your personal data provided to, or collected by or for, or processed in connection with our Services. If you are outside of the Designated Countries, LinkedIn Corporation will be the controller of (or business responsible for) your personal data provided to, or collected by or for, or processed in connection with our Services. As a Visitor or Member of our Services, the collection, use and sharing of your personal data is subject to this Privacy Policy and other documents referenced in this document.";
-
-  const handleSelectionChange = (isSelect: boolean) => {
-    setReadPolicy(isSelect);
-  };
 
   return (
     <div className="h-full w-full bg-background flex flex-col items-center absolute">
       <div className="w-full p-6 px-[10px] flex flex-row justify-center relative">
-        <div className="text-black text-h5 font-bold">
-          Apply to {requestName}
-        </div>
+        <div className="text-black text-h5 font-bold">Create a New Team</div>
       </div>
       {/* Will try to solve later. max-h-full will overlap the button */}
       <div className="h-3/4 px-5 w-full overflow-auto flex flex-col justify-center">
@@ -59,9 +43,7 @@ const HostingPage: React.FC<ApplicationPageProps> = ({
             // The text here is temporary for button implementation later
             <TextButton
               text="Submit"
-              onClick={() => {
-                alert(readPolicy);
-              }}
+              onClick={() => {}}
               className="text-white bg-primary active:bg-primary-70"
             />
           )}
