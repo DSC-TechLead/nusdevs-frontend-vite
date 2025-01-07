@@ -54,126 +54,6 @@ const AddTags = ({}) => {
       id: "C10",
       title: "Selection 10",
     },
-    {
-      id: "C11",
-      title: "Selection 11",
-    },
-    {
-      id: "C12",
-      title: "Selection 12",
-    },
-    {
-      id: "C13",
-      title: "Selection 13",
-    },
-    {
-      id: "C14",
-      title: "Selection 14",
-    },
-    {
-      id: "C15",
-      title: "Selection 15",
-    },
-    {
-      id: "C16",
-      title: "Selection 16",
-    },
-    {
-      id: "C17",
-      title: "Selection 17",
-    },
-    {
-      id: "C18",
-      title: "Selection 18",
-    },
-    {
-      id: "C19",
-      title: "Selection 19",
-    },
-    {
-      id: "C20",
-      title: "Selection 20",
-    },
-    {
-      id: "C21",
-      title: "Selection 21",
-    },
-    {
-      id: "C22",
-      title: "Selection 22",
-    },
-    {
-      id: "C23",
-      title: "Selection 23",
-    },
-    {
-      id: "C24",
-      title: "Selection 24",
-    },
-    {
-      id: "C25",
-      title: "Selection 25",
-    },
-    {
-      id: "C26",
-      title: "Selection 26",
-    },
-    {
-      id: "C27",
-      title: "Selection 27",
-    },
-    {
-      id: "C28",
-      title: "Selection 28",
-    },
-    {
-      id: "C29",
-      title: "Selection 29",
-    },
-    {
-      id: "C30",
-      title: "Selection 30",
-    },
-    {
-      id: "C31",
-      title: "Selection 31",
-    },
-    {
-      id: "C32",
-      title: "Selection 32",
-    },
-    {
-      id: "C33",
-      title: "Selection 33",
-    },
-    {
-      id: "C34",
-      title: "Selection 34",
-    },
-    {
-      id: "C35",
-      title: "Selection 35",
-    },
-    {
-      id: "C36",
-      title: "Selection 36",
-    },
-    {
-      id: "C37",
-      title: "Selection 37",
-    },
-    {
-      id: "C38",
-      title: "Selection 38",
-    },
-    {
-      id: "C39",
-      title: "Selection 39",
-    },
-    {
-      id: "C40",
-      title: "Selection 40",
-    },
   ];
 
   const [open, setOpen] = useState(false);
@@ -195,7 +75,7 @@ const AddTags = ({}) => {
         data-[leave]:duration-200 data-[enter]:ease-out data-[leave]:ease-in w-full h-full sm:w-full sm:h-full sm:max-w-none sm:p-6
         data-[closed]:sm:translate-y-0 data-[closed]:sm:scale-95"
           >
-            <div className="h-full flex flex-col justify-between">
+            <div className="h-full flex flex-col">
               <div className="flex flex-row mt-3 text-center sm:mt-5 justify-between items-center">
                 <button className="flex items-center justify-center w-11 h-11 ease-in-out outline-none cursor-pointer">
                   <span className="text-lg">
