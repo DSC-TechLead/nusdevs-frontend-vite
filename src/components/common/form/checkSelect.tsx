@@ -1,3 +1,5 @@
+import React from "react";
+
 interface CheckSelectProps {
   selectTitle?: string;
   selectDescription?: string;
@@ -32,7 +34,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
       </p>
       <div className="mt-2 space-y-1">
         {selections.map((checkSelection) => (
-          <div className="flex gap-5">
+          <div className="flex gap-5" key={checkSelection.id}>
             <div className="flex items-center h-6 shrink-0">
               <div className="grid grid-cols-1 group size-4">
                 <input
@@ -46,9 +48,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 <svg
                   fill="none"
                   viewBox="0 0 14 14"
-                  className="pointer-events-none col-start-1 row-start-1
-                  self-center justify-self-center stroke-white 
-                  group-has-[:disabled]:stroke-neutral-80"
+                  className="pointer-events-none col-start-1 row-start-1 self-center justify-self-center stroke-white group-has-[:disabled]:stroke-neutral-80"
                 >
                   <path
                     d="M3 8L6 11L11 3.5"
@@ -61,7 +61,10 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
               </div>
             </div>
             <div className="text-body-small">
-              <label htmlFor="comments" className="text-primary-text">
+              <label
+                htmlFor={checkSelection.id} // Link label to input by matching ids
+                className="text-primary-text cursor-pointer"
+              >
                 {checkSelection.title}
               </label>
             </div>
