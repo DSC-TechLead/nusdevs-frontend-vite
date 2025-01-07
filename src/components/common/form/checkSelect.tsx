@@ -61,12 +61,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
               </div>
             </div>
             <div className="text-body-small">
-              <label
-                htmlFor={checkSelection.id} // Link label to input by matching ids
-                className="text-primary-text cursor-pointer"
-              >
-                {checkSelection.title}
-              </label>
+              <label htmlFor={checkSelection.id}>{checkSelection.title}</label>
             </div>
           </div>
         ))}
