@@ -31,7 +31,7 @@ const HostingPage: React.FC<ApplicationPageProps> = ({
         </div>
       </div>
       {/* Will try to solve later. max-h-full will overlap the button */}
-      <div className="max-h-[550px] px-5 w-full overflow-auto flex flex-col justify-center">
+      <div className="h-3/4 px-5 w-full overflow-auto flex flex-col justify-center">
         <GeneralInfo />
       </div>
 
