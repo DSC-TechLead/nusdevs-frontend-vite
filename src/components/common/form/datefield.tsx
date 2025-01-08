@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 interface DateFieldProps {
   label: string;
-  description: string;
+  description?: string;
   type: "single" | "multi"; // 'single' for selecting a single date, 'multi' for multiple dates
   onChange: (dates: Date | [Date, Date] | null) => void; // Callback for when the date(s) change
   startDate?: Date | null; // Start date for range (optional)
@@ -66,9 +66,11 @@ const DateField: React.FC<DateFieldProps> = ({
       <h2 className="text-primary-text font-inter text-sm font-bold leading-[18px]">
         {label}
       </h2>
-      <p className="text-secondary-text font-inter text-xs font-normal leading-[18px]">
-        {description}
-      </p>
+      {description && (
+        <p className="text-secondary-text font-inter text-xs font-normal leading-[18px]">
+          {description}
+        </p>
+      )}
       <div className="w-full">
         {type === "single" ? (
           <div>

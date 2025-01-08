@@ -1,4 +1,4 @@
-import { FormHeader } from "../formSections";
+import { FormHeader } from "@components/formSections";
 
 interface PrivacyPolicyProps {
   text: string;
@@ -16,9 +16,9 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({
   };
 
   return (
-    <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
+    <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto no-scrollbar">
       <FormHeader header="Privacy Policy" />
-      <div className="p-2 border border-black overflow-auto flex-auto">
+      <div className="p-2 border border-black overflow-auto no-scrollbar flex-auto">
         <p className="text- text-justify">{text}</p>
       </div>
       <div className="flex gap-3">

@@ -54,6 +54,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
   const resetFileInput = () => {
     if (fileInputRef.current) {
       fileInputRef.current.value = "";
+      console.log(fileInputRef.current);
     }
   };
 
@@ -73,19 +74,25 @@ const FileUpload: React.FC<FileUploadProps> = ({
         {!selectedFile ? (
           <div
             className={`
-              border-2 border-dashed border-neutral-30 rounded-lg p-4 flex items-center gap-4 transition-colors duration-300 h-[80px]
+              border-2 border-dashed border-neutral-30 rounded-lg p-4 flex items-center gap-4 transition-colors duration-300 h-13
               ${disabled ? "bg-neutral-10 pointer-events-none cursor-not-allowed" : "hover:border-primary"}
             `}
           >
             <div className="flex items-center gap-3">
-              <div className="text-secondary-text ml-[5px] mr-5">
+              <div
+                className={`${disabled ? "text-neutral-40" : "text-secondary-text"} ml-[5px] mr-5`}
+              >
                 <MdOutlineUploadFile size={28} />
               </div>
               <div className="flex flex-col">
-                <span className="font-medium text-body-regular text-primary-text">
+                <span
+                  className={`font-medium text-body-regular ${disabled ? "text-neutral-40" : "text-primary-text"}`}
+                >
                   Tap to upload a file
                 </span>
-                <span className="text-body-ultra-small text-neutral mt-0.5">
+                <span
+                  className={`text-body-ultra-small ${disabled ? "text-neutral-40" : "text-neutral"} mt-0.5`}
+                >
                   Accepted format(s): .pdf, Max {maxFileSizeMB}MB
                 </span>
               </div>
@@ -93,13 +100,13 @@ const FileUpload: React.FC<FileUploadProps> = ({
           </div>
         ) : (
           <div
-            className="flex items-center border border-neutral-30 rounded-lg p-0 gap-4 cursor-pointer w-full h-[80px]"
+            className="flex items-center border border-neutral-30 rounded-lg p-0 gap-4 cursor-pointer w-full h-13"
             onClick={() => {
               setSelectedFile(null);
               setHelperText("");
             }}
           >
-            <div className="bg-secondary-text text-white font-bold text-sm p-2 rounded h-[80px] flex justify-center items-center ml-0">
+            <div className="bg-secondary-text text-white font-bold text-sm p-2 rounded h-13 w-12 flex justify-center items-center ml-0">
               PDF
             </div>
             <div className="flex flex-col flex-1">

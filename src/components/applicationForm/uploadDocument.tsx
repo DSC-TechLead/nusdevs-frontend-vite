@@ -1,4 +1,5 @@
-import { FormHeader } from "../formSections";
+import { FormHeader } from "@components/formSections";
+import FileUpload from "../common/form/fileupload";
 
 const requiredDocuments = {
   resume: true,
@@ -8,8 +9,8 @@ const requiredDocuments = {
 
 const UploadDocument: React.FC = () => {
   return (
-    <div className="w-full flex flex-col justify-start items-center gap-3">
-      <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
+    <div className="flex flex-col items-center justify-start w-full max-h-full gap-3 overflow-auto no-scrollbar">
+      <div className="w-full px-5 py-8 bg-white rounded-2xl">
         <FormHeader header="Upload Documents" />
       </div>
       {requiredDocuments.resume && <Resume />}
@@ -21,21 +22,19 @@ const UploadDocument: React.FC = () => {
 
 const Resume: React.FC = () => {
   return (
-    <>
-      <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
-        <FormHeader header="Resume" />
-        {/* TODO: Insert document upload components */}
-      </div>
-    </>
+    <div className="inline-flex flex-col w-full px-5 py-8 bg-white rounded-2xl gap-7">
+      <FormHeader header="Resume" />
+      <FileUpload />
+    </div>
   );
 };
 
 const Portfolio: React.FC = () => {
   return (
     <>
-      <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
+      <div className="inline-flex flex-col w-full px-5 py-8 bg-white rounded-2xl gap-7">
         <FormHeader header="Portfolio" />
-        {/* TODO: Insert document upload components */}
+        <FileUpload />
       </div>
     </>
   );
@@ -44,9 +43,10 @@ const Portfolio: React.FC = () => {
 const CV: React.FC = () => {
   return (
     <>
-      <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
+      <div className="inline-flex flex-col w-full px-5 py-8 bg-white rounded-2xl gap-7">
         <FormHeader header="CV" />
-        {/* TODO: Insert document upload components */}
+        <FileUpload />
+        <FileUpload />
       </div>
     </>
   );

@@ -8,10 +8,10 @@ import {
   DialogTitle,
 } from "@headlessui/react";
 
-import { FormHeader } from "../formSections";
+import { FormHeader } from "@components/formSections";
 
-import TextButton from "../textbutton";
-import TextInput from "../textinput";
+import TextButton from "@components/common/textbutton";
+import TextInput from "@components/common/form/textinput";
 
 const questions = [
   {
@@ -123,7 +123,7 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
         </div>
       </Dialog>
 
-      <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto ">
+      <div className="w-full h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto no-scrollbar">
         <div className="flex items-center justify-between h4">
           <FormHeader header="Contact Information" />
           <button
@@ -142,8 +142,9 @@ const ContactInfo: React.FC<ContactInfoProps> = ({
                 contactValues[qn.key as keyof ContactInfoProps] || ""
               }
               description=""
+              value=""
+              handleInputChange={() => {}}
               textDisabled={true}
-              enableCount={false}
             />
           ))}
         </div>

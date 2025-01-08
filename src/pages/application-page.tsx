@@ -1,10 +1,10 @@
 import { useState } from "react";
-import ContactInfo from "../components/applicationForm/contactInfo";
-import UploadDocument from "../components/applicationForm/uploadDocument";
-import ScreeningQuestions from "../components/applicationForm/screeningQuestions";
-import PrivacyPolicy from "../components/applicationForm/privacyPolicy";
-import TextButton from "../components/textbutton";
-import UnderlineButton from "../components/underlinebutton";
+import ContactInfo from "@components/applicationForm/contactInfo";
+import UploadDocument from "@components/applicationForm/uploadDocument";
+import ScreeningQuestions from "@components/applicationForm/screeningQuestions";
+import PrivacyPolicy from "@components/applicationForm/privacyPolicy";
+import TextButton from "@components/common/textbutton";
+import UnderlineButton from "@/components/common/underlinebutton";
 
 interface ApplicationPageProps {
   requestName: string;
@@ -28,12 +28,12 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
 
   return (
     <div className="h-full w-full bg-background flex flex-col items-center absolute">
-      <div className="w-full p-6 px-[10px] flex flex-row justify-center relative">
+      <div className="w-full p-6 px-[10px] flex flex-row justify-center">
         <div className="text-black text-h5 font-bold">
           Apply to {requestName}
         </div>
       </div>
-      <div className="max-h-full px-5 w-full overflow-auto flex flex-col justify-center">
+      <div className="h-4/5 px-5 w-full flex flex-col">
         {currentPageNum === 1 ? (
           <ContactInfo />
         ) : currentPageNum === 2 ? (
@@ -48,7 +48,6 @@ const ApplicationPage: React.FC<ApplicationPageProps> = ({
           />
         )}
       </div>
-
       <div className="w-full pb-9 pt-7 px-8 bottom-0 justify-between items-center inline-flex absolute">
         <div className="justify-start items-center"></div>
         <div className="justify-start items-start flex gap-9">
