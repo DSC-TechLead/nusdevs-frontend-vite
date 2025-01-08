@@ -14,7 +14,7 @@ export const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div className={cn("rounded-lg bg-white", className)} {...props}>
-      <div className="flex justify-center py-3">
+      <div className={cn("flex justify-center", isDraggable && "py-3")}>
         {isDraggable && (
           <RiDraggable
             className="text-center rotate-90 text-neutral cursor-grab"

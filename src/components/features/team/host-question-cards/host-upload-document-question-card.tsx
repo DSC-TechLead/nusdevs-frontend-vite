@@ -5,12 +5,14 @@ import TextInput from "@/components/common/form/textinput";
 import { useMemo, useState } from "react";
 import HostQuestionCardRoot from "./_common/host-question-card-root";
 
-interface CreateUploadDocumentProps {
+interface HostUploadDocumentQuestionCardProps {
   children?: React.ReactNode;
   isHostMode?: boolean;
 }
 
-const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = () => {
+const HostUploadDocumentQuestionCard: React.FC<
+  HostUploadDocumentQuestionCardProps
+> = () => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -62,4 +64,4 @@ const CreateUploadDocument: React.FC<CreateUploadDocumentProps> = () => {
   );
 };
 
-export default CreateUploadDocument;
+export default HostUploadDocumentQuestionCard;

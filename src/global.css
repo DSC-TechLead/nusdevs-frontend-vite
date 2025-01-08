@@ -6,18 +6,18 @@
   :root {
     /* -- Colors -- */
     /* Bacgkround & Misc */
-    --background: #F3F4F6;
+    --background: #f3f4f6;
     --black: #000000;
     --white: #ffffff;
 
     /* Primary */
     --primary-10: #faa385;
-    --primary-20: #FDE1D2;
-    --primary-30: #FBCAAF;
-    --primary-40: #F9AD85;
-    --primary-50: #F6884D;
-    --primary: #EB5E27; /* 60 */
-    --primary-70: #BC3F0E;
+    --primary-20: #fde1d2;
+    --primary-30: #fbcaaf;
+    --primary-40: #f9ad85;
+    --primary-50: #f6884d;
+    --primary: #eb5e27; /* 60 */
+    --primary-70: #bc3f0e;
     --primary-80: #892802;
     --primary-text: #000000;
 
@@ -25,41 +25,41 @@
     --secondary-text: #727272;
 
     /* Neutrals */
-    --neutral-10: #F3F4F6;
-    --neutral-20: ##E5E7EB;
-    --neutral-30: #D4D5D6;
-    --neutral-40: #B6B8BC;
+    --neutral-10: #f3f4f6;
+    --neutral-20: ##e5e7eb;
+    --neutral-30: #d4d5d6;
+    --neutral-40: #b6b8bc;
     --neutral-50: #919396;
     --neutral: #727272;
-    --neutral-70: #46433E;
+    --neutral-70: #46433e;
     --neutral-80: #111928;
 
     /* Semantic */
-    --success-10: #DAF8E6;
-    --success-30: #ACEFC8;
-    --success-50: #57DE8F;
-    --success-60: #22AD5C;
-    --success-80: #1A8245;
+    --success-10: #daf8e6;
+    --success-30: #acefc8;
+    --success-50: #57de8f;
+    --success-60: #22ad5c;
+    --success-80: #1a8245;
 
     /* TODO: update with design team's color system */
-    
-    --warning-10: #FEF9C3;
-    --warning-20: #FDE047;
-    --warning: #EAB308;
-    --warning-40: #A16207;
-    --warning-50: #713F12;
 
-    --danger-10: #FEE2E2;
-    --danger-20: #FCA5A5;
-    --danger: #EF4444;
-    --danger-40: #B91C1C;
-    --danger-50: #7F1D1D;
+    --warning-10: #fef9c3;
+    --warning-20: #fde047;
+    --warning: #eab308;
+    --warning-40: #a16207;
+    --warning-50: #713f12;
 
-    --info-10: #DBEAFE;
-    --info-20: #93C5FD;
-    --info: #3B82F6;
-    --info-40: #1D4ED8;
-    --info-50: #1E3A8A;
+    --danger-10: #fee2e2;
+    --danger-20: #fca5a5;
+    --danger: #ef4444;
+    --danger-40: #b91c1c;
+    --danger-50: #7f1d1d;
+
+    --info-10: #dbeafe;
+    --info-20: #93c5fd;
+    --info: #3b82f6;
+    --info-40: #1d4ed8;
+    --info-50: #1e3a8a;
 
     /* -- Typography Sizing -- */
     --h1: 32px;
@@ -92,6 +92,9 @@
 
 @layer base {
   /* Add stylings here if needed */
+  :root {
+    padding: 0;
+  }
 }
 
 /* TODO: remove this later */
