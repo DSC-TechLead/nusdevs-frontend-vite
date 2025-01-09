@@ -15,7 +15,7 @@ export const Card: FC<CardProps> = ({ id }) => {
   return (
     // <div
     //   ref={setNodeRef}
-    //   className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow w-full"
+    //   className="w-full overflow-hidden bg-white divide-y divide-gray-200 rounded-lg shadow"
     //   style={{
     //     transition: transition,
     //     transform: CSS.Translate.toString(transform),
