@@ -105,6 +105,14 @@ const Components: React.FC = () => {
         onChange={() => {}}
       />
       <Toggle status={true} onToggleChange={() => {}} />
+      <div className="flex justify-start">
+        <TextButton
+          text="Add Tags"
+          icon={<FaPlus />}
+          onClick={handleClick}
+          className="bg-neutral-500 hover:bg-neutral-400 active:bg-neutral-600"
+        />
+      </div>
     </div>
   );
 };
