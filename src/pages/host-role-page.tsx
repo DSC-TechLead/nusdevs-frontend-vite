@@ -1,7 +1,7 @@
 import TextButton from "@/components/common/textbutton";
 import UnderlineButton from "@/components/common/underline-button";
 import HostRole from "@/components/hosting/host-role";
-import React, { useState } from "react";
+import { useState } from "react";
 
 const HostRolePage = () => {
   const [currentPageNum, setCurrentPageNum] = useState<number>(1);
