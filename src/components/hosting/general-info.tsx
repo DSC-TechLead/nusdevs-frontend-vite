@@ -5,10 +5,7 @@ import TextInput from "../common/form/textinput";
 
 import AddTags from "../common/form/add-tags";
 
-interface PrivacyPolicyProps {
-  text?: string;
-  isRead?: boolean;
-}
+interface GeneralInfoProps {}
 
 const dropdownSelections = [
   {
@@ -25,7 +22,7 @@ const dropdownSelections = [
   },
 ];
 
-const GeneralInfo: React.FC<PrivacyPolicyProps> = ({}) => {
+const GeneralInfo: React.FC<GeneralInfoProps> = ({}) => {
   return (
     <div className="w-full max-h-full px-5 py-8 bg-white rounded-2xl flex-col gap-7 inline-flex overflow-auto">
       <FormHeader header="General Info" subtitle="*Required Questions" />
