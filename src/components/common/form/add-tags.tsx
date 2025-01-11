@@ -97,11 +97,12 @@ const AddTags = ({}) => {
                   onTagsChange={onTagsDelete}
                 />
               </div>
-              <div className="mt-5 sm:mt-6 flex gap-16 overflow-auto">
+              <div className="mt-5 sm:mt-6 flex gap-16 overflow-auto w-full">
                 <CheckSelect
                   onSelectionChange={onTagsChange}
                   selections={checkSelections}
                   currentSelections={tags}
+                  enableDivider={true}
                 />
               </div>
             </div>
