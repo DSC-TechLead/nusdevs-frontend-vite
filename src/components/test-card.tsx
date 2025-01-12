@@ -40,7 +40,16 @@ export const Card: FC<CardProps> = ({ id }) => {
       }}
       className="touch-auto"
     >
-      <CreateUploadDocument ref={setNodeRef} listeners={listeners} />
+      <CreateUploadDocument
+        ref={setNodeRef}
+        listeners={listeners}
+        onDeleteHandler={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        onShiftToTopHandler={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
     </div>
   );
 };

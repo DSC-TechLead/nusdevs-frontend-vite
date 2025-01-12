@@ -70,6 +70,27 @@ const HostCreateTeamFormStep4: React.FC = () => {
     []
   );
 
+  const handleShiftToTop = useCallback(
+    (id: number) => {
+      const updatedDynamicQuestionCards = [...dynamicQuestionCards];
+
+      const itemToShiftIndex = updatedDynamicQuestionCards.findIndex(
+        (dynamicQuestionCard) => dynamicQuestionCard.id === id
+      );
+
+      if (itemToShiftIndex === -1) {
+        return;
+      }
+
+      const [item] = updatedDynamicQuestionCards.splice(itemToShiftIndex, 1);
+
+      updatedDynamicQuestionCards.unshift(item);
+
+      setDynamicQuestionCards(updatedDynamicQuestionCards);
+    },
+    [dynamicQuestionCards]
+  );
+
   useEffect(() => {
     console.log(dynamicQuestionCards);
   }, [dynamicQuestionCards]);
@@ -127,6 +148,9 @@ const HostCreateTeamFormStep4: React.FC = () => {
               onDeleteHandler={() =>
                 handleDeleteQuestionCard(dynamicQuestionCard.id)
               }
+              onShiftToTopHandler={() =>
+                handleShiftToTop(dynamicQuestionCard.id)
+              }
             />
           ))}
         </SortableContext>
@@ -134,6 +158,9 @@ const HostCreateTeamFormStep4: React.FC = () => {
         <DragOverlay>
           {activeId ? (
             <HostUploadDocumentQuestionCard
+              onShiftToTopHandler={() => {
+                handleAddQuestionCard();
+              }}
               onDeleteHandler={() => handleDeleteQuestionCard(activeId)}
             />
           ) : null}
@@ -160,12 +187,14 @@ interface SortableItemProps {
   id: number;
   isDragging: boolean;
   onDeleteHandler: () => void;
+  onShiftToTopHandler: () => void;
 }
 
 const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
   id,
   isDragging = false,
   onDeleteHandler,
+  onShiftToTopHandler,
 }) => {
   const { setNodeRef, listeners, transform, transition } = useSortable({ id });
 
@@ -180,6 +209,7 @@ const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
       <HostUploadDocumentQuestionCard
         ref={setNodeRef}
         listeners={listeners}
+        onShiftToTopHandler={onShiftToTopHandler}
         onDeleteHandler={onDeleteHandler}
       />
     </div>

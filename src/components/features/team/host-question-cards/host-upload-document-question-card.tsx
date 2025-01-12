@@ -11,12 +11,13 @@ interface HostUploadDocumentQuestionCardProps {
   isHostMode?: boolean;
   listeners?: SyntheticListenerMap;
   onDeleteHandler: () => void;
+  onShiftToTopHandler: () => void;
 }
 
 const HostUploadDocumentQuestionCard = forwardRef<
   HTMLDivElement,
   HostUploadDocumentQuestionCardProps
->(({ listeners, onDeleteHandler }, ref) => {
+>(({ listeners, onDeleteHandler, onShiftToTopHandler }, ref) => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -57,11 +58,7 @@ const HostUploadDocumentQuestionCard = forwardRef<
           >
             {`${isDescriptionInputEnabled ? "Remove" : "Add"} Description`}
           </DropdownMenuItem>
-          <DropdownMenuItem
-            handleClick={function (): void {
-              // TODO
-            }}
-          >
+          <DropdownMenuItem handleClick={onShiftToTopHandler}>
             Shift to Top
           </DropdownMenuItem>
         </>
