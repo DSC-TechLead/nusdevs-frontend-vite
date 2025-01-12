@@ -47,7 +47,7 @@ export const CardTitle: React.FC<HTMLAttributes<HTMLDivElement>> = ({
   <div
     className={cn(
       " text-h3 text-primary-text font-bold leading-none tracking-tight",
-      className
+      className,
     )}
     {...props}
   >

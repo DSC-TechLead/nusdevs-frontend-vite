@@ -4,10 +4,10 @@ export type DropdownOption = { label: string; value: string };
 
 interface DropdownProps {
   label: string;
-  description: string;
+  description?: string;
   placeholder?: string;
   options: DropdownOption[];
-  handleChange: (val: DropdownOption) => void;
+  handleChange: (val: string) => void;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({
@@ -15,7 +15,7 @@ const Dropdown: React.FC<DropdownProps> = ({
   description,
   options,
   handleChange,
-  placeholder,
+  placeholder = "Select option",
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<{
@@ -33,19 +33,21 @@ const Dropdown: React.FC<DropdownProps> = ({
   return (
     <div className="flex flex-col items-start w-full gap-2">
       {/* Dropdown Title */}
-      <h2 className="text-primary-text font-inter text-sm/6 font-bold leading-[18px]">
+      <h2 className="text-primary-text text-body-regular font-bold leading-[18px]">
         {label}
       </h2>
 
       {/* Description */}
-      <p className="text-secondary-text font-inter text-xs font-normal leading-[18px]">
-        {description}
-      </p>
+      {description && (
+        <p className="text-secondary-text text-body-small leading-[18px]">
+          {description}
+        </p>
+      )}
 
       {/* Dropdown Trigger */}
       <button
         onClick={toggleDropdown}
-        className={`w-full text-left border border-neutral-30 p-2 rounded-md flex justify-between items-center ${
+        className={`w-full p-2.5 text-left border border-neutral-30 p-2 rounded-md flex justify-between items-center ${
           isOpen ? "border-primary" : "hover:border-primary"
         } transition duration-200`}
       >
@@ -88,7 +90,7 @@ const Dropdown: React.FC<DropdownProps> = ({
                 key={index}
                 onClick={() => {
                   selectOption(option);
-                  handleChange(option);
+                  handleChange(option.value);
                 }}
                 className="block w-full px-4 py-2 text-left transition duration-200 rounded-md hover:bg-primary hover:text-primary-text"
               >

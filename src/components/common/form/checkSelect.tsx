@@ -2,12 +2,14 @@ import { useState } from "react";
 
 interface CheckSelectProps {
   selectTitle: string;
+  description?: string;
   selections: { id: string; title: string }[];
   onSelectionChange: (selected: string[]) => void;
 }
 
 const CheckSelect: React.FC<CheckSelectProps> = ({
   selectTitle,
+  description,
   selections,
   onSelectionChange,
 }) => {
@@ -26,12 +28,14 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
 
   return (
     <fieldset>
-      <legend className="font-semibold text-left text-body-regular text-primary-text">
+      <legend className="font-bold text-left text-body-regular text-primary-text">
         {selectTitle}
       </legend>
-      <p className="text-left text-body-small text-secondary-text">
-        Description
-      </p>
+      {description && (
+        <p className="text-left text-body-small text-secondary-text">
+          {description}
+        </p>
+      )}
       <div className="mt-2 space-y-1">
         {selections.map((checkSelection) => (
           <div className="flex gap-5">
@@ -62,7 +66,7 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
                 </svg>
               </div>
             </div>
-            <div className="text-body-small">
+            <div className="text-body-regular">
               <label htmlFor="comments" className="text-primary-text">
                 {checkSelection.title}
               </label>

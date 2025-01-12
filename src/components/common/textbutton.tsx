@@ -15,7 +15,7 @@ const TextButton: React.FC<TextButtonProps> = ({
 }) => (
   <button
     onClick={onClick}
-    className={`flex items-center gap-2 px-4 py-2 ease-in-out text-white rounded-full bg-primary hover:bg-primary active:bg-primary-70 outline-none ${className}`}
+    className={`flex items-center gap-2 px-8 py-4 ease-in-out text-white rounded-full outline-none ${className}`}
   >
     {icon && <span>{icon}</span>}
     <span>{text}</span>

@@ -9,7 +9,7 @@ interface LinkButtonProps {
 const LinkButton: React.FC<LinkButtonProps> = ({ text, href, className }) => (
   <a
     href={href}
-    className={`text-primary underline ease-in-out decoration-primary decoration-2 transition-colors hover:text-primary-70 hover:decoration-primary-70 ${className}`}
+    className={`text-primary underline underline-offset-2 ease-in-out decoration-primary decoration-1 transition-colors hover:text-primary-70 hover:decoration-primary-70 ${className}`}
   >
     {text}
   </a>
