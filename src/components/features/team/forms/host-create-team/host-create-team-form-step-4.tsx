@@ -1,14 +1,20 @@
 import { Button } from "@/components/common/button";
 import { Card, CardDescription, CardTitle } from "@components/common/card";
 import HostUploadDocumentQuestionCard from "@components/features/team/host-question-cards/host-upload-document-question-card";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragEndEvent,
+  DragOverlay,
+  DragStartEvent,
+} from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
 import {
   SortableContext,
   useSortable,
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 interface DynamicQuestionCardType {
   id: number;
@@ -16,6 +22,7 @@ interface DynamicQuestionCardType {
 }
 
 const HostCreateTeamFormStep4: React.FC = () => {
+  const [activeId, setActiveId] = useState<number | null>(null);
   const [dynamicQuestionCards, setDynamicQuestionCards] = useState<
     DynamicQuestionCardType[]
   >([
@@ -28,6 +35,20 @@ const HostCreateTeamFormStep4: React.FC = () => {
       type: "document_upload",
     },
   ]);
+
+  const handleAddQuestionCard = useCallback(() => {
+    let nextId = 0;
+    dynamicQuestionCards.forEach((dynamicQuestionCard) => {
+      if (dynamicQuestionCard.id > nextId) {
+        nextId = dynamicQuestionCard.id;
+      }
+    });
+
+    setDynamicQuestionCards((prev) => [
+      ...prev,
+      { id: nextId + 1, type: "document_upload" },
+    ]);
+  }, [dynamicQuestionCards]);
 
   const getIndex = useCallback(
     (cards: DynamicQuestionCardType[], id: string) => {
@@ -42,6 +63,15 @@ const HostCreateTeamFormStep4: React.FC = () => {
     },
     []
   );
+
+  useEffect(() => {
+    console.log(dynamicQuestionCards);
+  }, [dynamicQuestionCards]);
+
+  const handleDragStart = useCallback((event: DragStartEvent) => {
+    const { active } = event;
+    setActiveId(active.id as number);
+  }, []);
 
   const handleDragEnd = useCallback(
     ({ active, over }: DragEndEvent) => {
@@ -64,6 +94,8 @@ const HostCreateTeamFormStep4: React.FC = () => {
       clonedCards.splice(overItemIndex, 0, draggedItem);
       console.log("After: ", clonedCards);
       setDynamicQuestionCards(clonedCards);
+
+      setActiveId(null);
     },
     [dynamicQuestionCards, getIndex]
   );
@@ -76,7 +108,7 @@ const HostCreateTeamFormStep4: React.FC = () => {
           Ask applicants to upload documents if needed, e.g. resume
         </CardDescription>
       </Card>
-      <DndContext onDragEnd={handleDragEnd}>
+      <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
         <SortableContext
           items={dynamicQuestionCards.map(
             (dynamicQuestionCard) => dynamicQuestionCard.id
@@ -87,45 +119,52 @@ const HostCreateTeamFormStep4: React.FC = () => {
             <SortableHostUploadDocumentQuestionCard
               key={dynamicQuestionCard.id}
               id={dynamicQuestionCard.id}
+              isDragging={activeId === dynamicQuestionCard.id}
             />
           ))}
         </SortableContext>
+
+        <DragOverlay>
+          {activeId ? <HostUploadDocumentQuestionCard /> : null}
+        </DragOverlay>
       </DndContext>
 
       <Button
         variant="outline"
         className="self-center bg-white px-9 border-neutral text-neutral max-w-min"
+        onClick={handleAddQuestionCard}
       >
         Add Document Upload
       </Button>
-      <Button variant="link" className="text-body-regular text-neutral">
-        I don't need documents
-      </Button>
+      {dynamicQuestionCards.length === 0 && (
+        <Button variant="link" className="text-body-regular text-neutral">
+          I don't need documents
+        </Button>
+      )}
     </div>
   );
 };
 
 interface SortableItemProps {
   id: number;
+  isDragging: boolean;
 }
 
 const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
   id,
+  isDragging = false,
 }) => {
   const { setNodeRef, listeners, transform, transition } = useSortable({ id });
 
   return (
     <div
       style={{
-        transition: transition,
+        transition,
         transform: CSS.Translate.toString(transform),
       }}
-      className="touch-auto"
+      className={cn("touch-auto", isDragging && "opacity-40")}
     >
-      <HostUploadDocumentQuestionCard
-        cardRef={setNodeRef}
-        listeners={listeners}
-      />
+      <HostUploadDocumentQuestionCard ref={setNodeRef} listeners={listeners} />
     </div>
   );
 };

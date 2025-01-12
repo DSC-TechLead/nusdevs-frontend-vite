@@ -2,20 +2,20 @@ import { DropdownMenuItem } from "@/components/common/dropdown-menu";
 import CheckSelect from "@/components/common/form/checkSelect";
 import FileUpload from "@/components/common/form/fileupload";
 import TextInput from "@/components/common/form/textinput";
-import { useMemo, useState } from "react";
+import { forwardRef, useMemo, useState } from "react";
 import HostQuestionCardRoot from "./_common/host-question-card-root";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 interface HostUploadDocumentQuestionCardProps {
   children?: React.ReactNode;
   isHostMode?: boolean;
-  cardRef?: (node: HTMLElement | null) => void;
   listeners?: SyntheticListenerMap;
 }
 
-const HostUploadDocumentQuestionCard: React.FC<
+const HostUploadDocumentQuestionCard = forwardRef<
+  HTMLDivElement,
   HostUploadDocumentQuestionCardProps
-> = ({ cardRef, listeners }) => {
+>(({ listeners }, ref) => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -31,7 +31,7 @@ const HostUploadDocumentQuestionCard: React.FC<
 
   return (
     <HostQuestionCardRoot
-      cardRef={cardRef}
+      ref={ref}
       listeners={listeners}
       additionalHeaders={
         isDescriptionInputEnabled ? (
@@ -67,6 +67,6 @@ const HostUploadDocumentQuestionCard: React.FC<
       <FileUpload disabled />
     </HostQuestionCardRoot>
   );
-};
+});
 
 export default HostUploadDocumentQuestionCard;
