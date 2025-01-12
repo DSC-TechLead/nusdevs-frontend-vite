@@ -135,7 +135,6 @@ const HostCreateTeamFormStep4: React.FC = () => {
           {activeId ? (
             <HostUploadDocumentQuestionCard
               onDeleteHandler={() => handleDeleteQuestionCard(activeId)}
-              id={activeId}
             />
           ) : null}
         </DragOverlay>
@@ -182,7 +181,6 @@ const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
         ref={setNodeRef}
         listeners={listeners}
         onDeleteHandler={onDeleteHandler}
-        id={id}
       />
     </div>
   );

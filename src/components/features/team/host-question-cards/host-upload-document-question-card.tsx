@@ -7,7 +7,6 @@ import HostQuestionCardRoot from "./_common/host-question-card-root";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 interface HostUploadDocumentQuestionCardProps {
-  id: number;
   children?: React.ReactNode;
   isHostMode?: boolean;
   listeners?: SyntheticListenerMap;
@@ -17,7 +16,7 @@ interface HostUploadDocumentQuestionCardProps {
 const HostUploadDocumentQuestionCard = forwardRef<
   HTMLDivElement,
   HostUploadDocumentQuestionCardProps
->(({ id, listeners, onDeleteHandler }, ref) => {
+>(({ listeners, onDeleteHandler }, ref) => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
