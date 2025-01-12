@@ -13,20 +13,30 @@ import Toggle from "@components/common/form/toggle";
 import Divider from "@components/common/divider";
 import TextInput from "@components/common/form/textinput";
 import { HiEllipsisVertical, HiOutlineTrash } from "react-icons/hi2";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 interface HostQuestionCardRootProps {
   children?: React.ReactNode;
   additionalHeaders?: React.ReactNode;
   additionalActions?: React.ReactNode;
+  cardRef?: (node: HTMLElement | null) => void;
+  listeners?: SyntheticListenerMap;
 }
 
 const HostQuestionCardRoot: React.FC<HostQuestionCardRootProps> = ({
   children,
   additionalHeaders,
   additionalActions,
+  cardRef,
+  listeners,
 }) => {
   return (
-    <Card className="w-full" isDraggable={true}>
+    <Card
+      className="w-full"
+      isDraggable={true}
+      cardRef={cardRef}
+      listeners={listeners}
+    >
       <CardHeader className="pt-0 pb-0">
         <TextInput
           value={""}

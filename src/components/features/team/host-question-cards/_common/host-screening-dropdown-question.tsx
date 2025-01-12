@@ -19,11 +19,11 @@ export const HostScreeningDropdownQuestion = () => {
         prevOptions.map((option, i) =>
           i === index
             ? { label: newOption.label, value: newOption.value }
-            : option
-        )
+            : option,
+        ),
       );
     },
-    []
+    [],
   );
 
   const handleDeleteOption = useCallback((index: number) => {
