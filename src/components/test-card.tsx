@@ -40,7 +40,7 @@ export const Card: FC<CardProps> = ({ id }) => {
       }}
       className="touch-auto"
     >
-      <CreateUploadDocument cardRef={setNodeRef} listeners={listeners} />
+      <CreateUploadDocument ref={setNodeRef} listeners={listeners} />
     </div>
   );
 };
