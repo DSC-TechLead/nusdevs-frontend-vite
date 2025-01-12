@@ -1,6 +1,7 @@
 import TextButton from "@/components/common/textbutton";
 import { HiOutlineChevronDown } from "react-icons/hi2";
 import { AiOutlinePlus } from "react-icons/ai";
+import Navbar from "@/components/common/navbar";
 
 const dummyData = [
   {
@@ -38,6 +39,7 @@ const dummyData = [
 const Main: React.FC = () => {
   return (
     <>
+      <Navbar />
       <div className="w-full h-screen flex flex-col gap-5 p-5 bg-background">
         <div className="text-h1 font-bold">My Team</div>
         <div className="flex justify-start items-center gap-4">
