@@ -50,6 +50,12 @@ const HostCreateTeamFormStep4: React.FC = () => {
     ]);
   }, [dynamicQuestionCards]);
 
+  const handleDeleteQuestionCard = useCallback((id: number) => {
+    setDynamicQuestionCards((prev) => [
+      ...prev.filter((dynamicQuestionCard) => dynamicQuestionCard.id !== id),
+    ]);
+  }, []);
+
   const getIndex = useCallback(
     (cards: DynamicQuestionCardType[], id: string) => {
       let itemIndex: number | undefined;
@@ -89,10 +95,8 @@ const HostCreateTeamFormStep4: React.FC = () => {
       }
 
       const clonedCards = [...dynamicQuestionCards];
-      console.log("Before: ", clonedCards);
       const draggedItem = clonedCards.splice(draggedItemIndex, 1)[0];
       clonedCards.splice(overItemIndex, 0, draggedItem);
-      console.log("After: ", clonedCards);
       setDynamicQuestionCards(clonedCards);
 
       setActiveId(null);
@@ -120,12 +124,20 @@ const HostCreateTeamFormStep4: React.FC = () => {
               key={dynamicQuestionCard.id}
               id={dynamicQuestionCard.id}
               isDragging={activeId === dynamicQuestionCard.id}
+              onDeleteHandler={() =>
+                handleDeleteQuestionCard(dynamicQuestionCard.id)
+              }
             />
           ))}
         </SortableContext>
 
         <DragOverlay>
-          {activeId ? <HostUploadDocumentQuestionCard /> : null}
+          {activeId ? (
+            <HostUploadDocumentQuestionCard
+              onDeleteHandler={() => handleDeleteQuestionCard(activeId)}
+              id={activeId}
+            />
+          ) : null}
         </DragOverlay>
       </DndContext>
 
@@ -148,11 +160,13 @@ const HostCreateTeamFormStep4: React.FC = () => {
 interface SortableItemProps {
   id: number;
   isDragging: boolean;
+  onDeleteHandler: () => void;
 }
 
 const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
   id,
   isDragging = false,
+  onDeleteHandler,
 }) => {
   const { setNodeRef, listeners, transform, transition } = useSortable({ id });
 
@@ -164,7 +178,12 @@ const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
       }}
       className={cn("touch-auto", isDragging && "opacity-40")}
     >
-      <HostUploadDocumentQuestionCard ref={setNodeRef} listeners={listeners} />
+      <HostUploadDocumentQuestionCard
+        ref={setNodeRef}
+        listeners={listeners}
+        onDeleteHandler={onDeleteHandler}
+        id={id}
+      />
     </div>
   );
 };

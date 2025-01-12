@@ -5,10 +5,7 @@ import {
   CardFooter,
   CardHeader,
 } from "@components/common/card";
-import {
-  DropdownMenu,
-  DropdownMenuItem,
-} from "@components/common/dropdown-menu";
+import { DropdownMenu } from "@components/common/dropdown-menu";
 import Toggle from "@components/common/form/toggle";
 import Divider from "@components/common/divider";
 import TextInput from "@components/common/form/textinput";
@@ -21,6 +18,7 @@ interface HostQuestionCardRootProps {
   additionalHeaders?: React.ReactNode;
   additionalActions?: React.ReactNode;
   listeners?: SyntheticListenerMap;
+  onDeleteHandler: () => void;
 }
 
 const HostQuestionCardRoot = forwardRef<
@@ -28,7 +26,14 @@ const HostQuestionCardRoot = forwardRef<
   HostQuestionCardRootProps
 >(
   (
-    { children, additionalHeaders, additionalActions, listeners, ...props },
+    {
+      children,
+      additionalHeaders,
+      additionalActions,
+      listeners,
+      onDeleteHandler,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -54,7 +59,11 @@ const HostQuestionCardRoot = forwardRef<
         <CardContent className="flex flex-col gap-5">{children}</CardContent>
         <CardFooter className="flex justify-between">
           <Button variant="ghost" size="icon">
-            <HiOutlineTrash className="text-danger" size={20} />
+            <HiOutlineTrash
+              onClick={onDeleteHandler}
+              className="text-danger"
+              size={20}
+            />
           </Button>
 
           <div className="flex items-center gap-3">
@@ -72,14 +81,6 @@ const HostQuestionCardRoot = forwardRef<
               }
             >
               {additionalActions}
-              <DropdownMenuItem
-                // TODO: delete question function
-                handleClick={function (): void {
-                  alert("Delete Question");
-                }}
-              >
-                Delete Question
-              </DropdownMenuItem>
             </DropdownMenu>
           </div>
         </CardFooter>

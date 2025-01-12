@@ -7,15 +7,17 @@ import HostQuestionCardRoot from "./_common/host-question-card-root";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 interface HostUploadDocumentQuestionCardProps {
+  id: number;
   children?: React.ReactNode;
   isHostMode?: boolean;
   listeners?: SyntheticListenerMap;
+  onDeleteHandler: () => void;
 }
 
 const HostUploadDocumentQuestionCard = forwardRef<
   HTMLDivElement,
   HostUploadDocumentQuestionCardProps
->(({ listeners }, ref) => {
+>(({ id, listeners, onDeleteHandler }, ref) => {
   const options = useMemo(
     () => [
       { id: "pdf", title: "PDF" },
@@ -48,14 +50,24 @@ const HostUploadDocumentQuestionCard = forwardRef<
         )
       }
       additionalActions={
-        <DropdownMenuItem
-          handleClick={function (): void {
-            setIsDescriptionInputEnabled((prev) => !prev);
-          }}
-        >
-          {`${isDescriptionInputEnabled ? "Remove" : "Add"} Description`}
-        </DropdownMenuItem>
+        <>
+          <DropdownMenuItem
+            handleClick={function (): void {
+              setIsDescriptionInputEnabled((prev) => !prev);
+            }}
+          >
+            {`${isDescriptionInputEnabled ? "Remove" : "Add"} Description`}
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            handleClick={function (): void {
+              // TODO
+            }}
+          >
+            Shift to Top
+          </DropdownMenuItem>
+        </>
       }
+      onDeleteHandler={onDeleteHandler}
     >
       <CheckSelect
         selectTitle={"Accepted File Types*"}
