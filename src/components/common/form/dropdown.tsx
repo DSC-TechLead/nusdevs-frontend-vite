@@ -1,31 +1,27 @@
-import React, { useState } from "react";
+import { Option } from "@/types/Option";
+import { useState } from "react";
 
-export type DropdownOption = { label: string; value: string };
-
-interface DropdownProps {
+interface DropdownProps<T = string> {
   label: string;
   description: string;
   placeholder?: string;
-  options: DropdownOption[];
-  handleChange: (val: DropdownOption) => void;
+  options: Option<T>[];
+  handleChange: (val: Option<T>) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
+const Dropdown = <T = string,>({
   label,
   description,
   options,
   handleChange,
   placeholder,
-}) => {
+}: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<{
-    label: string;
-    value: string;
-  } | null>(null);
+  const [selected, setSelected] = useState<Option<T> | null>(null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const selectOption = (option: DropdownOption) => {
+  const selectOption = (option: Option<T>) => {
     setSelected(option);
     setIsOpen(false);
   };
