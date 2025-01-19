@@ -8,7 +8,7 @@ import TextInput from "@/components/common/form/textinput";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import { HostScreeningUploadDocumentQuestion } from "./_common/host-screening-upload-document-question";
 
-interface HostScreeningQuestionProps {
+export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
   question: NewQuestion;
   listeners?: SyntheticListenerMap;
