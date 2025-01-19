@@ -1,6 +1,5 @@
 import { Button } from "@/components/common/button";
 import { Card, CardDescription, CardTitle } from "@components/common/card";
-import HostUploadDocumentQuestionCard from "@components/features/team/host-question-cards/host-upload-document-question-card";
 import {
   DndContext,
   DragEndEvent,
@@ -15,6 +14,8 @@ import {
 } from "@dnd-kit/sortable";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import { QuestionType } from "@/types/Question";
+import HostScreeningQuestionCard from "../../host-question-cards/host-screening-question-card";
 
 interface DynamicQuestionCardType {
   id: number;
@@ -157,7 +158,18 @@ const HostCreateTeamFormStep4: React.FC = () => {
 
         <DragOverlay>
           {activeId ? (
-            <HostUploadDocumentQuestionCard
+            <HostScreeningQuestionCard
+              question={{
+                questionType: QuestionType.FILE_UPLOAD,
+                options: [
+                  { label: "PDF", value: "pdf" },
+                  { label: "DOC", value: "doc" },
+                  { label: "PNG", value: "png" },
+                  { label: "JPEG", value: "jpeg" },
+                ],
+                isRequired: true,
+                question_order: 1,
+              }}
               onShiftToTopHandler={() => {
                 handleAddQuestionCard();
               }}
@@ -206,8 +218,19 @@ const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
       }}
       className={cn("touch-auto", isDragging && "opacity-40")}
     >
-      <HostUploadDocumentQuestionCard
+      <HostScreeningQuestionCard
         ref={setNodeRef}
+        question={{
+          questionType: QuestionType.FILE_UPLOAD,
+          options: [
+            { label: "PDF", value: "pdf" },
+            { label: "DOC", value: "doc" },
+            { label: "PNG", value: "png" },
+            { label: "JPEG", value: "jpeg" },
+          ],
+          isRequired: true,
+          question_order: 1,
+        }}
         listeners={listeners}
         onShiftToTopHandler={onShiftToTopHandler}
         onDeleteHandler={onDeleteHandler}

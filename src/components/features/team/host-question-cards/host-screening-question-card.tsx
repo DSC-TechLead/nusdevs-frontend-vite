@@ -1,57 +1,110 @@
 import HostQuestionCardRoot from "./_common/host-question-card-root";
-import { ScreeningQuestionType } from "@/types/Question";
-import { useMemo, useState } from "react";
-import {
-  HostScreeningDropdownAdditionalActions,
-  HostScreeningDropdownQuestion,
-} from "./_common/host-screening-dropdown-question";
+import { NewQuestion, QuestionType } from "@/types/Question";
+import { forwardRef, useMemo, useState } from "react";
+import { HostScreeningDropdownQuestion } from "./_common/host-screening-dropdown-question";
 import Dropdown from "@components/common/form/dropdown";
+import { DropdownMenuItem } from "@/components/common/dropdown-menu";
+import TextInput from "@/components/common/form/textinput";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
+import { HostScreeningUploadDocumentQuestion } from "./_common/host-screening-upload-document-question";
 
-const HostScreeningQuestionCard: React.FC = () => {
-  const [questionType, setQuestionType] = useState<string>(
-    ScreeningQuestionType.DROPDOWN
-  );
+interface HostScreeningQuestionProps {
+  isQuestionDropdownEnabled?: boolean;
+  question: NewQuestion;
+  listeners?: SyntheticListenerMap;
+  onDeleteHandler: () => void;
+  onShiftToTopHandler: () => void;
+}
 
-  const questionContent = useMemo(() => {
-    switch (questionType) {
-      case ScreeningQuestionType.DROPDOWN:
-        return <HostScreeningDropdownQuestion />;
-      default:
-        return <></>;
-    }
-  }, [questionType]);
+const HostScreeningQuestionCard = forwardRef<
+  HTMLDivElement,
+  HostScreeningQuestionProps
+>(
+  (
+    {
+      isQuestionDropdownEnabled = false,
+      question,
+      listeners,
+      onShiftToTopHandler,
+      onDeleteHandler,
+    },
+    ref
+  ) => {
+    const [isDescriptionInputEnabled, setIsDescriptionInputEnabled] =
+      useState<boolean>(false);
 
-  const actions = useMemo(() => {
-    switch (questionType) {
-      case ScreeningQuestionType.DROPDOWN:
-        return <HostScreeningDropdownAdditionalActions />;
-      default:
-        return <></>;
-    }
-  }, [questionType]);
+    const [questionType, setQuestionType] = useState<QuestionType>(
+      question.questionType
+    );
 
-  return (
-    <HostQuestionCardRoot
-      additionalActions={actions}
-      onDeleteHandler={/*TODO*/ () => {}}
-    >
-      <div className="flex items-center gap-4">
-        <label className="font-bold text-body-regular text-nowrap">
-          Question Type
-        </label>
-        <Dropdown
-          label={""}
-          description={""}
-          handleChange={(val) => setQuestionType(val.value)}
-          options={[
-            { label: "Dropdown", value: ScreeningQuestionType.DROPDOWN },
-            { label: "Test Invalid", value: "non existent type" }, // test
-          ]}
-        />
-      </div>
-      {questionContent}
-    </HostQuestionCardRoot>
-  );
-};
+    const questionContent = useMemo(() => {
+      switch (questionType) {
+        case QuestionType.DROPDOWN:
+          return <HostScreeningDropdownQuestion />;
+        case QuestionType.FILE_UPLOAD:
+          return <HostScreeningUploadDocumentQuestion question={question} />;
+        default:
+          return <></>;
+      }
+    }, [question, questionType]);
+
+    return (
+      <HostQuestionCardRoot
+        ref={ref}
+        listeners={listeners}
+        additionalHeaders={
+          isDescriptionInputEnabled ? (
+            <TextInput
+              placeholder="Description"
+              value={""}
+              // TODO: input change
+              handleInputChange={function (): void {
+                throw new Error("Function not implemented.");
+              }}
+            />
+          ) : (
+            <></>
+          )
+        }
+        additionalActions={
+          <>
+            <DropdownMenuItem
+              handleClick={function (): void {
+                setIsDescriptionInputEnabled((prev) => !prev);
+              }}
+            >
+              {`${isDescriptionInputEnabled ? "Remove" : "Add"} Description`}
+            </DropdownMenuItem>
+            <DropdownMenuItem handleClick={onShiftToTopHandler}>
+              Shift to Top
+            </DropdownMenuItem>
+          </>
+        }
+        onDeleteHandler={onDeleteHandler}
+      >
+        {isQuestionDropdownEnabled && (
+          <div className="flex items-center gap-4">
+            <label className="font-bold text-body-regular text-nowrap">
+              Question Type
+            </label>
+            <Dropdown
+              label={""}
+              description={""}
+              handleChange={(val) => setQuestionType(val.value)}
+              options={[
+                { label: "Short Answer", value: QuestionType.SHORT_ANSWER },
+                { label: "Long Answer", value: QuestionType.LONG_ANSWER },
+                { label: "Dropdown", value: QuestionType.DROPDOWN },
+                // TODO: add the rest
+              ]}
+            />
+          </div>
+        )}
+
+        {questionContent}
+      </HostQuestionCardRoot>
+    );
+  }
+);
 
 export default HostScreeningQuestionCard;

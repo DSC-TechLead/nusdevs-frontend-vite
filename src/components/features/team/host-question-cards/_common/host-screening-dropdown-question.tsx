@@ -1,30 +1,25 @@
 import TextInput from "@components/common/form/textinput";
-import { DropdownOption } from "@components/common/form/dropdown";
 import { useCallback, useState } from "react";
 import { Button } from "@components/common/button";
 import { HiOutlineTrash } from "react-icons/hi";
+import { Option } from "@/types/Option";
 
 export const HostScreeningDropdownQuestion = () => {
-  const [options, setOptions] = useState<DropdownOption[]>([
-    { label: "", value: "" },
-  ]);
+  const [options, setOptions] = useState<Option[]>([{ label: "", value: "" }]);
 
   const addOption = useCallback(() => {
     setOptions((prev) => [...prev, { label: "", value: "" }]);
   }, []);
 
-  const handleOptionChange = useCallback(
-    (index: number, newOption: DropdownOption) => {
-      setOptions((prevOptions) =>
-        prevOptions.map((option, i) =>
-          i === index
-            ? { label: newOption.label, value: newOption.value }
-            : option
-        )
-      );
-    },
-    []
-  );
+  const handleOptionChange = useCallback((index: number, newOption: Option) => {
+    setOptions((prevOptions) =>
+      prevOptions.map((option, i) =>
+        i === index
+          ? { label: newOption.label, value: newOption.value }
+          : option
+      )
+    );
+  }, []);
 
   const handleDeleteOption = useCallback((index: number) => {
     setOptions((prevOptions) => prevOptions.filter((_, i) => i !== index));
@@ -34,7 +29,7 @@ export const HostScreeningDropdownQuestion = () => {
     <>
       {options.map((option, index) => {
         return (
-          <_HostDropdownOptionField
+          <HostDropdownOptionField
             index={index}
             option={option}
             handleOptionChange={handleOptionChange}
@@ -53,14 +48,14 @@ export const HostScreeningDropdownQuestion = () => {
   );
 };
 
-interface _HostDropdownOptionFieldProps {
+interface HostDropdownOptionFieldProps {
   index: number;
-  option: DropdownOption;
-  handleOptionChange: (index: number, newOption: DropdownOption) => void;
+  option: Option;
+  handleOptionChange: (index: number, newOption: Option) => void;
   handleDeleteOption: (index: number) => void;
 }
 
-const _HostDropdownOptionField: React.FC<_HostDropdownOptionFieldProps> = ({
+const HostDropdownOptionField: React.FC<HostDropdownOptionFieldProps> = ({
   index,
   option,
   handleOptionChange,
