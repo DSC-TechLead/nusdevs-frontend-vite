@@ -8,6 +8,7 @@ import TextInput from "@/components/common/form/textinput";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import { HostScreeningUploadDocumentQuestion } from "./_common/host-screening-upload-document-question";
 import HostScreeningShortQuestion from "./_common/host-screening-short-question";
+import HostScreeningLongQuestion from "./_common/host-screening-long-question";
 
 export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
@@ -42,6 +43,8 @@ const HostScreeningQuestionCard = forwardRef<
       switch (questionType) {
         case QuestionType.SHORT_ANSWER:
           return <HostScreeningShortQuestion />;
+        case QuestionType.LONG_ANSWER:
+          return <HostScreeningLongQuestion />;
         case QuestionType.DROPDOWN:
           return <HostScreeningDropdownQuestion />;
         case QuestionType.FILE_UPLOAD:
