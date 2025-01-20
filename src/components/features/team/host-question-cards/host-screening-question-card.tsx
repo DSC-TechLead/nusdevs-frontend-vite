@@ -7,6 +7,7 @@ import { DropdownMenuItem } from "@/components/common/dropdown-menu";
 import TextInput from "@/components/common/form/textinput";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import { HostScreeningUploadDocumentQuestion } from "./_common/host-screening-upload-document-question";
+import HostScreeningShortQuestion from "./_common/host-screening-short-question";
 
 export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
@@ -39,6 +40,8 @@ const HostScreeningQuestionCard = forwardRef<
 
     const questionContent = useMemo(() => {
       switch (questionType) {
+        case QuestionType.SHORT_ANSWER:
+          return <HostScreeningShortQuestion />;
         case QuestionType.DROPDOWN:
           return <HostScreeningDropdownQuestion />;
         case QuestionType.FILE_UPLOAD:
