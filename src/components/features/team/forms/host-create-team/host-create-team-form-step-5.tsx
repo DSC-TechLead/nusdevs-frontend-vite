@@ -59,8 +59,7 @@ const HostCreateTeamFormStep5: React.FC = () => {
       {
         id: nextId + 1,
         question: {
-          questionType: QuestionType.DROPDOWN,
-          options: [],
+          questionType: QuestionType.SHORT_ANSWER,
           isRequired: true,
           question_order: 1,
         },
@@ -180,6 +179,7 @@ const HostCreateTeamFormStep5: React.FC = () => {
           {activeQsn ? (
             <HostScreeningQuestionCard
               question={activeQsn.question}
+              isQuestionDropdownEnabled={true}
               onShiftToTopHandler={() => {
                 handleShiftToTop(activeQsn.id);
               }}
