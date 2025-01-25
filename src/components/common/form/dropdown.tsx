@@ -5,6 +5,7 @@ interface DropdownProps<T = string> {
   label: string;
   description: string;
   placeholder?: string;
+  value?: Option<T>;
   options: Option<T>[];
   handleChange: (val: Option<T>) => void;
 }
@@ -13,11 +14,12 @@ const Dropdown = <T = string,>({
   label,
   description,
   options,
+  value,
   handleChange,
   placeholder,
 }: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<Option<T> | null>(null);
+  const [selected, setSelected] = useState<Option<T> | null>(value || null);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
