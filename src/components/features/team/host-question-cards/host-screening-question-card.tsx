@@ -10,6 +10,7 @@ import { HostScreeningUploadDocumentQuestion } from "./_common/host-screening-up
 import HostScreeningShortQuestion from "./_common/host-screening-short-question";
 import HostScreeningLongQuestion from "./_common/host-screening-long-question";
 import { HostScreeningRadioQuestion } from "./_common/host-screening-radio-question";
+import { HostScreeningCheckQuestion } from "./_common/host-screening-checkbox-question";
 
 export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
@@ -50,6 +51,8 @@ const HostScreeningQuestionCard = forwardRef<
           return <HostScreeningDropdownQuestion />;
         case QuestionType.RADIOBUTTON:
           return <HostScreeningRadioQuestion />;
+        case QuestionType.CHECKBOX:
+          return <HostScreeningCheckQuestion />;
         case QuestionType.FILE_UPLOAD:
           return <HostScreeningUploadDocumentQuestion question={question} />;
         default:
@@ -106,6 +109,7 @@ const HostScreeningQuestionCard = forwardRef<
                 { label: "Long Answer", value: QuestionType.LONG_ANSWER },
                 { label: "Dropdown", value: QuestionType.DROPDOWN },
                 { label: "Radio Button", value: QuestionType.RADIOBUTTON },
+                { label: "Checkbox", value: QuestionType.CHECKBOX },
                 // TODO: add the rest
               ]}
             />

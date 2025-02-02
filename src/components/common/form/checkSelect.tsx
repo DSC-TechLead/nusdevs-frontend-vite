@@ -88,7 +88,7 @@ export const CheckboxElement = forwardRef<
       name={name}
       type="checkbox"
       className={cn(
-        "bg-white border rounded appearance-none border-neutral-30 checked:border-primary checked:bg-primary indeterminate:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-primary disabled:border-neutral disabled:bg-neutral-10 disabled:checked:bg-neutral-10 forced-colors:appearance-auto",
+        "bg-white border rounded appearance-none border-neutral-30 checked:border-primary checked:bg-primary indeterminate:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-primary disabled:border-neutral-30 disabled:bg-neutral-10 disabled:checked:bg-neutral-10 forced-colors:appearance-auto",
         className
       )}
       {...props}
