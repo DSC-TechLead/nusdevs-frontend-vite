@@ -30,6 +30,7 @@ export const HostScreeningDropdownQuestion = () => {
       {options.map((option, index) => {
         return (
           <HostDropdownOptionField
+            key={index}
             index={index}
             option={option}
             handleOptionChange={handleOptionChange}

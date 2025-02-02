@@ -53,7 +53,7 @@ const HostQuestionCardRoot = forwardRef<
           />
           {additionalHeaders}
         </CardHeader>
-        <div className="pb-6 px-11">
+        <div className="pb-6 pt-4 px-11">
           <Divider />
         </div>
         <CardContent className="flex flex-col gap-5">{children}</CardContent>
@@ -61,7 +61,7 @@ const HostQuestionCardRoot = forwardRef<
           <Button variant="ghost" size="icon">
             <HiOutlineTrash
               onClick={onDeleteHandler}
-              className="text-danger"
+              className="text-primary"
               size={20}
             />
           </Button>

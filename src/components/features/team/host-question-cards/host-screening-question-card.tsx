@@ -9,6 +9,7 @@ import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import { HostScreeningUploadDocumentQuestion } from "./_common/host-screening-upload-document-question";
 import HostScreeningShortQuestion from "./_common/host-screening-short-question";
 import HostScreeningLongQuestion from "./_common/host-screening-long-question";
+import { HostScreeningRadioQuestion } from "./_common/host-screening-radio-question";
 
 export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
@@ -47,6 +48,8 @@ const HostScreeningQuestionCard = forwardRef<
           return <HostScreeningLongQuestion />;
         case QuestionType.DROPDOWN:
           return <HostScreeningDropdownQuestion />;
+        case QuestionType.RADIOBUTTON:
+          return <HostScreeningRadioQuestion />;
         case QuestionType.FILE_UPLOAD:
           return <HostScreeningUploadDocumentQuestion question={question} />;
         default:
@@ -96,11 +99,13 @@ const HostScreeningQuestionCard = forwardRef<
             <Dropdown
               label={""}
               description={""}
+              value={questionType}
               handleChange={(val) => setQuestionType(val.value)}
               options={[
                 { label: "Short Answer", value: QuestionType.SHORT_ANSWER },
                 { label: "Long Answer", value: QuestionType.LONG_ANSWER },
                 { label: "Dropdown", value: QuestionType.DROPDOWN },
+                { label: "Radio Button", value: QuestionType.RADIOBUTTON },
                 // TODO: add the rest
               ]}
             />
