@@ -1,5 +1,6 @@
+import { cn } from "@/lib/utils";
 import { Option } from "@/types/Option";
-import { useEffect, useState } from "react";
+import { forwardRef, InputHTMLAttributes, useEffect, useState } from "react";
 
 interface CheckSelectProps {
   selectTitle: string;
@@ -40,13 +41,12 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
           <div className="flex gap-5">
             <div className="flex items-center h-6 shrink-0">
               <div className="grid grid-cols-1 group size-4">
-                <input
+                <CheckboxElement
                   id={checkSelection.value}
                   name="check-select"
-                  type="checkbox"
                   checked={selected.includes(String(checkSelection.value))}
                   onChange={(event) => handleCheckboxChange(event)}
-                  className="col-start-1 row-start-1 bg-white border rounded appearance-none border-neutral-30 checked:border-primary checked:bg-primary indeterminate:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-primary disabled:border-neutral disabled:bg-neutral-10 disabled:checked:bg-neutral-10 forced-colors:appearance-auto"
+                  className="col-start-1 row-start-1"
                 />
                 <svg
                   fill="none"
@@ -76,5 +76,24 @@ const CheckSelect: React.FC<CheckSelectProps> = ({
     </fieldset>
   );
 };
+
+export const CheckboxElement = forwardRef<
+  HTMLInputElement,
+  InputHTMLAttributes<HTMLInputElement>
+>(({ id, name, className, ...props }, ref) => {
+  return (
+    <input
+      ref={ref}
+      id={id}
+      name={name}
+      type="checkbox"
+      className={cn(
+        "bg-white border rounded appearance-none border-neutral-30 checked:border-primary checked:bg-primary indeterminate:border-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-6 focus-visible:outline-primary disabled:border-neutral disabled:bg-neutral-10 disabled:checked:bg-neutral-10 forced-colors:appearance-auto",
+        className
+      )}
+      {...props}
+    />
+  );
+});
 
 export default CheckSelect;
