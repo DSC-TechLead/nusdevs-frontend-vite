@@ -14,26 +14,25 @@ import {
 } from "@dnd-kit/sortable";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { QuestionType } from "@/types/Question";
+import { DynamicQuestionCard, QuestionType } from "@/types/Question";
 import HostScreeningQuestionCard from "../../host-question-cards/host-screening-question-card";
-
-interface DynamicQuestionCardType {
-  id: number;
-  type: string;
-}
 
 const HostCreateTeamFormStep4: React.FC = () => {
   const [activeId, setActiveId] = useState<number | null>(null);
   const [dynamicQuestionCards, setDynamicQuestionCards] = useState<
-    DynamicQuestionCardType[]
+    DynamicQuestionCard[]
   >([
     {
       id: 1,
-      type: "document_upload",
-    },
-    {
-      id: 2,
-      type: "document_upload",
+      questionType: QuestionType.FILE_UPLOAD,
+      options: [
+        { label: "PDF", value: "pdf" },
+        { label: "DOC", value: "doc" },
+        { label: "PNG", value: "png" },
+        { label: "JPEG", value: "jpeg" },
+      ],
+      isRequired: false,
+      question_order: 1,
     },
   ]);
 
@@ -47,7 +46,18 @@ const HostCreateTeamFormStep4: React.FC = () => {
 
     setDynamicQuestionCards((prev) => [
       ...prev,
-      { id: nextId + 1, type: "document_upload" },
+      {
+        id: nextId + 1,
+        questionType: QuestionType.FILE_UPLOAD,
+        options: [
+          { label: "PDF", value: "pdf" },
+          { label: "DOC", value: "doc" },
+          { label: "PNG", value: "png" },
+          { label: "JPEG", value: "jpeg" },
+        ],
+        isRequired: false,
+        question_order: 1,
+      },
     ]);
   }, [dynamicQuestionCards]);
 
@@ -57,19 +67,30 @@ const HostCreateTeamFormStep4: React.FC = () => {
     ]);
   }, []);
 
-  const getIndex = useCallback(
-    (cards: DynamicQuestionCardType[], id: string) => {
-      let itemIndex: number | undefined;
-      cards.forEach((card, index) => {
-        if (card.id.toString() === id.toString()) {
-          itemIndex = index;
-        }
-      });
-
-      return itemIndex;
+  const handleChangeQuestionCard = useCallback(
+    (changedQuestion: DynamicQuestionCard) => {
+      // find the object then update it with respect to the index
+      setDynamicQuestionCards((prev) =>
+        prev.map((dynamicQuestionCard) =>
+          dynamicQuestionCard.id !== changedQuestion.id
+            ? { ...dynamicQuestionCard }
+            : { ...changedQuestion }
+        )
+      );
     },
     []
   );
+
+  const getIndex = useCallback((cards: DynamicQuestionCard[], id: string) => {
+    let itemIndex: number | undefined;
+    cards.forEach((card, index) => {
+      if (card.id.toString() === id.toString()) {
+        itemIndex = index;
+      }
+    });
+
+    return itemIndex;
+  }, []);
 
   const handleShiftToTop = useCallback(
     (id: number) => {
@@ -144,8 +165,9 @@ const HostCreateTeamFormStep4: React.FC = () => {
           {dynamicQuestionCards.map((dynamicQuestionCard) => (
             <SortableHostUploadDocumentQuestionCard
               key={dynamicQuestionCard.id}
-              id={dynamicQuestionCard.id}
               isDragging={activeId === dynamicQuestionCard.id}
+              question={dynamicQuestionCard}
+              onChangeQuestionHandler={handleChangeQuestionCard}
               onDeleteHandler={() =>
                 handleDeleteQuestionCard(dynamicQuestionCard.id)
               }
@@ -160,6 +182,7 @@ const HostCreateTeamFormStep4: React.FC = () => {
           {activeId ? (
             <HostScreeningQuestionCard
               question={{
+                id: activeId,
                 questionType: QuestionType.FILE_UPLOAD,
                 options: [
                   { label: "PDF", value: "pdf" },
@@ -174,6 +197,7 @@ const HostCreateTeamFormStep4: React.FC = () => {
                 handleAddQuestionCard();
               }}
               onDeleteHandler={() => handleDeleteQuestionCard(activeId)}
+              onChangeQuestionHandler={() => {}}
             />
           ) : null}
         </DragOverlay>
@@ -196,19 +220,23 @@ const HostCreateTeamFormStep4: React.FC = () => {
 };
 
 interface SortableItemProps {
-  id: number;
   isDragging: boolean;
+  question: DynamicQuestionCard;
+  onChangeQuestionHandler: (question: DynamicQuestionCard) => void;
   onDeleteHandler: () => void;
   onShiftToTopHandler: () => void;
 }
 
 const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
-  id,
   isDragging = false,
+  question,
+  onChangeQuestionHandler,
   onDeleteHandler,
   onShiftToTopHandler,
 }) => {
-  const { setNodeRef, listeners, transform, transition } = useSortable({ id });
+  const { setNodeRef, listeners, transform, transition } = useSortable({
+    id: question.id,
+  });
 
   return (
     <div
@@ -220,18 +248,9 @@ const SortableHostUploadDocumentQuestionCard: React.FC<SortableItemProps> = ({
     >
       <HostScreeningQuestionCard
         ref={setNodeRef}
-        question={{
-          questionType: QuestionType.FILE_UPLOAD,
-          options: [
-            { label: "PDF", value: "pdf" },
-            { label: "DOC", value: "doc" },
-            { label: "PNG", value: "png" },
-            { label: "JPEG", value: "jpeg" },
-          ],
-          isRequired: true,
-          question_order: 1,
-        }}
+        question={question}
         listeners={listeners}
+        onChangeQuestionHandler={onChangeQuestionHandler}
         onShiftToTopHandler={onShiftToTopHandler}
         onDeleteHandler={onDeleteHandler}
       />

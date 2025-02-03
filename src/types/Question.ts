@@ -19,6 +19,8 @@ export interface Question {
   questionId: string;
   formId: string;
   questionType: QuestionType;
+  title?: string;
+  description?: string;
   options?: Option[];
   isRequired: boolean;
   validation?: Validation;
@@ -26,3 +28,5 @@ export interface Question {
 }
 
 export type NewQuestion = Omit<Question, "questionId" | "formId">;
+
+export type DynamicQuestionCard = { id: number } & NewQuestion;

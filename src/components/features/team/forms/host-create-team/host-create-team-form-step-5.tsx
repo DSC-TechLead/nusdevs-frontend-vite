@@ -16,33 +16,18 @@ import {
 } from "@dnd-kit/sortable";
 import { cn } from "@/lib/utils";
 import { CSS } from "@dnd-kit/utilities";
-import { NewQuestion, QuestionType } from "@/types/Question";
-
-interface DynamicQuestionCardType {
-  id: number;
-  question: NewQuestion;
-}
+import { DynamicQuestionCard, QuestionType } from "@/types/Question";
 
 const HostCreateTeamFormStep5: React.FC = () => {
-  const [activeQsn, setActiveQsn] = useState<DynamicQuestionCardType | null>(
-    null
-  );
+  const [activeQsn, setActiveQsn] = useState<DynamicQuestionCard | null>(null);
   const [dynamicQuestionCards, setDynamicQuestionCards] = useState<
-    DynamicQuestionCardType[]
+    DynamicQuestionCard[]
   >([
     {
       id: 1,
-      question: {
-        questionType: QuestionType.FILE_UPLOAD,
-        options: [
-          { label: "PDF", value: "pdf" },
-          { label: "DOC", value: "doc" },
-          { label: "PNG", value: "png" },
-          { label: "JPEG", value: "jpeg" },
-        ],
-        isRequired: true,
-        question_order: 1,
-      },
+      questionType: QuestionType.SHORT_ANSWER,
+      isRequired: true,
+      question_order: 1,
     },
   ]);
 
@@ -58,11 +43,9 @@ const HostCreateTeamFormStep5: React.FC = () => {
       ...prev,
       {
         id: nextId + 1,
-        question: {
-          questionType: QuestionType.SHORT_ANSWER,
-          isRequired: true,
-          question_order: 1,
-        },
+        questionType: QuestionType.SHORT_ANSWER,
+        isRequired: true,
+        question_order: 1,
       },
     ]);
   }, [dynamicQuestionCards]);
@@ -73,19 +56,30 @@ const HostCreateTeamFormStep5: React.FC = () => {
     ]);
   }, []);
 
-  const getIndex = useCallback(
-    (cards: DynamicQuestionCardType[], id: string) => {
-      let itemIndex: number | undefined;
-      cards.forEach((card, index) => {
-        if (card.id.toString() === id.toString()) {
-          itemIndex = index;
-        }
-      });
-
-      return itemIndex;
+  const handleChangeQuestionCard = useCallback(
+    (changedQuestion: DynamicQuestionCard) => {
+      // find the object then update it with respect to the index
+      setDynamicQuestionCards((prev) =>
+        prev.map((dynamicQuestionCard) =>
+          dynamicQuestionCard.id !== changedQuestion.id
+            ? { ...dynamicQuestionCard }
+            : { ...changedQuestion }
+        )
+      );
     },
     []
   );
+
+  const getIndex = useCallback((cards: DynamicQuestionCard[], id: string) => {
+    let itemIndex: number | undefined;
+    cards.forEach((card, index) => {
+      if (card.id.toString() === id.toString()) {
+        itemIndex = index;
+      }
+    });
+
+    return itemIndex;
+  }, []);
 
   const handleShiftToTop = useCallback(
     (id: number) => {
@@ -163,7 +157,6 @@ const HostCreateTeamFormStep5: React.FC = () => {
           {dynamicQuestionCards.map((dynamicQuestionCard) => (
             <SortableHostQuestionCard
               key={dynamicQuestionCard.id}
-              id={dynamicQuestionCard.id}
               isDragging={activeQsn?.id === dynamicQuestionCard.id}
               onDeleteHandler={function (): void {
                 handleDeleteQuestionCard(dynamicQuestionCard.id);
@@ -171,19 +164,21 @@ const HostCreateTeamFormStep5: React.FC = () => {
               onShiftToTopHandler={function (): void {
                 handleShiftToTop(dynamicQuestionCard.id);
               }}
-              question={dynamicQuestionCard.question}
+              question={dynamicQuestionCard}
+              onChangeQuestionHandler={handleChangeQuestionCard}
             />
           ))}
         </SortableContext>
         <DragOverlay>
           {activeQsn ? (
             <HostScreeningQuestionCard
-              question={activeQsn.question}
+              question={activeQsn}
               isQuestionDropdownEnabled={true}
               onShiftToTopHandler={() => {
                 handleShiftToTop(activeQsn.id);
               }}
               onDeleteHandler={() => handleDeleteQuestionCard(activeQsn.id)}
+              onChangeQuestionHandler={handleChangeQuestionCard}
             />
           ) : null}
         </DragOverlay>
@@ -210,21 +205,23 @@ const HostCreateTeamFormStep5: React.FC = () => {
 export default HostCreateTeamFormStep5;
 
 interface SortableHostQuestionCard {
-  id: number;
   isDragging: boolean;
-  question: NewQuestion;
+  question: DynamicQuestionCard;
+  onChangeQuestionHandler: (question: DynamicQuestionCard) => void;
   onDeleteHandler: () => void;
   onShiftToTopHandler: () => void;
 }
 
 const SortableHostQuestionCard: React.FC<SortableHostQuestionCard> = ({
-  id,
   isDragging = false,
   question,
+  onChangeQuestionHandler,
   onDeleteHandler,
   onShiftToTopHandler,
 }) => {
-  const { setNodeRef, listeners, transform, transition } = useSortable({ id });
+  const { setNodeRef, listeners, transform, transition } = useSortable({
+    id: question.id,
+  });
 
   return (
     <div
@@ -239,6 +236,7 @@ const SortableHostQuestionCard: React.FC<SortableHostQuestionCard> = ({
         question={question}
         isQuestionDropdownEnabled={true}
         listeners={listeners}
+        onChangeQuestionHandler={onChangeQuestionHandler}
         onShiftToTopHandler={onShiftToTopHandler}
         onDeleteHandler={onDeleteHandler}
       />

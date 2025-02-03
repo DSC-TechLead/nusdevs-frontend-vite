@@ -1,5 +1,5 @@
 import HostQuestionCardRoot from "./_common/host-question-card-root";
-import { NewQuestion, QuestionType } from "@/types/Question";
+import { DynamicQuestionCard, QuestionType } from "@/types/Question";
 import { forwardRef, useMemo, useState } from "react";
 import { HostScreeningDropdownQuestion } from "./_common/host-screening-dropdown-question";
 import Dropdown from "@components/common/form/dropdown";
@@ -16,8 +16,9 @@ import HostScreeningDateRangeQuestion from "./_common/host-screening-date-range-
 
 export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
-  question: NewQuestion;
+  question: DynamicQuestionCard;
   listeners?: SyntheticListenerMap;
+  onChangeQuestionHandler: (question: DynamicQuestionCard) => void;
   onDeleteHandler: () => void;
   onShiftToTopHandler: () => void;
 }
@@ -31,6 +32,7 @@ const HostScreeningQuestionCard = forwardRef<
       isQuestionDropdownEnabled = false,
       question,
       listeners,
+      onChangeQuestionHandler,
       onShiftToTopHandler,
       onDeleteHandler,
     },
@@ -39,12 +41,8 @@ const HostScreeningQuestionCard = forwardRef<
     const [isDescriptionInputEnabled, setIsDescriptionInputEnabled] =
       useState<boolean>(false);
 
-    const [questionType, setQuestionType] = useState<QuestionType>(
-      question.questionType
-    );
-
     const questionContent = useMemo(() => {
-      switch (questionType) {
+      switch (question.questionType) {
         case QuestionType.SHORT_ANSWER:
           return <HostScreeningShortQuestion />;
         case QuestionType.LONG_ANSWER:
@@ -64,20 +62,20 @@ const HostScreeningQuestionCard = forwardRef<
         default:
           return <></>;
       }
-    }, [question, questionType]);
+    }, [question]);
 
     return (
       <HostQuestionCardRoot
         ref={ref}
         listeners={listeners}
+        question={question}
         additionalHeaders={
           isDescriptionInputEnabled ? (
             <TextInput
               placeholder="Description"
-              value={""}
-              // TODO: input change
-              handleInputChange={function (): void {
-                throw new Error("Function not implemented.");
+              value={question.description ?? ""}
+              handleInputChange={(val: string) => {
+                onChangeQuestionHandler({ ...question, description: val });
               }}
             />
           ) : (
@@ -98,6 +96,7 @@ const HostScreeningQuestionCard = forwardRef<
             </DropdownMenuItem>
           </>
         }
+        onChangeQuestionHandler={onChangeQuestionHandler}
         onDeleteHandler={onDeleteHandler}
       >
         {isQuestionDropdownEnabled && (
@@ -108,8 +107,13 @@ const HostScreeningQuestionCard = forwardRef<
             <Dropdown
               label={""}
               description={""}
-              value={questionType}
-              handleChange={(val) => setQuestionType(val.value)}
+              value={question.questionType}
+              handleChange={(val) =>
+                onChangeQuestionHandler({
+                  ...question,
+                  questionType: val.value,
+                })
+              }
               options={[
                 { label: "Short Answer", value: QuestionType.SHORT_ANSWER },
                 { label: "Long Answer", value: QuestionType.LONG_ANSWER },
@@ -118,7 +122,6 @@ const HostScreeningQuestionCard = forwardRef<
                 { label: "Checkbox", value: QuestionType.CHECKBOX },
                 { label: "Single Date", value: QuestionType.SINGLEDATE },
                 { label: "Start & End Date", value: QuestionType.DATERANGE },
-                // TODO: add the rest
               ]}
             />
           </div>

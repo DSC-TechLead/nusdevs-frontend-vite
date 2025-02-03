@@ -45,7 +45,7 @@ const Dropdown = <T = string,>({
       {/* Dropdown Trigger */}
       <button
         onClick={toggleDropdown}
-        className={`w-full text-left border border-neutral-30 p-2 rounded-md flex justify-between items-center ${
+        className={`w-full text-left border border-neutral-30 p-2.5 rounded-md flex justify-between items-center ${
           isOpen ? "border-primary" : "hover:border-primary"
         } transition duration-200`}
       >

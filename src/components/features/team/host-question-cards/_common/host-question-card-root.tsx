@@ -12,12 +12,15 @@ import TextInput from "@components/common/form/textinput";
 import { HiEllipsisVertical, HiOutlineTrash } from "react-icons/hi2";
 import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 import { forwardRef } from "react";
+import { DynamicQuestionCard } from "@/types/Question";
 
 interface HostQuestionCardRootProps {
   children?: React.ReactNode;
   additionalHeaders?: React.ReactNode;
   additionalActions?: React.ReactNode;
   listeners?: SyntheticListenerMap;
+  question: DynamicQuestionCard;
+  onChangeQuestionHandler: (question: DynamicQuestionCard) => void;
   onDeleteHandler: () => void;
 }
 
@@ -31,6 +34,8 @@ const HostQuestionCardRoot = forwardRef<
       additionalHeaders,
       additionalActions,
       listeners,
+      question,
+      onChangeQuestionHandler,
       onDeleteHandler,
       ...props
     },
@@ -46,14 +51,15 @@ const HostQuestionCardRoot = forwardRef<
       >
         <CardHeader className="pt-0 pb-0">
           <TextInput
-            value={""}
+            value={question.title ?? ""}
             placeholder={"Enter question here"}
-            // TODO: input change
-            handleInputChange={() => {}}
+            handleInputChange={(val) =>
+              onChangeQuestionHandler({ ...question, title: val })
+            }
           />
           {additionalHeaders}
         </CardHeader>
-        <div className="pb-6 pt-4 px-11">
+        <div className="pt-4 pb-6 px-11">
           <Divider />
         </div>
         <CardContent className="flex flex-col gap-5">{children}</CardContent>
@@ -67,7 +73,12 @@ const HostQuestionCardRoot = forwardRef<
           </Button>
 
           <div className="flex items-center gap-3">
-            <Toggle status={false} onToggleChange={() => {}} />
+            <Toggle
+              status={question.isRequired}
+              onToggleChange={(val) =>
+                onChangeQuestionHandler({ ...question, isRequired: val })
+              }
+            />
             <span className="text-body-regular">Required</span>
             <DropdownMenu
               defaultOpen={true}
