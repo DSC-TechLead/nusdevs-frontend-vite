@@ -26,7 +26,7 @@ const HostCreateTeamFormStep5: React.FC = () => {
     {
       id: 1,
       questionType: QuestionType.SHORT_ANSWER,
-      isRequired: true,
+      isRequired: false,
       question_order: 1,
     },
   ]);
@@ -44,7 +44,7 @@ const HostCreateTeamFormStep5: React.FC = () => {
       {
         id: nextId + 1,
         questionType: QuestionType.SHORT_ANSWER,
-        isRequired: true,
+        isRequired: false,
         question_order: 1,
       },
     ]);
