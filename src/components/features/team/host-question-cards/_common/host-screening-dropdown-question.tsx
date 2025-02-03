@@ -5,7 +5,10 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { Option } from "@/types/Option";
 
 export const HostScreeningDropdownQuestion = () => {
-  const [options, setOptions] = useState<Option[]>([{ label: "", value: "" }]);
+  const [options, setOptions] = useState<Option[]>([
+    { label: "", value: "" },
+    { label: "", value: "" },
+  ]);
 
   const addOption = useCallback(() => {
     setOptions((prev) => [...prev, { label: "", value: "" }]);
@@ -33,6 +36,7 @@ export const HostScreeningDropdownQuestion = () => {
             key={index}
             index={index}
             option={option}
+            isDeleteDisabled={options.length <= 2}
             handleOptionChange={handleOptionChange}
             handleDeleteOption={handleDeleteOption}
           />
@@ -52,6 +56,7 @@ export const HostScreeningDropdownQuestion = () => {
 interface HostDropdownOptionFieldProps {
   index: number;
   option: Option;
+  isDeleteDisabled: boolean;
   handleOptionChange: (index: number, newOption: Option) => void;
   handleDeleteOption: (index: number) => void;
 }
@@ -59,6 +64,7 @@ interface HostDropdownOptionFieldProps {
 const HostDropdownOptionField: React.FC<HostDropdownOptionFieldProps> = ({
   index,
   option,
+  isDeleteDisabled,
   handleOptionChange,
   handleDeleteOption,
 }) => {
@@ -72,8 +78,12 @@ const HostDropdownOptionField: React.FC<HostDropdownOptionFieldProps> = ({
           handleOptionChange(index, { label: val, value: val });
         }}
       />
-      <Button variant="outline" onClick={() => handleDeleteOption(index)}>
-        <HiOutlineTrash />
+      <Button
+        variant="ghost"
+        onClick={() => handleDeleteOption(index)}
+        disabled={isDeleteDisabled}
+      >
+        <HiOutlineTrash className="text-primary" size={20} />
       </Button>
     </div>
   );
