@@ -6,7 +6,9 @@ export enum QuestionType {
   DROPDOWN = 3,
   RADIOBUTTON = 4,
   CHECKBOX = 5,
-  FILE_UPLOAD = 6,
+  SINGLEDATE = 6,
+  DATERANGE = 7,
+  FILE_UPLOAD = 8,
 }
 
 export interface Validation {

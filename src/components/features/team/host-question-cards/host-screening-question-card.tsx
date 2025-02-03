@@ -11,6 +11,8 @@ import HostScreeningShortQuestion from "./_common/host-screening-short-question"
 import HostScreeningLongQuestion from "./_common/host-screening-long-question";
 import { HostScreeningRadioQuestion } from "./_common/host-screening-radio-question";
 import { HostScreeningCheckQuestion } from "./_common/host-screening-checkbox-question";
+import HostScreeningSingleDateQuestion from "./_common/host-screening-single-date-question";
+import HostScreeningDateRangeQuestion from "./_common/host-screening-date-range-question";
 
 export interface HostScreeningQuestionProps {
   isQuestionDropdownEnabled?: boolean;
@@ -53,6 +55,10 @@ const HostScreeningQuestionCard = forwardRef<
           return <HostScreeningRadioQuestion />;
         case QuestionType.CHECKBOX:
           return <HostScreeningCheckQuestion />;
+        case QuestionType.SINGLEDATE:
+          return <HostScreeningSingleDateQuestion />;
+        case QuestionType.DATERANGE:
+          return <HostScreeningDateRangeQuestion />;
         case QuestionType.FILE_UPLOAD:
           return <HostScreeningUploadDocumentQuestion question={question} />;
         default:
@@ -110,6 +116,8 @@ const HostScreeningQuestionCard = forwardRef<
                 { label: "Dropdown", value: QuestionType.DROPDOWN },
                 { label: "Radio Button", value: QuestionType.RADIOBUTTON },
                 { label: "Checkbox", value: QuestionType.CHECKBOX },
+                { label: "Single Date", value: QuestionType.SINGLEDATE },
+                { label: "Start & End Date", value: QuestionType.DATERANGE },
                 // TODO: add the rest
               ]}
             />
