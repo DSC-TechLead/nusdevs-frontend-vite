@@ -22,10 +22,10 @@ const DateField: React.FC<DateFieldProps> = ({
   disabled = false,
 }) => {
   const [selectedStartDate, setSelectedStartDate] = useState<Date | null>(
-    startDate || null,
+    startDate || null
   );
   const [selectedEndDate, setSelectedEndDate] = useState<Date | null>(
-    endDate || null,
+    endDate || null
   );
 
   // Separate focus states for start and end date
@@ -62,7 +62,7 @@ const DateField: React.FC<DateFieldProps> = ({
   };
 
   return (
-    <div className="flex flex-col justify-end items-start w-[367px] gap-2">
+    <div className="flex flex-col items-start justify-end w-full gap-2">
       <h2 className="text-primary-text font-inter text-sm font-bold leading-[18px]">
         {label}
       </h2>
@@ -83,16 +83,16 @@ const DateField: React.FC<DateFieldProps> = ({
               placeholder={placeholder}
               onFocus={handleStartFocus} // Focus handler for single date input
               onBlur={handleStartBlur} // Blur handler for single date input
-              className={`w-full text-left border p-2 rounded-md ${
+              className={`w-full text-left border p-2.5 rounded-md ${
                 isStartDateOpen ? "border-primary" : "border-neutral-30"
-              } focus:outline-none focus:border-primary hover:border-primary`}
-              disabled={disabled}
+              } ${disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none" : ""} focus:outline-none focus:border-primary hover:border-primary`}
+              // disabled={disabled}
             />
           </div>
         ) : (
           // Multi date range
-          <div className="flex space-x-2">
-            <div className="flex flex-col space-y-2 w-1/2">
+          <div className="flex items-center gap-3 space-x-2">
+            <div className="flex flex-col w-1/2 space-y-2">
               <input
                 type="date"
                 value={
@@ -106,13 +106,13 @@ const DateField: React.FC<DateFieldProps> = ({
                 placeholder="Start Date"
                 onFocus={handleStartFocus} // Focus handler for start date input
                 onBlur={handleStartBlur} // Blur handler for start date input
-                className={`w-full text-left border p-2 rounded-md ${
+                className={`w-full text-left border p-2.5 rounded-md ${
                   isStartDateOpen ? "border-primary" : "border-neutral-30"
-                } focus:outline-none focus:border-primary hover:border-primary`}
+                } ${disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none" : ""} focus:outline-none focus:border-primary hover:border-primary`}
               />
             </div>
-            <p className="flex"> _ </p>
-            <div className="flex flex-col space-y-2 w-1/2">
+            <span className="w-4 h-1 bg-neutral" />
+            <div className="flex flex-col w-1/2 space-y-2">
               <input
                 type="date"
                 value={
@@ -129,10 +129,10 @@ const DateField: React.FC<DateFieldProps> = ({
                 placeholder="End Date"
                 onFocus={handleEndFocus} // Focus handler for end date input
                 onBlur={handleEndBlur} // Blur handler for end date input
-                className={`w-full text-left border p-2 rounded-md ${
+                className={`w-full text-left border p-2.5 rounded-md ${
                   isEndDateOpen ? "border-primary" : "border-neutral-30"
-                } focus:outline-none focus:border-primary hover:border-primary`}
-                disabled={disabled}
+                } ${disabled ? "bg-gray-100 text-gray-400 cursor-not-allowed pointer-events-none" : ""} focus:outline-none focus:border-primary hover:border-primary`}
+                // disabled={disabled}
               />
             </div>
           </div>

@@ -1,31 +1,37 @@
 import { cn } from "@/lib/utils";
-import { HTMLAttributes } from "react";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
+import { forwardRef, HTMLAttributes } from "react";
 import { RiDraggable } from "react-icons/ri";
 
 export interface CardProps extends HTMLAttributes<HTMLDivElement> {
   isDraggable: boolean;
+  cardRef?: (node: HTMLElement | null) => void;
+  listeners?: SyntheticListenerMap;
 }
 
-export const Card: React.FC<CardProps> = ({
-  isDraggable = false,
-  className,
-  children,
-  ...props
-}) => {
-  return (
-    <div className={cn("rounded-lg bg-white", className)} {...props}>
-      <div className="flex justify-center py-3">
-        {isDraggable && (
-          <RiDraggable
-            className="text-center rotate-90 text-neutral cursor-grab"
-            size={27}
-          />
-        )}
+export const Card = forwardRef<HTMLDivElement, CardProps>(
+  ({ isDraggable = false, listeners, className, children, ...props }, ref) => {
+    return (
+      <div
+        className={cn("rounded-lg bg-white", className)}
+        {...props}
+        ref={ref}
+      >
+        <div className={cn("flex justify-center", isDraggable && "py-3")}>
+          {isDraggable && (
+            <div className="touch-none" {...listeners}>
+              <RiDraggable
+                className="text-center rotate-90 text-neutral cursor-grab"
+                size={27}
+              />
+            </div>
+          )}
+        </div>
+        <div>{children}</div>
       </div>
-      <div>{children}</div>
-    </div>
-  );
-};
+    );
+  }
+);
 Card.displayName = "Card";
 
 export const CardHeader: React.FC<HTMLAttributes<HTMLDivElement>> = ({

@@ -3,7 +3,6 @@ import IconButton from "@components/common/iconbutton";
 import LinkButton from "@components/common/linkbutton";
 import TextButton from "@components/common/textbutton";
 import TextInput from "@components/common/form/textinput";
-import HostUploadDocument from "@components/features/team/host-question-cards/host-upload-document-question-card";
 import React from "react";
 
 import { FaPlus, FaShoppingCart } from "react-icons/fa";
@@ -12,20 +11,21 @@ import RadioSelect from "@components/common/form/radioSelect";
 import DateField from "@components/common/form/datefield";
 import Toggle from "@components/common/form/toggle";
 import { Button } from "@components/common/button";
-import CreateDropdownQuestion from "@components/features/team/host-question-cards/host-screening-question-card";
+import HostScreeningQuestionCard from "@/components/features/team/host-question-cards/host-screening-question-card";
+import { QuestionType } from "@/types/Question";
 
 const checkSelections = [
   {
-    id: "C1",
-    title: "Selection 1",
+    label: "C1",
+    value: "Selection 1",
   },
   {
-    id: "C2",
-    title: "Selection 2",
+    label: "C2",
+    value: "Selection 2",
   },
   {
-    id: "C3",
-    title: "Selection 3",
+    label: "C3",
+    value: "Selection 3",
   },
 ];
 
@@ -79,8 +79,20 @@ const Components: React.FC = () => {
       />
       <FileUpload maxFileSizeMB={5} />
       <FileUpload maxFileSizeMB={5} disabled />
-      <HostUploadDocument />
-      <CreateDropdownQuestion />
+      <HostScreeningQuestionCard
+        question={{
+          questionType: QuestionType.FILE_UPLOAD,
+          options: [],
+          isRequired: false,
+          question_order: 1,
+        }}
+        onDeleteHandler={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        onShiftToTopHandler={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+      />
       <CheckSelect
         selectTitle="Checkbox Selection"
         onSelectionChange={() => {}}

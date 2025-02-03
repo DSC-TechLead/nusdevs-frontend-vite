@@ -7,6 +7,7 @@ interface TextInputProps {
   label?: string;
   description?: string;
   maxLength?: number;
+  disabled?: boolean;
   height?: number;
 }
 
@@ -17,16 +18,18 @@ const TextInput: React.FC<TextInputProps> = ({
   handleInputChange,
   description,
   maxLength,
+  disabled = false,
   height = 1,
 }) => {
   return (
-    <div className="w-full mb-4">
+    <div className="w-full">
       <label className="block mb-1 font-bold text-gray-800 text-body-small">
         {label}
       </label>
       <p className="mb-2 text-gray-500 text-body-small">{description}</p>
       <div>
         <textarea
+          disabled={disabled}
           placeholder={placeholder}
           value={value}
           onChange={(e) => handleInputChange(e.target.value)}

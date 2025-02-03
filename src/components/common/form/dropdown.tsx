@@ -1,31 +1,31 @@
-import React, { useState } from "react";
+import { Option } from "@/types/Option";
+import { useState } from "react";
 
-export type DropdownOption = { label: string; value: string };
-
-interface DropdownProps {
+interface DropdownProps<T = string> {
   label: string;
   description: string;
   placeholder?: string;
-  options: DropdownOption[];
-  handleChange: (val: DropdownOption) => void;
+  value?: T;
+  options: Option<T>[];
+  handleChange: (val: Option<T>) => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({
+const Dropdown = <T = string,>({
   label,
   description,
   options,
+  value,
   handleChange,
   placeholder,
-}) => {
+}: DropdownProps<T>) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<{
-    label: string;
-    value: string;
-  } | null>(null);
+  const [selected, setSelected] = useState<Option<T> | null>(
+    options.find((option) => option.value === value) || null
+  );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
-  const selectOption = (option: DropdownOption) => {
+  const selectOption = (option: Option<T>) => {
     setSelected(option);
     setIsOpen(false);
   };
@@ -45,7 +45,7 @@ const Dropdown: React.FC<DropdownProps> = ({
       {/* Dropdown Trigger */}
       <button
         onClick={toggleDropdown}
-        className={`w-full text-left border border-neutral-30 p-2 rounded-md flex justify-between items-center ${
+        className={`w-full text-left border border-neutral-30 p-2.5 rounded-md flex justify-between items-center ${
           isOpen ? "border-primary" : "hover:border-primary"
         } transition duration-200`}
       >
